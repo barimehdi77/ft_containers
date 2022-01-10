@@ -6,7 +6,7 @@
 /*   By: mbari <mbari@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/07 18:54:40 by mbari             #+#    #+#             */
-/*   Updated: 2022/01/07 20:00:20 by mbari            ###   ########.fr       */
+/*   Updated: 2022/01/10 15:17:44 by mbari            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,17 +39,12 @@
 
 
 
-/* -------------------------- |strat testing my iterator| --------------------------*/
+/* -------------------------- |Understanding How allocator really work| --------------------------*/
 
 
 int main()
 {
-	int i = 10;
-	ft::VecIter<int *> it(&i);
-	// std::__wrap_iter<int *> itv(i);
-	// std::reverse_iterator<int*> it(&i);
-	// std::vector<int>::iterator it(i);
-	std::cout << *it.base() << std::endl;
+	
 
-
+    return 0;
 }
