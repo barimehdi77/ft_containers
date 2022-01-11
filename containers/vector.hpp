@@ -6,7 +6,7 @@
 /*   By: mbari <mbari@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/12/26 12:04:04 by mbari             #+#    #+#             */
-/*   Updated: 2022/01/11 18:03:48 by mbari            ###   ########.fr       */
+/*   Updated: 2022/01/11 20:10:41 by mbari            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,6 +14,7 @@
 # define VECTOR_HPP
 
 #include "iterator.hpp"
+#include "utils.hpp"
 
 #include <string>
 #include <iostream>
@@ -87,25 +88,14 @@ namespace ft
 			iterator insert (iterator position, const value_type& val)
 			{
 				difference_type diff = this->end() - position;
-				iterator	it;
 				if (this->_size == this->_capacity)
 				{
 					if (this->size() == 0)
 						this->reserve(1);
 					else
 						this->reserve(this->capacity() * 2);
-					// while (it != this->end() && it != _position)
-					// 	it++;
-					// if (it == this->end())
-					// 	*(it - 1) = val;
-					// else
-					// 	*it = val;
-					std::cout << "diff = " << diff << std::endl;
-
-					// iterator new_pos = this->begin() + difference_type;
-					// return (it);
 				}
-				it = this->end();
+				iterator	it = this->end();
 				while (diff != 0)
 				{
 					*(it) = *(it - 1);
@@ -117,7 +107,51 @@ namespace ft
 				return (it);
 			};
 
+			void insert (iterator position, size_type n, const value_type& val)
+			{
+				difference_type diff = this->end() - position;
+				if (this->size() + n > this->capacity())
+				{
+					if (this->size() < n)
+						this->reserve(n);
+					else
+						this->reserve(this->capacity() * 2);
+				}
+				iterator	it = this->end();
+				while (diff != 0)
+				{
+					*(it) = *(it - 1);
+					it--;
+					diff--;
+				}
+				for (size_t i = 0; i < n; i++)
+					*(it + i) = val;
+				this->_size += n;
+			};
 
+			template <class InputIterator>
+			void insert (iterator position, InputIterator first, InputIterator last, typename ft::enable_if<!is_integral<InputIterator>::value, bool>::type = true)
+			{
+				difference_type	diff = this->end() - position;
+				difference_type		len	= last - first;
+				if (this->size() + len > this->capacity())
+				{
+					if (this->size() < len)
+						this->reserve(len);
+					else
+						this->reserve(this->capacity() * 2);
+				}
+				iterator	it = this->end();
+				while (diff != 0)
+				{
+					*(it) = *(it - 1);
+					it--;
+					diff--;
+				}
+				for (size_t i = 0; i < len; i++)
+					*(it + i) = *(first + i);
+				this->_size += len;
+			}
 	};
 }
 
