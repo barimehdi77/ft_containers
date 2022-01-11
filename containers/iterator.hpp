@@ -6,7 +6,7 @@
 /*   By: mbari <mbari@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/06 12:09:44 by mbari             #+#    #+#             */
-/*   Updated: 2022/01/10 14:30:16 by mbari            ###   ########.fr       */
+/*   Updated: 2022/01/11 17:30:49 by mbari            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -96,7 +96,27 @@ namespace ft
 			pointer			operator->()							{ return (&(operator*())); };
 			reference		operator[]( difference_type n ) const	{ return (*(this->_it + n)); };
 	};
+	template <class Iterator>
+	bool operator== (const VecIter<Iterator>& lhs, const VecIter<Iterator>& rhs) { return (lhs == rhs); };
+	template <class Iterator>
+	bool operator!= (const VecIter<Iterator>& lhs, const VecIter<Iterator>& rhs) { return (lhs != rhs); };
+	template <class Iterator>
+	bool operator<  (const VecIter<Iterator>& lhs, const VecIter<Iterator>& rhs) { return (lhs < rhs); };
+	template <class Iterator>
+	bool operator<= (const VecIter<Iterator>& lhs, const VecIter<Iterator>& rhs) { return (lhs <= rhs); };
+	template <class Iterator>
+	bool operator>  (const VecIter<Iterator>& lhs, const VecIter<Iterator>& rhs) { return (lhs > rhs); };
+	template <class Iterator>
+	bool operator>=  (const VecIter<Iterator>& lhs, const VecIter<Iterator>& rhs) { return (lhs >= rhs); };
 
+
+
+	template <class Iterator>
+	VecIter<Iterator> operator+ (typename VecIter<Iterator>::difference_type n, const VecIter<Iterator>& vec_it)
+	{ return (VecIter<Iterator>( vec_it + n)); };
+	template <class Iterator>
+	typename VecIter<Iterator>::difference_type operator- (const VecIter<Iterator>& lhs, const VecIter<Iterator>& rhs)
+	{ return (lhs.base() - lhs.base()); };
 
 };
 
