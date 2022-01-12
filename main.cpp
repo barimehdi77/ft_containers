@@ -6,7 +6,7 @@
 /*   By: mbari <mbari@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/07 18:54:40 by mbari             #+#    #+#             */
-/*   Updated: 2022/01/11 20:41:37 by mbari            ###   ########.fr       */
+/*   Updated: 2022/01/12 19:48:03 by mbari            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -135,20 +135,30 @@ int main()
 {
     {
         std::cout << "/* -------------------------- testing fill constractor -------------------------- */" << std::endl;
-        ft::vector<int> ft_vec(7, 77);
-        // std::vector<int> std_vec(5, 77);
-        // std::cout << "ft::capacity : " << ft_vec.capacity() << std::endl;
-        // std::cout << "ft::size : " << std_vec.size() << std::endl;
-        // std::cout << "std::capacity : " << ft_vec.capacity() << std::endl;
-        // std::cout << "std::size : " << std_vec.size() << std::endl;
-
-        // std::cout << "ft:  ";
-        // for (size_t i = 0; i < ft_vec.size(); i++)
-        //     std::cout << "|" << *(ft_vec.begin() + i) << "|" ;
-        // std::cout << std::endl << "std: ";
-        // for (size_t i = 0; i < std_vec.size(); i++)
-        //     std::cout << "|" << *(std_vec.begin() + i) << "|" ;
-        // std::cout << std::endl;
+        std::vector<int> vec;
+        vec.push_back(77);
+        vec.push_back(7);
+        vec.push_back(10);
+        vec.push_back(33);
+        ft::vector<int> ft_vec(vec.begin(), vec.end());
+        std::vector<int> std_vec(vec.begin(), vec.end());
+        std::cout << "ft::capacity : " << ft_vec.capacity() << std::endl;
+        std::cout << "ft::size : " << std_vec.size() << std::endl;
+        std::cout << "std::capacity : " << ft_vec.capacity() << std::endl;
+        std::cout << "std::size : " << std_vec.size() << std::endl;
+        ft_vec.insert(ft_vec.begin() + 2, 10, 88);
+        std_vec.insert(std_vec.begin() + 2, 10, 88);
+        std::cout << "ft:  ";
+        for (size_t i = 0; i < ft_vec.size(); i++)
+            std::cout << "|" << *(ft_vec.begin() + i) << "|" ;
+        std::cout << std::endl << "std: ";
+        for (size_t i = 0; i < std_vec.size(); i++)
+            std::cout << "|" << *(std_vec.begin() + i) << "|" ;
+        std::cout << std::endl;
+        std::cout << "ft::capacity : " << ft_vec.capacity() << std::endl;
+        std::cout << "ft::size : " << std_vec.size() << std::endl;
+        std::cout << "std::capacity : " << ft_vec.capacity() << std::endl;
+        std::cout << "std::size : " << std_vec.size() << std::endl;
     }
     return 0;
 }

@@ -6,7 +6,7 @@
 /*   By: mbari <mbari@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/12/26 12:04:04 by mbari             #+#    #+#             */
-/*   Updated: 2022/01/11 20:42:22 by mbari            ###   ########.fr       */
+/*   Updated: 2022/01/12 19:53:07 by mbari            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -50,22 +50,14 @@ namespace ft
 			// NOTE: Need rbegin() and rend()
 
 		public:
-			vector(): _alloc(), _vec(), _size(0), _capacity(0) {};
-			explicit vector (const allocator_type& alloc = allocator_type()): _alloc(alloc), _vec(0), _size(0), _capacity(0) {};
-			explicit vector (	size_type n, const value_type& val = value_type(), const allocator_type& alloc = allocator_type())
-			{
-				this->_alloc = alloc;
-				// this->reserve(n);
-				// for (size_t i = 0; i < n; i++)
-				// 	this->_vec[i] = val;
-				// this->_size = n;
-				this->insert(this->begin(), n, val);
-			};
-			// template <class InputIterator>
-			// vector (InputIterator first, InputIterator last,const allocator_type& alloc = allocator_type(), typename ft::enable_if<!is_integral<InputIterator>::value, bool>::type = true)
-			// {
-
-			// }
+			explicit vector (const allocator_type& alloc = allocator_type()): _alloc(alloc), _vec(nullptr), _size(0), _capacity(0) {};
+			explicit vector (	size_type n, const value_type& val = value_type(), const allocator_type& alloc = allocator_type()):
+					_alloc(alloc), _size(0), _capacity(0), _vec(nullptr)
+			{ this->insert(this->begin(), n, val); };
+			template <class InputIterator>
+			vector (InputIterator first, InputIterator last,const allocator_type& alloc = allocator_type(), typename ft::enable_if<!is_integral<InputIterator>::value, bool>::type = true):
+				_alloc(alloc), _size(0), _capacity(0), _vec(nullptr)
+			{ this->insert(this->begin(), first, last); }
 
 
 		public: /*             Capacity                         */
@@ -74,15 +66,20 @@ namespace ft
 			size_type capacity() const { return (this->_capacity); };
 			void reserve (size_type n)
 			{
+				if (this->_vec == NULL)
+					this->_vec = this->_alloc.allocate(1);
 				if (n > this->capacity())
 				{
 					this->_capacity = n;
 					value_type*		temp = this->_alloc.allocate(n);
-					for (int i = 0; i < this->size(); i++)
-						this->_alloc.construct(temp + i, this->_vec[i]);
-					for (int i = 0; i < this->size(); i++)
-						this->_alloc.destroy(this->_vec + i);
-					this->_alloc.deallocate(this->_vec, this->size());
+					if (this->_vec != NULL)
+					{
+						for (int i = 0; i < this->size(); i++)
+							this->_alloc.construct(temp + i, this->_vec[i]);
+						for (int i = 0; i < this->size(); i++)
+							this->_alloc.destroy(this->_vec + i);
+						this->_alloc.deallocate(this->_vec, this->size());
+					}
 					this->_vec = temp;
 				}
 			};
@@ -134,6 +131,7 @@ namespace ft
 					it--;
 					diff--;
 				}
+				std::cout << "len " << n << std::endl;
 				for (size_t i = 0; i < n; i++)
 					*(it + i) = val;
 				this->_size += n;
