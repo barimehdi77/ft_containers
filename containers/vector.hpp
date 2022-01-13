@@ -6,7 +6,7 @@
 /*   By: mbari <mbari@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/12/26 12:04:04 by mbari             #+#    #+#             */
-/*   Updated: 2022/01/12 19:53:07 by mbari            ###   ########.fr       */
+/*   Updated: 2022/01/13 18:57:29 by mbari            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,6 +18,8 @@
 
 #include <string>
 #include <iostream>
+#include <algorithm>
+// #include "../colors.hpp"
 
 namespace ft
 {
@@ -62,12 +64,12 @@ namespace ft
 
 		public: /*             Capacity                         */
 			size_type size() const { return (this->_size); };
-			size_type max_size() const { return (this->_alloc.max_size()); };
+			size_type max_size() const { return (std::min<size_type>(std::numeric_limits<size_type>::max() / sizeof(value_type), std::numeric_limits<difference_type>::max())); };
 			size_type capacity() const { return (this->_capacity); };
 			void reserve (size_type n)
 			{
-				if (this->_vec == NULL)
-					this->_vec = this->_alloc.allocate(1);
+				// if (this->_vec == NULL)
+				// 	this->_vec = this->_alloc.allocate(1);
 				if (n > this->capacity())
 				{
 					this->_capacity = n;
@@ -96,12 +98,7 @@ namespace ft
 			{
 				difference_type diff = this->end() - position;
 				if (this->_size == this->_capacity)
-				{
-					if (this->size() == 0)
-						this->reserve(1);
-					else
 						this->reserve(this->capacity() * 2);
-				}
 				iterator	it = this->end();
 				while (diff != 0)
 				{
@@ -117,23 +114,31 @@ namespace ft
 			void insert (iterator position, size_type n, const value_type& val)
 			{
 				difference_type diff = this->end() - position;
+				difference_type posIndex = position - this->begin();
 				if (this->size() + n > this->capacity())
 				{
-					if (this->size() < n)
-						this->reserve(n);
+					if (this->size() + n > this->capacity() * 2)
+						this->reserve(this->size() + n);
 					else
 						this->reserve(this->capacity() * 2);
 				}
-				iterator	it = this->end();
-				while (diff != 0)
+				iterator it = this->end() - 1;
+				// this->_PrintVecData(n);
+				for (size_t i = 0; i < diff; i++)
 				{
-					*(it) = *(it - 1);
+					// this->_PrintVecData(n);
+					// std::cout << i << std::endl;
+					*(it + n) = *(it);
 					it--;
-					diff--;
 				}
-				std::cout << "len " << n << std::endl;
+				it = this->begin() + posIndex;
+				// this->_PrintVecData(n);
 				for (size_t i = 0; i < n; i++)
+				{
 					*(it + i) = val;
+					// std::cout << i;
+					// this->_PrintVecData(n);
+				}
 				this->_size += n;
 			};
 
@@ -141,27 +146,47 @@ namespace ft
 			void insert (iterator position, InputIterator first, InputIterator last, typename ft::enable_if<!is_integral<InputIterator>::value, bool>::type = true)
 			{
 				difference_type	diff = this->end() - position;
-				difference_type		len	= last - first;
+				difference_type	len	= last - first;
+				difference_type posIndex = position - this->begin();
 				if (this->size() + len > this->capacity())
 				{
-					if (this->size() < len)
-						this->reserve(len);
+					if (this->size() + len > this->capacity() * 2)
+						this->reserve(this->size() + len);
 					else
 						this->reserve(this->capacity() * 2);
 				}
-				iterator	it = this->end();
-				while (diff != 0)
+				iterator it = this->end() - 1;
+				// this->_PrintVecData(len);
+				// std::cout << std::endl;
+				for (size_t i = 0; i < diff; i++)
 				{
-					*(it) = *(it - 1);
+					// this->_PrintVecData(len);
+					// std::cout << i << std::endl;
+					*(it + len) = *(it);
 					it--;
-					diff--;
 				}
+				it = this->begin() + posIndex;
+				// this->_PrintVecData(len);
 				for (size_t i = 0; i < len; i++)
-					*(it + i) = *(first + i);
+				{
+					*(it + i) = *(first++);
+					// std::cout << i;
+					// this->_PrintVecData(len);
+				}
 				this->_size += len;
 			}
+
+
+
+			private:
+				void _PrintVecData(int n)
+				{
+					std::cout << "ft:  ";
+					for (size_t i = 0; i < this->size() + n; i++)
+						std::cout << "|" << *(this->begin() + i) << "|" ;
+					std::cout << std::endl;
+				};
 	};
 }
-
 
 # endif

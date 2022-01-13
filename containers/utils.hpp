@@ -6,13 +6,14 @@
 /*   By: mbari <mbari@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/11 19:46:30 by mbari             #+#    #+#             */
-/*   Updated: 2022/01/11 20:09:14 by mbari            ###   ########.fr       */
+/*   Updated: 2022/01/13 17:20:36 by mbari            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef UTILS_HPP
 #define UTILS_HPP
 
+#include "vector.hpp"
 namespace ft
 {
 	template<bool Cond, class T = void> struct	enable_if				{};
@@ -35,6 +36,9 @@ namespace ft
 	template <> 		struct	is_integral<unsigned int>				{ static const bool value = true; };
 	template <> 		struct	is_integral<unsigned long int>			{ static const bool value = true; };
 	template <> 		struct	is_integral<unsigned long long int>		{ static const bool value = true; };
+
+
+
 }
 
 
