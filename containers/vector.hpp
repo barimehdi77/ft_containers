@@ -6,7 +6,7 @@
 /*   By: mbari <mbari@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/12/26 12:04:04 by mbari             #+#    #+#             */
-/*   Updated: 2022/01/17 16:00:24 by mbari            ###   ########.fr       */
+/*   Updated: 2022/01/17 17:51:51 by mbari            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -60,7 +60,7 @@ namespace ft
 			vector (InputIterator first, InputIterator last,const allocator_type& alloc = allocator_type(), typename ft::enable_if<!is_integral<InputIterator>::value, bool>::type = true):
 				_alloc(alloc), _size(0), _capacity(0), _vec(nullptr)
 			{ this->insert(this->begin(), first, last); }
-
+			// copy constructer
 
 		public: /*             Capacity                         */
 			size_type	size() const		{ return (this->_size); };
@@ -85,7 +85,6 @@ namespace ft
 					this->_vec = temp;
 				}
 			};
-
 			void resize (size_type n, value_type val = value_type())
 			{
 				value_type*		temp = this->_alloc.allocate(n);
@@ -129,7 +128,6 @@ namespace ft
 				++this->_size;
 				return (it);
 			};
-
 			void insert (iterator position, size_type n, const value_type& val)
 			{
 				difference_type diff = this->end() - position;
@@ -160,7 +158,6 @@ namespace ft
 				}
 				this->_size += n;
 			};
-
 			template <class InputIterator>
 			void insert (iterator position, InputIterator first, InputIterator last, typename ft::enable_if<!is_integral<InputIterator>::value, bool>::type = true)
 			{
@@ -175,26 +172,51 @@ namespace ft
 						this->reserve(this->capacity() * 2);
 				}
 				iterator it = this->end() - 1;
-				// this->_PrintVecData(len);
-				// std::cout << std::endl;
 				for (size_t i = 0; i < diff; i++)
 				{
-					// this->_PrintVecData(len);
-					// std::cout << i << std::endl;
 					*(it + len) = *(it);
 					it--;
 				}
 				it = this->begin() + posIndex;
-				// this->_PrintVecData(len);
 				for (size_t i = 0; i < len; i++)
-				{
 					*(it + i) = *(first++);
-					// std::cout << i;
-					// this->_PrintVecData(len);
-				}
 				this->_size += len;
 			}
+			template <class InputIterator>
+			void assign (InputIterator first, InputIterator last, typename ft::enable_if<!is_integral<InputIterator>::value, bool>::type = true)
+			{
+				difference_type	len	= last - first;
+				this->clear();
+				if (len > this->capacity())
+				{
+					this->_alloc.deallocate(this->_vec, this->capacity());
+					this->_vec = this->_alloc.allocate(len);
+					this->_capacity = len;
+				}
+				for (size_t i = 0; i < len; i++)
+					this->_alloc.construct(this->_vec + i, *(first + i));
+				this->_size = len;
+			}
+			void assign (size_type n, const value_type& val)
+			{
+				this->clear();
+				if (n > this->capacity())
+				{
+					this->_alloc.deallocate(this->_vec, this->capacity());
+					this->_vec = this->_alloc.allocate(n);
+					this->_capacity = n;
+				}
+				for (size_t i = 0; i < n; i++)
+					this->_alloc.construct(this->_vec + i, val);
+				this->_size = n;
+			}
 
+			void clear()
+			{
+				for (size_t i = 0; i < this->_size; i++)
+					this->_alloc.destroy(this->_vec + i);
+				this->_size = 0;
+			};
 
 
 			private:

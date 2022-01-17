@@ -6,7 +6,7 @@
 /*   By: mbari <mbari@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/07 18:54:40 by mbari             #+#    #+#             */
-/*   Updated: 2022/01/17 16:01:15 by mbari            ###   ########.fr       */
+/*   Updated: 2022/01/17 17:49:11 by mbari            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -173,6 +173,44 @@
 // }
 
 
+/* -------------------------- |Test resize function| --------------------------*/
+
+// int main()
+// {
+// 	{
+// 		typedef int		 ValueType;
+// 		std::cout << YELLOW;
+// 		std::cout << "/* -------------------------- testing fill constractor -------------------------- */" << std::endl;
+// 		std::vector<int> vec;
+// 		vec.push_back(77);
+// 		vec.push_back(7);
+// 		vec.push_back(10);
+// 		vec.push_back(33);
+// 		vec.push_back(42);
+// 		ft::vector<ValueType> ft_vec(vec.begin(), vec.end());
+// 		std::vector<ValueType> std_vec(vec.begin(), vec.end());
+// 		PrintVecData<ValueType>(ft_vec, std_vec);
+// 		std::cout << BLUE;
+// 		std::cout << "/* -------------------------- testing resize -------------------------- */" << std::endl;
+// 		ft_vec.resize(10);
+// 		std_vec.resize(10);
+// 		PrintVecData<ValueType>(ft_vec, std_vec);
+// 		std::cout << RED;
+// 		std::cout << "/* -------------------------- testing resize with insert -------------------------- */" << std::endl;
+// 		ft_vec.insert(ft_vec.begin() + 2, 88);
+// 		std_vec.insert(std_vec.begin() + 2, 88);
+// 		PrintVecData<ValueType>(ft_vec, std_vec);
+// 		std::cout << RESET;
+// 	}
+// 	return (0);
+// }
+
+
+
+/* -------------------------- |Test assign function| --------------------------*/
+
+
+
 int main()
 {
 	{
@@ -188,17 +226,26 @@ int main()
 		ft::vector<ValueType> ft_vec(vec.begin(), vec.end());
 		std::vector<ValueType> std_vec(vec.begin(), vec.end());
 		PrintVecData<ValueType>(ft_vec, std_vec);
-		std::cout << BLUE;
-		std::cout << "/* -------------------------- testing resize -------------------------- */" << std::endl;
-		ft_vec.resize(10);
-		std_vec.resize(10);
-		PrintVecData<ValueType>(ft_vec, std_vec);
 		std::cout << RED;
-		std::cout << "/* -------------------------- testing resize with insert -------------------------- */" << std::endl;
-		ft_vec.insert(ft_vec.begin() + 2, 88);
-		std_vec.insert(std_vec.begin() + 2, 88);
+		std::cout << "/* -------------------------- testing clear -------------------------- */" << std::endl;
+		// ft_vec.clear();
+		// std_vec.assign(2, 777);
+		// PrintVecData<ValueType>(ft_vec, std_vec);
+		std::cout << BLUE;
+		std::cout << "/* -------------------------- testing assign -------------------------- */" << std::endl;
+		std::vector<int> vec2;
+		vec2.push_back(200);
+		vec2.push_back(300);
+		vec2.push_back(400);
+		vec2.push_back(500);
+		vec2.push_back(600);
+		vec2.push_back(500);
+		vec2.push_back(600);
+		ft_vec.assign(10, 77);
+		std_vec.assign(10, 77);
 		PrintVecData<ValueType>(ft_vec, std_vec);
 		std::cout << RESET;
 	}
 	return (0);
 }
+
