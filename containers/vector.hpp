@@ -6,7 +6,7 @@
 /*   By: mbari <mbari@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/12/26 12:04:04 by mbari             #+#    #+#             */
-/*   Updated: 2022/01/17 18:19:42 by mbari            ###   ########.fr       */
+/*   Updated: 2022/01/17 19:15:27 by mbari            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -216,6 +216,12 @@ namespace ft
 					this->reserve(this->capacity() * 2);
 				this->_alloc.construct(this->_vec + this->_size, val);
 				++this->_size;
+			}
+			iterator erase (iterator position)
+			{
+				value_type*		temp = this->_alloc.allocate(this->capacity());
+				difference_type	diff = position - this->begin();
+
 			}
 			void pop_back()
 			{
