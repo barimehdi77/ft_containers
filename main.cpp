@@ -6,7 +6,7 @@
 /*   By: mbari <mbari@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/07 18:54:40 by mbari             #+#    #+#             */
-/*   Updated: 2022/01/14 13:07:00 by mbari            ###   ########.fr       */
+/*   Updated: 2022/01/17 16:01:15 by mbari            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -128,9 +128,49 @@
 // }
 
 
-/* -------------------------- |Test constractors| --------------------------*/
+/* -------------------------- |Test inset| --------------------------*/
 
 
+// int main()
+// {
+	// {
+		// typedef int		 ValueType;
+		// std::cout << YELLOW;
+		// std::cout << "/* -------------------------- testing fill constractor -------------------------- */" << std::endl;
+		// std::vector<int> vec;
+		// vec.push_back(77);
+		// vec.push_back(7);
+		// vec.push_back(10);
+		// vec.push_back(33);
+		// vec.push_back(42);
+		// ft::vector<ValueType> ft_vec(vec.begin(), vec.end());
+		// std::vector<ValueType> std_vec(vec.begin(), vec.end());
+		// PrintVecData<ValueType>(ft_vec, std_vec);
+		// std::cout << GREEN;
+		// std::cout << "/* -------------------------- testing single element insert -------------------------- */" << std::endl;
+		// ft_vec.insert(ft_vec.begin() + 1, 1337);
+		// std_vec.insert(std_vec.begin() + 1, 1337);
+		// PrintVecData<ValueType>(ft_vec, std_vec);
+		// std::cout << BLUE;
+		// std::cout << "/* -------------------------- testing fill insert -------------------------- */" << std::endl;
+		// ft_vec.insert(ft_vec.begin(), 3, 88);
+		// std_vec.insert(std_vec.begin(), 3, 88);
+		// PrintVecData<ValueType>(ft_vec, std_vec);
+		// std::cout << RED;
+		// std::cout << "/* -------------------------- testing range insert -------------------------- */" << std::endl;
+		// std::vector<ValueType> vec2;
+		// vec2.push_back(1);
+		// vec2.push_back(2);
+		// vec2.push_back(3);
+		// vec2.push_back(4);
+		// vec2.push_back(5);
+		// ft_vec.insert(ft_vec.begin() + 3, vec2.begin(), vec2.end());
+		// std_vec.insert(std_vec.begin() + 3, vec2.begin(), vec2.end());
+		// PrintVecData<ValueType>(ft_vec, std_vec);
+		// std::cout << RESET;
+	// }
+	// return (0);
+// }
 
 
 int main()
@@ -148,26 +188,15 @@ int main()
 		ft::vector<ValueType> ft_vec(vec.begin(), vec.end());
 		std::vector<ValueType> std_vec(vec.begin(), vec.end());
 		PrintVecData<ValueType>(ft_vec, std_vec);
-		std::cout << GREEN;
-		std::cout << "/* -------------------------- testing single element insert -------------------------- */" << std::endl;
-		ft_vec.insert(ft_vec.begin() + 1, 1337);
-		std_vec.insert(std_vec.begin() + 1, 1337);
-		PrintVecData<ValueType>(ft_vec, std_vec);
 		std::cout << BLUE;
-		std::cout << "/* -------------------------- testing fill insert -------------------------- */" << std::endl;
-		ft_vec.insert(ft_vec.begin(), 3, 88);
-		std_vec.insert(std_vec.begin(), 3, 88);
+		std::cout << "/* -------------------------- testing resize -------------------------- */" << std::endl;
+		ft_vec.resize(10);
+		std_vec.resize(10);
 		PrintVecData<ValueType>(ft_vec, std_vec);
 		std::cout << RED;
-		std::cout << "/* -------------------------- testing range insert -------------------------- */" << std::endl;
-		std::vector<ValueType> vec2;
-		vec2.push_back(1);
-		vec2.push_back(2);
-		vec2.push_back(3);
-		vec2.push_back(4);
-		vec2.push_back(5);
-		ft_vec.insert(ft_vec.begin() + 3, vec2.begin(), vec2.end());
-		std_vec.insert(std_vec.begin() + 3, vec2.begin(), vec2.end());
+		std::cout << "/* -------------------------- testing resize with insert -------------------------- */" << std::endl;
+		ft_vec.insert(ft_vec.begin() + 2, 88);
+		std_vec.insert(std_vec.begin() + 2, 88);
 		PrintVecData<ValueType>(ft_vec, std_vec);
 		std::cout << RESET;
 	}
