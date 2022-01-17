@@ -6,7 +6,7 @@
 /*   By: mbari <mbari@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/12/26 12:04:04 by mbari             #+#    #+#             */
-/*   Updated: 2022/01/17 17:51:51 by mbari            ###   ########.fr       */
+/*   Updated: 2022/01/17 18:19:42 by mbari            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -210,7 +210,22 @@ namespace ft
 					this->_alloc.construct(this->_vec + i, val);
 				this->_size = n;
 			}
-
+			void push_back (const value_type& val)
+			{
+				if (this->_size == this->_capacity)
+					this->reserve(this->capacity() * 2);
+				this->_alloc.construct(this->_vec + this->_size, val);
+				++this->_size;
+			}
+			void pop_back()
+			{
+				if (this->size() >= 0)
+				{
+					this->_alloc.destroy(this->_vec + this->_size);
+					if (this->size() > 0)
+						--this->_size;
+				}
+			}
 			void clear()
 			{
 				for (size_t i = 0; i < this->_size; i++)
