@@ -6,7 +6,7 @@
 /*   By: mbari <mbari@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/13 16:59:21 by mbari             #+#    #+#             */
-/*   Updated: 2022/01/17 14:49:50 by mbari            ###   ########.fr       */
+/*   Updated: 2022/01/17 16:45:10 by mbari            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,7 +38,7 @@ void PrintVecInfo(ft::vector<T>& ft_vec, std::vector<T>& std_vec)
 
 
 template<typename T>
-void PrintVecData(ft::vector<T>& ft_vec, std::vector<T> std_vec = std::vector<T>())
+void PrintVecData(ft::vector<T>& ft_vec, std::vector<T>& std_vec = std::vector<T>())
 {
 	std::cout << "ft:  ";
 	for (size_t i = 0; i < ft_vec.size(); i++)
