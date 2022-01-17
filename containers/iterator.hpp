@@ -6,7 +6,7 @@
 /*   By: mbari <mbari@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/06 12:09:44 by mbari             #+#    #+#             */
-/*   Updated: 2022/01/13 18:29:06 by mbari            ###   ########.fr       */
+/*   Updated: 2022/01/17 15:15:54 by mbari            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -62,7 +62,7 @@ namespace ft
 		typedef T&								reference;
 		typedef std::random_access_iterator_tag	iterator_category;
 	};
-	template<class T>
+	template<class T> // const int *
 	class VecIter : public iterator<std::random_access_iterator_tag, T>
 	{
 		public:

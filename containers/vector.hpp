@@ -6,7 +6,7 @@
 /*   By: mbari <mbari@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/12/26 12:04:04 by mbari             #+#    #+#             */
-/*   Updated: 2022/01/13 18:57:29 by mbari            ###   ########.fr       */
+/*   Updated: 2022/01/17 16:00:24 by mbari            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -63,42 +63,61 @@ namespace ft
 
 
 		public: /*             Capacity                         */
-			size_type size() const { return (this->_size); };
-			size_type max_size() const { return (std::min<size_type>(std::numeric_limits<size_type>::max() / sizeof(value_type), std::numeric_limits<difference_type>::max())); };
-			size_type capacity() const { return (this->_capacity); };
-			void reserve (size_type n)
+			size_type	size() const		{ return (this->_size); };
+			size_type	max_size() const	{ return (std::min<size_type>(std::numeric_limits<size_type>::max() / sizeof(value_type), std::numeric_limits<difference_type>::max())); };
+			size_type	capacity() const	{ return (this->_capacity); };
+			bool		empty() const			{ return (!this->_size); };
+			void		reserve (size_type n)
 			{
-				// if (this->_vec == NULL)
-				// 	this->_vec = this->_alloc.allocate(1);
 				if (n > this->capacity())
 				{
-					this->_capacity = n;
 					value_type*		temp = this->_alloc.allocate(n);
 					if (this->_vec != NULL)
 					{
 						for (int i = 0; i < this->size(); i++)
+						{
 							this->_alloc.construct(temp + i, this->_vec[i]);
-						for (int i = 0; i < this->size(); i++)
 							this->_alloc.destroy(this->_vec + i);
-						this->_alloc.deallocate(this->_vec, this->size());
+						}
+						this->_alloc.deallocate(this->_vec, this->capacity());
 					}
+					this->_capacity = n;
 					this->_vec = temp;
 				}
 			};
-			// void resize (size_type n, value_type val = value_type())
-			// {
-			// 	if (n < this->_size)
-			// 	{
 
-			// 	}
-			// }
+			void resize (size_type n, value_type val = value_type())
+			{
+				value_type*		temp = this->_alloc.allocate(n);
+				if (n < this->_size)
+				{
+					for (size_t i = 0; i < n; i++)
+						this->_alloc.construct(temp + i, this->_vec[i]);
+					for (int i = 0; i < this->size(); i++)
+						this->_alloc.destroy(this->_vec + i);
+					this->_alloc.deallocate(this->_vec, this->capacity());
+				}
+				else if (n > this->_size)
+				{
+					for (size_t i = 0; i < this->_size; i++)
+					{
+						this->_alloc.construct(temp + i, this->_vec[i]);
+						this->_alloc.destroy(this->_vec + i);
+					}
+					this->_alloc.deallocate(this->_vec, this->capacity());
+					for (size_t i = this->_size + 1; i < n; i++)
+						this->_alloc.construct(temp + i, val);
+				}
+				this->_vec = temp;
+				this->_size = this->_capacity = n;
+			}
 
 		public: /*             Modifiers                         */
 			iterator insert (iterator position, const value_type& val)
 			{
 				difference_type diff = this->end() - position;
 				if (this->_size == this->_capacity)
-						this->reserve(this->capacity() * 2);
+						this->reserve(this->capacity() + 1);
 				iterator	it = this->end();
 				while (diff != 0)
 				{

@@ -6,7 +6,7 @@
 /*   By: mbari <mbari@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/13 16:59:21 by mbari             #+#    #+#             */
-/*   Updated: 2022/01/13 17:33:01 by mbari            ###   ########.fr       */
+/*   Updated: 2022/01/17 14:49:50 by mbari            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,9 +29,11 @@ void PrintVecInfo(ft::vector<T>& ft_vec, std::vector<T>& std_vec)
 	std::cout << "ft::capacity : " << ft_vec.capacity() << std::endl;
 	std::cout << "ft::size : " << ft_vec.size() << std::endl;
 	std::cout << "ft::max_size : " << ft_vec.max_size() << std::endl;
+	std::cout << "ft::empty : " << ft_vec.empty() << std::endl;
 	std::cout << "std::capacity : " << std_vec.capacity() << std::endl;
 	std::cout << "std::size : " << std_vec.size() << std::endl;
 	std::cout << "std::max_size : " << std_vec.max_size() << std::endl;
+	std::cout << "std::empty : " << std_vec.empty() << std::endl;
 }
 
 
