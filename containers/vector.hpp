@@ -6,7 +6,7 @@
 /*   By: mbari <mbari@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/12/26 12:04:04 by mbari             #+#    #+#             */
-/*   Updated: 2022/01/18 18:33:04 by mbari            ###   ########.fr       */
+/*   Updated: 2022/01/18 18:36:08 by mbari            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -151,6 +151,8 @@ namespace ft
 			};
 			reference front() { return (this->_vec[0]); };
 			const_reference front() const { return (this->_vec[0]); };
+			reference back() { return (this->_vec[this->_size - 1]); };
+			const_reference back() const { return (this->_vec[this->_size - 1]); };
 
 		public: /*             Modifiers                         */
 			iterator insert (iterator position, const value_type& val)
