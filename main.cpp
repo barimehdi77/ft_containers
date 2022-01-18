@@ -6,7 +6,7 @@
 /*   By: mbari <mbari@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/07 18:54:40 by mbari             #+#    #+#             */
-/*   Updated: 2022/01/18 18:31:00 by mbari            ###   ########.fr       */
+/*   Updated: 2022/01/18 18:34:44 by mbari            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -455,10 +455,11 @@ int main()
 		std::cout << "/* -------------------------- testing operator [] -------------------------- */" << std::endl;
 		std::cout << "printing element in index 3: " << ft_vec[3] << std::endl;
 		std::cout << "printing element in index 3: " << std_vec[3] << std::endl;
-		std::cout << "/* -------------------------- testing at function -------------------------- */" << std::endl;
+		std::cout << CYAN;
+		std::cout << "/* -------------------------- testing at() function -------------------------- */" << std::endl;
 		try
 		{
-			std::cout << "printing element in index 3: " << ft_vec.at(5) << std::endl;
+			std::cout << "printing element at index 5: " << ft_vec.at(5) << std::endl;
 		}
 		catch(const std::exception& e)
 		{
@@ -466,14 +467,16 @@ int main()
 		}
 		try
 		{
-			std::cout << "printing element in index 3: " << std_vec.at(5) << std::endl;
+			std::cout << "printing element at index 5: " << std_vec.at(5) << std::endl;
 		}
 		catch(const std::exception& e)
 		{
 			std::cerr << e.what() << '\n';
 		}
-
-
+		std::cout << RED;
+		std::cout << "/* -------------------------- testing front() -------------------------- */" << std::endl;
+		std::cout << "printing the first element: " << ft_vec.front() << std::endl;
+		std::cout << "printing the first element: " << std_vec.front() << std::endl;
 		std::cout << RESET;
 	}
 	return (0);
