@@ -6,7 +6,7 @@
 /*   By: mbari <mbari@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/12/26 12:04:04 by mbari             #+#    #+#             */
-/*   Updated: 2022/01/18 18:40:31 by mbari            ###   ########.fr       */
+/*   Updated: 2022/01/18 18:50:19 by mbari            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -295,8 +295,6 @@ namespace ft
 			};
 			void swap (vector& x)
 			{
-				vector<value_type>temp(x);
-
 				std::swap(x._size, this->_size);
 				std::swap(x._capacity, this->_capacity);
 				std::swap(x._alloc, this->_alloc);
@@ -306,7 +304,7 @@ namespace ft
 
 			public: /*             Allocator                         */
 				allocator_type get_allocator() const { return (this->_alloc); };
-				
+
 			private:
 				void _PrintVecData(int n)
 				{
@@ -316,6 +314,12 @@ namespace ft
 					std::cout << std::endl;
 				};
 	};
+
+	template <class T, class Alloc>
+	void swap (vector<T,Alloc>& x, vector<T,Alloc>& y)
+	{
+		x.swap(y);
+	}
 }
 
 # endif
