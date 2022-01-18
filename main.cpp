@@ -6,7 +6,7 @@
 /*   By: mbari <mbari@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/07 18:54:40 by mbari             #+#    #+#             */
-/*   Updated: 2022/01/17 18:24:49 by mbari            ###   ########.fr       */
+/*   Updated: 2022/01/18 13:40:53 by mbari            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -286,6 +286,46 @@
 /* -------------------------- |Test pop_back function| --------------------------*/
 
 
+// int main()
+// {
+// 	{
+// 		typedef int		 ValueType;
+// 		std::cout << YELLOW;
+// 		std::cout << "/* -------------------------- testing fill constractor -------------------------- */" << std::endl;
+// 		std::vector<int> vec;
+// 		vec.push_back(77);
+// 		vec.push_back(7);
+// 		vec.push_back(10);
+// 		vec.push_back(33);
+// 		vec.push_back(42);
+// 		ft::vector<ValueType> ft_vec(vec.begin(), vec.end());
+// 		std::vector<ValueType> std_vec(vec.begin(), vec.end());
+// 		PrintVecData<ValueType>(ft_vec, std_vec);
+// 		std::cout << BLUE;
+// 		std::cout << "/* -------------------------- testing pop_back -------------------------- */" << std::endl;
+// 		ft_vec.pop_back();
+// 		std_vec.pop_back();
+// 		PrintVecData<ValueType>(ft_vec, std_vec);
+// 		std::cout << RED;
+// 		std::cout << "/* -------------------------- testing deleting all content using pop_back -------------------------- */" << std::endl;
+// 		ft_vec.pop_back();
+// 		std_vec.pop_back();
+// 		ft_vec.pop_back();
+// 		std_vec.pop_back();
+// 		ft_vec.pop_back();
+// 		std_vec.pop_back();
+// 		ft_vec.pop_back();
+// 		std_vec.pop_back();
+// 		PrintVecData<ValueType>(ft_vec, std_vec);
+// 		std::cout << RESET;
+// 	}
+// 	return (0);
+// }
+
+
+/* -------------------------- |Test pop_back function| --------------------------*/
+
+
 int main()
 {
 	{
@@ -303,19 +343,8 @@ int main()
 		PrintVecData<ValueType>(ft_vec, std_vec);
 		std::cout << BLUE;
 		std::cout << "/* -------------------------- testing pop_back -------------------------- */" << std::endl;
-		ft_vec.pop_back();
-		std_vec.pop_back();
-		PrintVecData<ValueType>(ft_vec, std_vec);
-		std::cout << RED;
-		std::cout << "/* -------------------------- testing deleting all content using pop_back -------------------------- */" << std::endl;
-		ft_vec.pop_back();
-		std_vec.pop_back();
-		ft_vec.pop_back();
-		std_vec.pop_back();
-		ft_vec.pop_back();
-		std_vec.pop_back();
-		ft_vec.pop_back();
-		std_vec.pop_back();
+		std::cout << *ft_vec.erase(ft_vec.begin() + 2) << std::endl;
+		std::cout << *std_vec.erase(std_vec.begin() + 2) << std::endl;
 		PrintVecData<ValueType>(ft_vec, std_vec);
 		std::cout << RESET;
 	}
