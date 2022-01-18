@@ -6,7 +6,7 @@
 /*   By: mbari <mbari@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/12/26 12:04:04 by mbari             #+#    #+#             */
-/*   Updated: 2022/01/18 13:41:05 by mbari            ###   ########.fr       */
+/*   Updated: 2022/01/18 13:53:24 by mbari            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -228,6 +228,20 @@ namespace ft
 				}
 				this->_size--;
 				return (position);
+			}
+			iterator erase (iterator first, iterator last)
+			{
+				iterator		it = first;
+				difference_type	len = last - first;
+				for (size_t i = 0; i < len; i++)
+					this->_alloc.destroy((first + i).base());
+				while (it != last && it != this->end())
+				{
+					*(it) = *(it + len);
+					it++;
+				}
+				this->_size -= len;
+				return (first);
 			}
 			void pop_back()
 			{
