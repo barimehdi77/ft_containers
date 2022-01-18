@@ -6,7 +6,7 @@
 /*   By: mbari <mbari@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/12/26 12:04:04 by mbari             #+#    #+#             */
-/*   Updated: 2021/12/26 13:08:10 by mbari            ###   ########.fr       */
+/*   Updated: 2021/12/28 13:58:39 by mbari            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,10 +14,11 @@
 # define VECTOR_HPP
 
 #include <string>
+#include <vector>
 #include <iostream>
 
 template < class T, class Alloc = std::allocator<T> >
-class vector
+class vector : std::allocator<T>
 {
 	
 };
