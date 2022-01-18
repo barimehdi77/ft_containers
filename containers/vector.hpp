@@ -6,7 +6,7 @@
 /*   By: mbari <mbari@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/12/26 12:04:04 by mbari             #+#    #+#             */
-/*   Updated: 2022/01/18 18:16:31 by mbari            ###   ########.fr       */
+/*   Updated: 2022/01/18 18:30:31 by mbari            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -133,6 +133,23 @@ namespace ft
 				this->_vec = temp;
 				this->_size = this->_capacity = n;
 			}
+
+		public: /*             Element access                         */
+			reference operator[] (size_type n) { return (this->_vec[n]); };
+			const_reference operator[] (size_type n) const { return (this->_vec[n]); };
+			reference at (size_type n)
+			{
+				if (n >= this->size())
+					throw std::out_of_range("vector");
+				return (this->_vec[n]);
+			};
+			const_reference at (size_type n) const
+			{
+				if (n >= this->size())
+					throw std::out_of_range("vector");
+				return (this->_vec[n]);
+			};
+
 
 		public: /*             Modifiers                         */
 			iterator insert (iterator position, const value_type& val)
