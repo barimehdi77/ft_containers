@@ -6,7 +6,7 @@
 /*   By: mbari <mbari@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/12/26 12:04:04 by mbari             #+#    #+#             */
-/*   Updated: 2022/01/18 13:53:24 by mbari            ###   ########.fr       */
+/*   Updated: 2022/01/18 14:17:17 by mbari            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -254,7 +254,9 @@ namespace ft
 					this->_alloc.destroy(this->_vec + i);
 				this->_size = 0;
 			};
-
+			void swap (vector& x)
+			{
+			}
 
 			private:
 				void _PrintVecData(int n)
