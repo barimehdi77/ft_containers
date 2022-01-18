@@ -6,7 +6,7 @@
 /*   By: mbari <mbari@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/12/26 12:04:04 by mbari             #+#    #+#             */
-/*   Updated: 2022/01/18 13:28:31 by mbari            ###   ########.fr       */
+/*   Updated: 2022/01/18 14:01:13 by mbari            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,14 +17,15 @@
 #include "utils.hpp"
 
 #include <string>
-#include <vector>
 #include <iostream>
 #include <algorithm>
 // #include "../colors.hpp"
 
-template < class T, class Alloc = std::allocator<T> >
-class vector : std::allocator<T>
-
+namespace ft
+{
+	template < class T, class Allocator = std::allocator<T> >
+	class vector
+	{
 		public:
 			typedef T											value_type;
 			typedef Allocator									allocator_type;
@@ -314,11 +315,28 @@ class vector : std::allocator<T>
 				};
 	};
 
+	/*             swap                         */
 	template <class T, class Alloc>
 	void swap (vector<T,Alloc>& x, vector<T,Alloc>& y)
 	{
 		x.swap(y);
-	}
-}
+	};
+
+	/*             relational operators                         */
+
+	template <class T, class Alloc>
+	bool operator== (const vector<T,Alloc>& lhs, const vector<T,Alloc>& rhs) { return (lhs.begin().base() == rhs.begin().base());};
+	template <class T, class Alloc>
+	bool operator!= (const vector<T,Alloc>& lhs, const vector<T,Alloc>& rhs) { return (lhs.begin().base() != rhs.begin().base());};
+	template <class T, class Alloc>
+	bool operator<  (const vector<T,Alloc>& lhs, const vector<T,Alloc>& rhs) { return (lhs.begin().base() < rhs.begin().base());};
+	template <class T, class Alloc>
+	bool operator<= (const vector<T,Alloc>& lhs, const vector<T,Alloc>& rhs) { return (lhs.begin().base() <= rhs.begin().base());};
+	template <class T, class Alloc>
+	bool operator>  (const vector<T,Alloc>& lhs, const vector<T,Alloc>& rhs) { return (lhs.begin().base() > rhs.begin().base());};
+	template <class T, class Alloc>
+	bool operator>= (const vector<T,Alloc>& lhs, const vector<T,Alloc>& rhs) { return (lhs.begin().base() >= rhs.begin().base());};
+
+};
 
 # endif
