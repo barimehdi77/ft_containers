@@ -6,7 +6,7 @@
 /*   By: mbari <mbari@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/12/26 12:04:04 by mbari             #+#    #+#             */
-/*   Updated: 2022/01/18 14:17:17 by mbari            ###   ########.fr       */
+/*   Updated: 2022/01/18 15:48:33 by mbari            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -140,21 +140,15 @@ namespace ft
 						this->reserve(this->capacity() * 2);
 				}
 				iterator it = this->end() - 1;
-				// this->_PrintVecData(n);
 				for (size_t i = 0; i < diff; i++)
 				{
-					// this->_PrintVecData(n);
-					// std::cout << i << std::endl;
 					*(it + n) = *(it);
 					it--;
 				}
 				it = this->begin() + posIndex;
-				// this->_PrintVecData(n);
 				for (size_t i = 0; i < n; i++)
 				{
 					*(it + i) = val;
-					// std::cout << i;
-					// this->_PrintVecData(n);
 				}
 				this->_size += n;
 			};
