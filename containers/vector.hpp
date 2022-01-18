@@ -6,7 +6,7 @@
 /*   By: mbari <mbari@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/12/26 12:04:04 by mbari             #+#    #+#             */
-/*   Updated: 2022/01/17 19:15:27 by mbari            ###   ########.fr       */
+/*   Updated: 2022/01/18 13:41:05 by mbari            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -219,18 +219,20 @@ namespace ft
 			}
 			iterator erase (iterator position)
 			{
-				value_type*		temp = this->_alloc.allocate(this->capacity());
-				difference_type	diff = position - this->begin();
-
+				iterator it = position;
+				this->_alloc.destroy(it.base());
+				while (it != this->end() - 1)
+				{
+					*(it) = *(it + 1);
+					it++;
+				}
+				this->_size--;
+				return (position);
 			}
 			void pop_back()
 			{
-				if (this->size() >= 0)
-				{
-					this->_alloc.destroy(this->_vec + this->_size);
-					if (this->size() > 0)
-						--this->_size;
-				}
+				this->_alloc.destroy(this->_vec + this->_size);
+				--this->_size;
 			}
 			void clear()
 			{

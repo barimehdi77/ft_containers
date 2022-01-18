@@ -6,7 +6,7 @@
 /*   By: mbari <mbari@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/06 12:09:44 by mbari             #+#    #+#             */
-/*   Updated: 2022/01/17 15:15:54 by mbari            ###   ########.fr       */
+/*   Updated: 2022/01/18 13:36:09 by mbari            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -96,17 +96,17 @@ namespace ft
 			reference		operator[]( difference_type n ) const	{ return (*(this->_it + n)); };
 	};
 	template <class Iterator>
-	bool operator== (const VecIter<Iterator>& lhs, const VecIter<Iterator>& rhs) { return (lhs == rhs); };
+	bool operator== (const VecIter<Iterator>& lhs, const VecIter<Iterator>& rhs) { return (lhs.base() == rhs.base()); };
 	template <class Iterator>
-	bool operator!= (const VecIter<Iterator>& lhs, const VecIter<Iterator>& rhs) { return (lhs != rhs); };
+	bool operator!= (const VecIter<Iterator>& lhs, const VecIter<Iterator>& rhs) { return (lhs.base() != rhs.base()); };
 	template <class Iterator>
-	bool operator<  (const VecIter<Iterator>& lhs, const VecIter<Iterator>& rhs) { return (lhs < rhs); };
+	bool operator<  (const VecIter<Iterator>& lhs, const VecIter<Iterator>& rhs) { return (lhs.base() < rhs.base()); };
 	template <class Iterator>
-	bool operator<= (const VecIter<Iterator>& lhs, const VecIter<Iterator>& rhs) { return (lhs <= rhs); };
+	bool operator<= (const VecIter<Iterator>& lhs, const VecIter<Iterator>& rhs) { return (lhs.base() <= rhs.base()); };
 	template <class Iterator>
-	bool operator>  (const VecIter<Iterator>& lhs, const VecIter<Iterator>& rhs) { return (lhs > rhs); };
+	bool operator>  (const VecIter<Iterator>& lhs, const VecIter<Iterator>& rhs) { return (lhs.base() > rhs.base()); };
 	template <class Iterator>
-	bool operator>=  (const VecIter<Iterator>& lhs, const VecIter<Iterator>& rhs) { return (lhs >= rhs); };
+	bool operator>=  (const VecIter<Iterator>& lhs, const VecIter<Iterator>& rhs) { return (lhs.base() >= rhs.base()); };
 
 
 
