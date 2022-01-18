@@ -6,7 +6,7 @@
 /*   By: mbari <mbari@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/12/26 12:04:04 by mbari             #+#    #+#             */
-/*   Updated: 2022/01/18 15:48:33 by mbari            ###   ########.fr       */
+/*   Updated: 2022/01/18 17:25:23 by mbari            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,12 +46,12 @@ namespace ft
 
 		public: /*             Iterators                         */
 			iterator begin() { return (iterator(this->_vec)); };
-			// const_iterator begin() { return (const_iterator(this->_begin)); };
+			const_iterator begin() const { return (const_iterator(this->_vec)); };
 			iterator end() { return (iterator(this->begin() + this->size())); };
-			// const_iterator end() { return (const_iterator(this->_begin + this->size)); };
+			const_iterator end() const { return (const_iterator(this->begin() + this->size())); };
 			// NOTE: Need rbegin() and rend()
 
-		public:
+		public: /*             constructers                         */
 			explicit vector (const allocator_type& alloc = allocator_type()): _alloc(alloc), _vec(nullptr), _size(0), _capacity(0) {};
 			explicit vector (	size_type n, const value_type& val = value_type(), const allocator_type& alloc = allocator_type()):
 					_alloc(alloc), _size(0), _capacity(0), _vec(nullptr)
@@ -60,7 +60,20 @@ namespace ft
 			vector (InputIterator first, InputIterator last,const allocator_type& alloc = allocator_type(), typename ft::enable_if<!is_integral<InputIterator>::value, bool>::type = true):
 				_alloc(alloc), _size(0), _capacity(0), _vec(nullptr)
 			{ this->insert(this->begin(), first, last); }
-			// copy constructer
+			vector (const vector& x) { *this = x; }
+
+		public: /*             operator =                         */
+			vector& operator= (const vector& x)
+			{
+				this->_alloc = x._alloc;
+				this->_size = x.size();
+				this->_capacity = x.size();
+				this->_vec = this->_alloc.allocate(this->size());
+				for (size_t i = 0; i < this->_size; i++)
+					this->_alloc.construct(this->_vec + i, x._vec[i]);
+				return (*this);
+			}
+
 
 		public: /*             Capacity                         */
 			size_type	size() const		{ return (this->_size); };
@@ -208,6 +221,8 @@ namespace ft
 			{
 				if (this->_size == this->_capacity)
 					this->reserve(this->capacity() * 2);
+				if (this->_vec == NULL)
+					this->reserve(1);
 				this->_alloc.construct(this->_vec + this->_size, val);
 				++this->_size;
 			}
@@ -250,7 +265,13 @@ namespace ft
 			};
 			void swap (vector& x)
 			{
-			}
+				vector<value_type>temp(x);
+
+				std::swap(x._size, this->_size);
+				std::swap(x._capacity, this->_capacity);
+				std::swap(x._alloc, this->_alloc);
+				std::swap(x._vec, this->_vec);
+			};
 
 			private:
 				void _PrintVecData(int n)
