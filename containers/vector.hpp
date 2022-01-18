@@ -6,7 +6,7 @@
 /*   By: mbari <mbari@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/12/26 12:04:04 by mbari             #+#    #+#             */
-/*   Updated: 2022/01/18 18:36:08 by mbari            ###   ########.fr       */
+/*   Updated: 2022/01/18 18:40:31 by mbari            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -303,6 +303,10 @@ namespace ft
 				std::swap(x._vec, this->_vec);
 			};
 
+
+			public: /*             Allocator                         */
+				allocator_type get_allocator() const { return (this->_alloc); };
+				
 			private:
 				void _PrintVecData(int n)
 				{
