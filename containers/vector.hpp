@@ -6,7 +6,7 @@
 /*   By: mbari <mbari@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/12/26 12:04:04 by mbari             #+#    #+#             */
-/*   Updated: 2022/01/18 17:25:23 by mbari            ###   ########.fr       */
+/*   Updated: 2022/01/18 18:16:31 by mbari            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -61,6 +61,16 @@ namespace ft
 				_alloc(alloc), _size(0), _capacity(0), _vec(nullptr)
 			{ this->insert(this->begin(), first, last); }
 			vector (const vector& x) { *this = x; }
+
+		public: /*             destructor                         */
+			~vector()
+			{
+				if (this->_vec != nullptr)
+				{
+					this->clear();
+					this->_alloc.deallocate(this->_vec, this->capacity());
+				}
+			}
 
 		public: /*             operator =                         */
 			vector& operator= (const vector& x)
