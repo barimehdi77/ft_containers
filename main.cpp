@@ -6,7 +6,7 @@
 /*   By: mbari <mbari@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/07 18:54:40 by mbari             #+#    #+#             */
-/*   Updated: 2022/01/18 13:40:53 by mbari            ###   ########.fr       */
+/*   Updated: 2022/01/18 13:56:35 by mbari            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -342,9 +342,14 @@ int main()
 		std::vector<ValueType> std_vec(vec.begin(), vec.end());
 		PrintVecData<ValueType>(ft_vec, std_vec);
 		std::cout << BLUE;
-		std::cout << "/* -------------------------- testing pop_back -------------------------- */" << std::endl;
-		std::cout << *ft_vec.erase(ft_vec.begin() + 2) << std::endl;
-		std::cout << *std_vec.erase(std_vec.begin() + 2) << std::endl;
+		std::cout << "/* -------------------------- testing range of erase -------------------------- */" << std::endl;
+		std::cout << "return value of erase : " << *(ft_vec.erase(ft_vec.begin() + 2)) << std::endl;
+		std::cout << "return value of erase : " << *(std_vec.erase(std_vec.begin() + 2)) << std::endl;
+		PrintVecData<ValueType>(ft_vec, std_vec);
+		std::cout << RED;
+		std::cout << "/* -------------------------- testing range of erase -------------------------- */" << std::endl;
+		std::cout << "return value of erase : " << *(ft_vec.erase(ft_vec.begin(), ft_vec.end() - 2)) << std::endl;
+		std::cout << "return value of erase : " << *(std_vec.erase(std_vec.begin(), std_vec.end() - 2)) << std::endl;
 		PrintVecData<ValueType>(ft_vec, std_vec);
 		std::cout << RESET;
 	}
