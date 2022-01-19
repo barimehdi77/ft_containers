@@ -6,7 +6,7 @@
 /*   By: mbari <mbari@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/12/26 12:04:04 by mbari             #+#    #+#             */
-/*   Updated: 2022/01/19 21:05:10 by mbari            ###   ########.fr       */
+/*   Updated: 2022/01/19 21:17:23 by mbari            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -85,7 +85,10 @@ namespace ft
 			const_iterator			begin()		const	{ return (const_iterator(this->_vec)); };
 			iterator				end()				{ return (iterator(this->begin() + this->size())); };
 			const_iterator			end()		const	{ return (const_iterator(this->begin() + this->size())); };
-
+			reverse_iterator		rbegin()			{ return(reverse_iterator((this->end() - 1).base())); };
+			const_reverse_iterator	rbegin()	const	{ return(const_reverse_iterator((this->end() - 1).base())); }
+			reverse_iterator		rend()				{ return(reverse_iterator((this->begin() - 1).base())); };
+			const_reverse_iterator	rend()		const	{ return(const_reverse_iterator((this->begin() - 1).base())); };
 
 
 

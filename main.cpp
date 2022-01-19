@@ -6,7 +6,7 @@
 /*   By: mbari <mbari@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/07 18:54:40 by mbari             #+#    #+#             */
-/*   Updated: 2022/01/18 18:44:40 by mbari            ###   ########.fr       */
+/*   Updated: 2022/01/19 21:18:42 by mbari            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -506,40 +506,69 @@
 
 /* -------------------------- |Test swap function| --------------------------*/
 
+// int main()
+// {
+// 	{
+// 		typedef int		 ValueType;
+// 		std::cout << YELLOW;
+// 		std::cout << "/* -------------------------- printing ft_vec and std_vec -------------------------- */" << std::endl;
+// 		ft::vector<ValueType> ft_vec(7, 77);
+// 		std::vector<ValueType> std_vec(7, 77);
+// 		PrintVecData<ValueType>(ft_vec, std_vec);
+// 		std::cout << BLUE;
+// 		std::cout << "/* -------------------------- printing std_swap and ft_swap -------------------------- */" << std::endl;
+// 		std::vector<ValueType> std_swap;
+// 		std_swap.push_back(77);
+// 		std_swap.push_back(7);
+// 		std_swap.push_back(10);
+// 		std_swap.push_back(33);
+// 		std_swap.push_back(42);
+// 		ft::vector<ValueType> ft_swap;
+// 		ft_swap.push_back(77);
+// 		ft_swap.push_back(7);
+// 		ft_swap.push_back(10);
+// 		ft_swap.push_back(33);
+// 		ft_swap.push_back(42);
+// 		PrintVecData<ValueType>(ft_swap, std_swap);
+// 		std::cout << RED;
+// 		std::cout << "/* -------------------------- testing swap function -------------------------- */" << std::endl;
+// 		ft::swap(ft_vec, ft_swap);
+// 		std::swap(std_vec, std_swap);
+// 		std::cout << CYAN;
+// 		std::cout << "/* -------------------------- printing ft_swap and std_swap after swapping -------------------------- */" << std::endl;
+// 		PrintVecData<ValueType>(ft_swap, std_swap);
+// 		std::cout << PURPLE;
+// 		std::cout << "/* -------------------------- printing ft_vec and std_vec after swapping -------------------------- */" << std::endl;
+// 		PrintVecData<ValueType>(ft_vec, std_vec);
+// 		std::cout << RESET;
+// 	}
+// 	return (0);
+// }
+
+/* -------------------------- |Test reverse_iterator| --------------------------*/
+
 int main()
 {
 	{
 		typedef int		 ValueType;
 		std::cout << YELLOW;
 		std::cout << "/* -------------------------- printing ft_vec and std_vec -------------------------- */" << std::endl;
-		ft::vector<ValueType> ft_vec(7, 77);
-		std::vector<ValueType> std_vec(7, 77);
+		std::vector<int> vec;
+		vec.push_back(77);
+		vec.push_back(7);
+		vec.push_back(10);
+		vec.push_back(33);
+		vec.push_back(42);
+		ft::vector<ValueType> ft_vec(vec.begin(), vec.end());
+		std::vector<ValueType> std_vec(vec.begin(), vec.end());
 		PrintVecData<ValueType>(ft_vec, std_vec);
 		std::cout << BLUE;
-		std::cout << "/* -------------------------- printing std_swap and ft_swap -------------------------- */" << std::endl;
-		std::vector<ValueType> std_swap;
-		std_swap.push_back(77);
-		std_swap.push_back(7);
-		std_swap.push_back(10);
-		std_swap.push_back(33);
-		std_swap.push_back(42);
-		ft::vector<ValueType> ft_swap;
-		ft_swap.push_back(77);
-		ft_swap.push_back(7);
-		ft_swap.push_back(10);
-		ft_swap.push_back(33);
-		ft_swap.push_back(42);
-		PrintVecData<ValueType>(ft_swap, std_swap);
-		std::cout << RED;
-		std::cout << "/* -------------------------- testing swap function -------------------------- */" << std::endl;
-		ft::swap(ft_vec, ft_swap);
-		std::swap(std_vec, std_swap);
-		std::cout << CYAN;
-		std::cout << "/* -------------------------- printing ft_swap and std_swap after swapping -------------------------- */" << std::endl;
-		PrintVecData<ValueType>(ft_swap, std_swap);
-		std::cout << PURPLE;
-		std::cout << "/* -------------------------- printing ft_vec and std_vec after swapping -------------------------- */" << std::endl;
-		PrintVecData<ValueType>(ft_vec, std_vec);
+		std::cout << "/* -------------------------- printing reverse_iterator rbegin() -------------------------- */" << std::endl;
+		std::cout << "printing last element: " << *ft_vec.rbegin() << std::endl;
+		std::cout << "printing last element: " << *std_vec.rbegin() << std::endl;
+		std::cout << "/* -------------------------- printing reverse_iterator rend() -------------------------- */" << std::endl;
+		std::cout << "printing first element: " << *(ft_vec.rend() - 1) << std::endl;
+		std::cout << "printing first element: " << *(std_vec.rend() - 1) << std::endl;
 		std::cout << RESET;
 	}
 	return (0);
