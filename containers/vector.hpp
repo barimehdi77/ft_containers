@@ -6,7 +6,7 @@
 /*   By: mbari <mbari@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/12/26 12:04:04 by mbari             #+#    #+#             */
-/*   Updated: 2022/01/18 14:01:13 by mbari            ###   ########.fr       */
+/*   Updated: 2022/01/19 21:05:10 by mbari            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,7 +26,7 @@ namespace ft
 	template < class T, class Allocator = std::allocator<T> >
 	class vector
 	{
-		public:
+		public: /*             Member types                         */
 			typedef T											value_type;
 			typedef Allocator									allocator_type;
 			typedef typename allocator_type::reference			reference;
@@ -37,19 +37,14 @@ namespace ft
 			typedef typename allocator_type::size_type			size_type;
 			typedef VecIter<pointer>							iterator;
 			typedef VecIter<const_pointer>						const_iterator;
+			typedef ft::reverse_iterator<pointer>				reverse_iterator;
+			typedef ft::reverse_iterator<const_pointer>			const_reverse_iterator;
 
-		private:
+		private: /*             My vector staff                         */
 			allocator_type										_alloc;
 			value_type*											_vec;
 			size_type											_size;
 			size_type											_capacity;
-
-		public: /*             Iterators                         */
-			iterator begin() { return (iterator(this->_vec)); };
-			const_iterator begin() const { return (const_iterator(this->_vec)); };
-			iterator end() { return (iterator(this->begin() + this->size())); };
-			const_iterator end() const { return (const_iterator(this->begin() + this->size())); };
-			// NOTE: Need rbegin() and rend()
 
 		public: /*             constructers                         */
 			explicit vector (const allocator_type& alloc = allocator_type()): _alloc(alloc), _vec(nullptr), _size(0), _capacity(0) {};
@@ -59,8 +54,8 @@ namespace ft
 			template <class InputIterator>
 			vector (InputIterator first, InputIterator last,const allocator_type& alloc = allocator_type(), typename ft::enable_if<!is_integral<InputIterator>::value, bool>::type = true):
 				_alloc(alloc), _size(0), _capacity(0), _vec(nullptr)
-			{ this->insert(this->begin(), first, last); }
-			vector (const vector& x) { *this = x; }
+			{ this->insert(this->begin(), first, last); };
+			vector (const vector& x) { *this = x; };
 
 		public: /*             destructor                         */
 			~vector()
@@ -70,7 +65,7 @@ namespace ft
 					this->clear();
 					this->_alloc.deallocate(this->_vec, this->capacity());
 				}
-			}
+			};
 
 		public: /*             operator =                         */
 			vector& operator= (const vector& x)
@@ -82,14 +77,23 @@ namespace ft
 				for (size_t i = 0; i < this->_size; i++)
 					this->_alloc.construct(this->_vec + i, x._vec[i]);
 				return (*this);
-			}
+			};
+
+
+		public: /*             Iterators                         */
+			iterator				begin()				{ return (iterator(this->_vec)); };
+			const_iterator			begin()		const	{ return (const_iterator(this->_vec)); };
+			iterator				end()				{ return (iterator(this->begin() + this->size())); };
+			const_iterator			end()		const	{ return (const_iterator(this->begin() + this->size())); };
+
+
 
 
 		public: /*             Capacity                         */
-			size_type	size() const		{ return (this->_size); };
-			size_type	max_size() const	{ return (std::min<size_type>(std::numeric_limits<size_type>::max() / sizeof(value_type), std::numeric_limits<difference_type>::max())); };
-			size_type	capacity() const	{ return (this->_capacity); };
-			bool		empty() const			{ return (!this->_size); };
+			size_type	size()		const	{ return (this->_size); };
+			size_type	max_size()	const	{ return (std::min<size_type>(std::numeric_limits<size_type>::max() / sizeof(value_type), std::numeric_limits<difference_type>::max())); };
+			size_type	capacity()	const	{ return (this->_capacity); };
+			bool		empty()		const	{ return (!this->_size); };
 			void		reserve (size_type n)
 			{
 				if (n > this->capacity())
@@ -108,7 +112,7 @@ namespace ft
 					this->_vec = temp;
 				}
 			};
-			void resize (size_type n, value_type val = value_type())
+			void		resize (size_type n, value_type val = value_type())
 			{
 				value_type*		temp = this->_alloc.allocate(n);
 				if (n < this->_size)
@@ -305,7 +309,7 @@ namespace ft
 			public: /*             Allocator                         */
 				allocator_type get_allocator() const { return (this->_alloc); };
 
-			private:
+			private: /*             for Debugging                         */
 				void _PrintVecData(int n)
 				{
 					std::cout << "ft:  ";
