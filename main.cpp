@@ -6,7 +6,7 @@
 /*   By: mbari <mbari@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/07 18:54:40 by mbari             #+#    #+#             */
-/*   Updated: 2022/01/19 21:18:42 by mbari            ###   ########.fr       */
+/*   Updated: 2022/01/27 14:34:50 by mbari            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,6 +17,7 @@
 #include "colors.hpp"
 #include "containers/vector.hpp"
 #include <vector>
+#include <map>
 
 /* -------------------------- |Understand how iterators really work| --------------------------*/
 
@@ -547,29 +548,37 @@
 
 /* -------------------------- |Test reverse_iterator| --------------------------*/
 
+// int main()
+// {
+// 	{
+// 		typedef int		 ValueType;
+// 		std::cout << YELLOW;
+// 		std::cout << "/* -------------------------- printing ft_vec and std_vec -------------------------- */" << std::endl;
+// 		std::vector<int> vec;
+// 		vec.push_back(77);
+// 		vec.push_back(7);
+// 		vec.push_back(10);
+// 		vec.push_back(33);
+// 		vec.push_back(42);
+// 		ft::vector<ValueType> ft_vec(vec.begin(), vec.end());
+// 		std::vector<ValueType> std_vec(vec.begin(), vec.end());
+// 		PrintVecData<ValueType>(ft_vec, std_vec);
+// 		std::cout << BLUE;
+// 		std::cout << "/* -------------------------- printing reverse_iterator rbegin() -------------------------- */" << std::endl;
+// 		std::cout << "printing last element: " << *ft_vec.rbegin() << std::endl;
+// 		std::cout << "printing last element: " << *std_vec.rbegin() << std::endl;
+// 		std::cout << "/* -------------------------- printing reverse_iterator rend() -------------------------- */" << std::endl;
+// 		std::cout << "printing first element: " << *(ft_vec.rend() - 1) << std::endl;
+// 		std::cout << "printing first element: " << *(std_vec.rend() - 1) << std::endl;
+// 		std::cout << RESET;
+// 	}
+// 	return (0);
+// }
+
+
 int main()
 {
 	{
-		typedef int		 ValueType;
-		std::cout << YELLOW;
-		std::cout << "/* -------------------------- printing ft_vec and std_vec -------------------------- */" << std::endl;
-		std::vector<int> vec;
-		vec.push_back(77);
-		vec.push_back(7);
-		vec.push_back(10);
-		vec.push_back(33);
-		vec.push_back(42);
-		ft::vector<ValueType> ft_vec(vec.begin(), vec.end());
-		std::vector<ValueType> std_vec(vec.begin(), vec.end());
-		PrintVecData<ValueType>(ft_vec, std_vec);
-		std::cout << BLUE;
-		std::cout << "/* -------------------------- printing reverse_iterator rbegin() -------------------------- */" << std::endl;
-		std::cout << "printing last element: " << *ft_vec.rbegin() << std::endl;
-		std::cout << "printing last element: " << *std_vec.rbegin() << std::endl;
-		std::cout << "/* -------------------------- printing reverse_iterator rend() -------------------------- */" << std::endl;
-		std::cout << "printing first element: " << *(ft_vec.rend() - 1) << std::endl;
-		std::cout << "printing first element: " << *(std_vec.rend() - 1) << std::endl;
-		std::cout << RESET;
+		
 	}
-	return (0);
 }
