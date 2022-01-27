@@ -6,7 +6,7 @@
 /*   By: mbari <mbari@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/07 18:54:40 by mbari             #+#    #+#             */
-/*   Updated: 2022/01/27 14:34:50 by mbari            ###   ########.fr       */
+/*   Updated: 2022/01/27 16:29:16 by mbari            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,6 +16,7 @@
 #include "containers/iterator.hpp"
 #include "colors.hpp"
 #include "containers/vector.hpp"
+#include "containers/tree.hpp"
 #include <vector>
 #include <map>
 
@@ -579,6 +580,15 @@
 int main()
 {
 	{
-		
+		Tree<int> BST;
+
+		BST.insert(10);
+		BST.insert(7);
+		BST.insert(4);
+		BST.insert(77);
+		BST.insert(8);
+		BST.insert(66);
+		BST.insert(88);
+		BST.print();
 	}
 }
