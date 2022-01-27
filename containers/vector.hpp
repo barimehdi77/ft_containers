@@ -6,7 +6,7 @@
 /*   By: mbari <mbari@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/12/26 12:04:04 by mbari             #+#    #+#             */
-/*   Updated: 2022/01/19 21:17:23 by mbari            ###   ########.fr       */
+/*   Updated: 2022/01/27 11:54:59 by mbari            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,6 +19,7 @@
 #include <string>
 #include <iostream>
 #include <algorithm>
+#include <limits>
 // #include "../colors.hpp"
 
 namespace ft

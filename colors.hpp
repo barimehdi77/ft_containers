@@ -6,7 +6,7 @@
 /*   By: mbari <mbari@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/13 16:59:21 by mbari             #+#    #+#             */
-/*   Updated: 2022/01/18 17:12:44 by mbari            ###   ########.fr       */
+/*   Updated: 2022/01/27 11:57:48 by mbari            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,6 +22,7 @@
 # define BLUE "\e[1;34m"
 
 #include "containers/vector.hpp"
+#include <vector>
 
 template<typename T>
 void PrintVecInfo(ft::vector<T>& ft_vec, std::vector<T>& std_vec)
