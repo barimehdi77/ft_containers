@@ -6,7 +6,7 @@
 /*   By: mbari <mbari@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/27 14:35:25 by mbari             #+#    #+#             */
-/*   Updated: 2022/01/27 16:31:22 by mbari            ###   ########.fr       */
+/*   Updated: 2022/02/02 13:10:26 by mbari            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -70,10 +70,28 @@ class Tree
 				this->add(this->_Root, newnode);
 		};
 
+		Node<T>*	Min()
+		{
+			Node<T> * tmp = this->_Root;
+
+			while (tmp->left != nullptr)
+				tmp = tmp->left;
+			return (tmp);
+		}
+
+		Node<T>* Max()
+		{
+			Node<T>* tmp = this->_Root;
+
+			while (tmp->right != nullptr)
+				tmp = tmp->right;
+			return (tmp);
+		}
+
 
 		T	get_Key() const { return (this->_Root->key); };
 
-		private: /*             Private Functions for prunting The tree                         */
+		private: /*             Private Functions for printing The tree                         */
 
 		struct Trunk
 		{

@@ -6,7 +6,7 @@
 /*   By: mbari <mbari@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/07 18:54:40 by mbari             #+#    #+#             */
-/*   Updated: 2022/01/27 16:29:16 by mbari            ###   ########.fr       */
+/*   Updated: 2022/02/02 13:10:44 by mbari            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -589,6 +589,12 @@ int main()
 		BST.insert(8);
 		BST.insert(66);
 		BST.insert(88);
+
+
+		Node<int>* min = BST.Min();
+		std::cout << min->key << std::endl;
+		Node<int>* Max = BST.Max();
+		std::cout << Max->key << std::endl;
 		BST.print();
 	}
 }
