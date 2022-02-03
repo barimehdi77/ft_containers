@@ -6,7 +6,7 @@
 /*   By: mbari <mbari@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/07 18:54:40 by mbari             #+#    #+#             */
-/*   Updated: 2022/02/02 14:01:57 by mbari            ###   ########.fr       */
+/*   Updated: 2022/02/03 14:52:24 by mbari            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -579,24 +579,26 @@
 
 int main()
 {
+	typedef	int	ValueType;
 	{
-		Tree<int> BST;
+		Tree<ValueType> BST;
 
 		BST.insert(10);
 		BST.insert(7);
 		BST.insert(77);
-		// BST.insert(77);
-		// BST.insert(8);
-		// BST.insert(66);
-		// BST.insert(88);
-		// BST.insert(99);
-		// BST.insert(33);
+		BST.insert(8);
+		BST.insert(66);
+		BST.insert(88);
+		BST.insert(99);
+		BST.insert(33);
 
 
-		Node<int>* min = BST.Min();
+		Node<ValueType>* min = BST.Min();
 		std::cout << min->key << std::endl;
-		Node<int>* Max = BST.Max();
+		Node<ValueType>* Max = BST.Max();
 		std::cout << Max->key << std::endl;
+		Node<ValueType>* search = BST.search(33);
+		std::cout << search->key << std::endl;
 		BST.print();
 	}
 }

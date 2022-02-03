@@ -6,7 +6,7 @@
 /*   By: mbari <mbari@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/27 14:35:25 by mbari             #+#    #+#             */
-/*   Updated: 2022/02/02 14:08:30 by mbari            ###   ########.fr       */
+/*   Updated: 2022/02/03 14:52:47 by mbari            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,23 +43,37 @@ class Tree
 
 
 	private:
-		void	add(Node<T>* temp, Node<T>* newNode)
+		void	_insert(Node<T>* temp, Node<T>* newNode)
 		{
 			if (temp->key > newNode->key)
 			{
 				if (temp->left == nullptr)
 					temp->left = newNode;
 				else
-					this->add(temp->left, newNode);
+					this->_insert(temp->left, newNode);
 			}
 			else
 			{
 				if (temp->right == nullptr)
 					temp->right = newNode;
 				else
-					this->add(temp->right, newNode);
+					this->_insert(temp->right, newNode);
 			}
 		};
+		Node<T>* _search(Node<T>* temp, T key)
+		{
+			if (temp == nullptr)
+				return (nullptr);
+
+			if (temp->key == key)
+				return (temp);
+			else if (temp->key > key)
+				return (this->_search(temp->left, key));
+			else if (temp->key < key)
+				return (this->_search(temp->right, key));
+
+			return (nullptr);
+		}
 
 		// int		setSubTreeHeight(Node<T>* temp)
 		// {
@@ -84,14 +98,14 @@ class Tree
 
 
 	public:
-		void	insert(int key)
+		void	insert(T key)
 		{
 			Node<T> * newnode = new Node<T>(key);
 			if (!this->_Root)
 				this->_Root = newnode;
 			else
-				this->add(this->_Root, newnode);
-			this->setHeight();
+				this->_insert(this->_Root, newnode);
+			// this->setHeight();
 		};
 
 		Node<T>*	Min()
@@ -110,6 +124,14 @@ class Tree
 			while (tmp->right)
 				tmp = tmp->right;
 			return (tmp);
+		}
+
+		Node<T>* search(T key)
+		{
+			if (this->_Root == nullptr)
+				return (nullptr);
+			else
+				return (this->_search(this->_Root, key));
 		}
 
 		T	get_Key() const { return (this->_Root->key); };
