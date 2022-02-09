@@ -6,23 +6,24 @@
 /*   By: mbari <mbari@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/27 14:35:25 by mbari             #+#    #+#             */
-/*   Updated: 2022/02/03 14:52:47 by mbari            ###   ########.fr       */
+/*   Updated: 2022/02/09 21:29:52 by mbari            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#define COUNT 10
+// #define COUNT 10
 template <class T>
 struct Node
 {
 	public:
 		T		key;
+		Node*	parent;
 		Node*	left;
 		Node*	right;
 		int		height;
 
 	public:
 		// Node(): _key(0), left(nullptr), right(nullptr) {};
-		Node(T key): key(key), left(nullptr), right(nullptr), height(0) {};
+		Node(T key): key(key), left(nullptr), right(nullptr), parent(nullptr) , height(0) {};
 		// Node (const Node& x) {*this = x; };
 		// Node(T key, const Node & l, const Node & r): _key(key), left(l), right(r) {};
 		~Node() {};
@@ -48,14 +49,20 @@ class Tree
 			if (temp->key > newNode->key)
 			{
 				if (temp->left == nullptr)
+				{
 					temp->left = newNode;
+					temp->left->parent = temp;
+				}
 				else
 					this->_insert(temp->left, newNode);
 			}
 			else
 			{
 				if (temp->right == nullptr)
+				{
 					temp->right = newNode;
+					temp->right->parent = temp;
+				}
 				else
 					this->_insert(temp->right, newNode);
 			}
@@ -187,7 +194,11 @@ class Tree
 			}
 
 			showTrunks(trunk);
-			std::cout << " " << root->key << " H: " << root->height << std::endl;
+			std::cout << " " << root->key;
+			if (root->parent != nullptr)
+				std::cout << " {P: " << root->parent->key << "} H: " << root->height << std::endl;
+			else
+				std::cout << " {P: NULL" << "} H: " << root->height << std::endl;
 
 			if (prev) {
 				prev->str = prev_str;
@@ -198,11 +209,9 @@ class Tree
 		}
 
 
+
 		public: /*             print function                         */
-			void	print()
-			{
-				printTree(this->_Root, nullptr, false);
-			}
+			void	print() { printTree(this->_Root, nullptr, false); };
 
 };
 
