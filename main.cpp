@@ -6,7 +6,7 @@
 /*   By: mbari <mbari@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/07 18:54:40 by mbari             #+#    #+#             */
-/*   Updated: 2022/02/03 14:52:24 by mbari            ###   ########.fr       */
+/*   Updated: 2022/02/09 21:56:59 by mbari            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -599,6 +599,21 @@ int main()
 		std::cout << Max->key << std::endl;
 		Node<ValueType>* search = BST.search(33);
 		std::cout << search->key << std::endl;
+
+		/*             find the successor of node 11                         */
+		{
+			Node<ValueType>* succ = BST.successor(BST.search(10));
+			std::cout << "successor of 10 is " << succ->key << std::endl;
+		}
+		{
+			Node<ValueType>* succ = BST.successor(BST.search(8));
+			std::cout << "successor of 8 is " << succ->key << std::endl;
+		}
+		{
+			Node<ValueType>* succ = BST.successor(BST.search(99));
+			std::cout << "successor of 99 is " << succ->key << std::endl;
+		}
+
 		BST.print();
 	}
 }
