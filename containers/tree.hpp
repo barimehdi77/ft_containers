@@ -6,7 +6,7 @@
 /*   By: mbari <mbari@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/27 14:35:25 by mbari             #+#    #+#             */
-/*   Updated: 2022/02/09 21:50:40 by mbari            ###   ########.fr       */
+/*   Updated: 2022/02/11 15:31:24 by mbari            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -87,6 +87,12 @@ class Tree
 				temp = temp->left;
 			return (temp);
 		}
+		Node<T>* _Max(Node<T>* temp)
+		{
+			while (temp->right != nullptr)
+				temp = temp->right;
+			return (temp);
+		}
 
 		// int		setSubTreeHeight(Node<T>* temp)
 		// {
@@ -154,6 +160,19 @@ class Tree
 
 			Node<T>* temp = node->parent;
 			while (temp != nullptr && node == temp->right)
+			{
+				node = temp;
+				temp = temp->parent;
+			}
+			return (temp);
+		}
+		Node<T>* predecessor(Node<T>* node)
+		{
+			if (node->left != nullptr)
+				return (this->_Max(node->left));
+
+			Node<T>* temp = node->parent;
+			while (temp != nullptr && node == temp->left)
 			{
 				node = temp;
 				temp = temp->parent;
