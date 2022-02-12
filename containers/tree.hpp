@@ -6,7 +6,7 @@
 /*   By: mbari <mbari@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/27 14:35:25 by mbari             #+#    #+#             */
-/*   Updated: 2022/02/12 23:57:01 by mbari            ###   ########.fr       */
+/*   Updated: 2022/02/13 00:45:38 by mbari            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,30 +43,81 @@ class Tree
 
 
 
+/*
+	leftrotation
+	node = mid->parent;
+	mid->left = node;
+
+	right rotation
+	node = mid->parent;
+	mid->right = node;
+*/
 	private:
+
+
+		int		_getHeight(Node<T>* temp)
+		{
+			if (temp == nullptr)
+				return (-1);
+
+			int leftSubTree = _getHeight(temp->left);
+			int rightSubTee = _getHeight(temp->right);
+
+			return (1 + std::max(leftSubTree, rightSubTee));
+		};
+
+		Node<T>* leftRotate(Node<T>* node)
+		{
+			Node<T>* temp = node->right;
+			node->right = temp->left;
+			temp->left = node;
+			node->parent = temp;
+			return (temp);
+		};
+
+		Node<T>* rightRotate(Node<T>* node)
+		{
+			Node<T>* temp = node->left;
+			node->left = temp->right;
+			temp->right = node;
+			node->parent = temp;
+			return (temp);
+		};
+
+		Node<T>* RightLeftRotate(Node<T>* node)
+		{
+			node->right = rightRotate(node->right);
+			return (leftRotate(node));
+		};
+
+		Node<T>* LeftRightRotate(Node<T>* node)
+		{
+			node->left = leftRotate(node->left);
+			return (rightRotate(node));
+		};
 
 		void	_checkBalance(Node<T>* node)
 		{
-			if ((node->left->height - node->right->height) > 1 ||
-				(node->left->height - node->right->height) < -1)
+			if ((_getHeight(node->left) - _getHeight(node->right)) > 1 ||
+				(_getHeight(node->left) - _getHeight(node->right)) < -1)
 				_reBalance(node);
 			if (node->parent == nullptr)
-				retunr ;
+				return ;
 			_checkBalance(node->parent);
 		};
 
 		void	_reBalance(Node<T>* node)
 		{
-			if (setSubTreeHeight(node->left) - setSubTreeHeight(node->right) > 1)
+			if (_getHeight(node->left) - _getHeight(node->right) > 1)
 			{
-				if (setSubTreeHeight(node->left->left) > setSubTreeHeight(node->left->right))
+				if (_getHeight(node->left->left) > _getHeight(node->left->right))
 					node = rightRotate(node);
 				else
 					node = leftRotate(node);
 			}
 			else
 			{
-				if (setSubTreeHeight(node->right->left) > setSubTreeHeight(node->right->right))
+				if (_getHeight(node->right->left) > _getHeight(node->right->right))
 					node = rightRotate(node);
 				else
 					node = leftRotate(node);

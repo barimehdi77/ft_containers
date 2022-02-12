@@ -6,7 +6,7 @@
 /*   By: mbari <mbari@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/07 18:54:40 by mbari             #+#    #+#             */
-/*   Updated: 2022/02/12 22:28:22 by mbari            ###   ########.fr       */
+/*   Updated: 2022/02/13 00:42:46 by mbari            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -577,97 +577,112 @@
 // }
 
 
+// int main()
+// {
+// 	typedef	int	ValueType;
+// 	{
+// 		Tree<ValueType> BST;
+
+// 		BST.insert(10);
+// 		BST.insert(7);
+// 		BST.insert(77);
+// 		BST.insert(8);
+// 		BST.insert(66);
+// 		BST.insert(88);
+// 		BST.insert(99);
+// 		BST.insert(33);
+
+
+// 		Node<ValueType>* min = BST.Min();
+// 		std::cout << min->key << std::endl;
+// 		Node<ValueType>* Max = BST.Max();
+// 		std::cout << Max->key << std::endl;
+// 		Node<ValueType>* search = BST.search(33);
+// 		std::cout << search->key << std::endl;
+
+// 		/*             find the successor of a node                         */
+// 		{
+// 			Node<ValueType>* succ = BST.successor(BST.search(10));
+// 			if (succ == nullptr)
+// 				std::cout << "successor of 99 is NULL " << std::endl;
+// 			else
+// 			std::cout << "successor of 10 is " << succ->key << std::endl;
+// 		}
+// 		{
+// 			Node<ValueType>* succ = BST.successor(BST.search(8));
+// 			if (succ == nullptr)
+// 				std::cout << "successor of 99 is NULL " << std::endl;
+// 			else
+// 			std::cout << "successor of 8 is " << succ->key << std::endl;
+// 		}
+// 		{
+// 			Node<ValueType>* succ = BST.successor(BST.search(99));
+// 			if (succ == nullptr)
+// 				std::cout << "successor of 99 is NULL " << std::endl;
+// 			else
+// 				std::cout << "successor of 99 is " << succ->key << std::endl;
+// 		}
+// 		{
+// 			Node<ValueType>* succ = BST.successor(BST.search(7));
+// 			if (succ == nullptr)
+// 				std::cout << "successor of 7 is NULL " << std::endl;
+// 			else
+// 				std::cout << "successor of 7 is " << succ->key << std::endl;
+// 		}
+
+// 		/*             find the predecessor of a node                         */
+// 		{
+// 			Node<ValueType>* succ = BST.predecessor(BST.search(10));
+// 			if (succ == nullptr)
+// 				std::cout << "predecessor of 99 is NULL " << std::endl;
+// 			else
+// 			std::cout << "predecessor of 10 is " << succ->key << std::endl;
+// 		}
+// 		{
+// 			Node<ValueType>* succ = BST.predecessor(BST.search(8));
+// 			if (succ == nullptr)
+// 				std::cout << "predecessor of 99 is NULL " << std::endl;
+// 			else
+// 			std::cout << "predecessor of 8 is " << succ->key << std::endl;
+// 		}
+// 		{
+// 			Node<ValueType>* succ = BST.predecessor(BST.search(99));
+// 			if (succ == nullptr)
+// 				std::cout << "predecessor of 99 is NULL " << std::endl;
+// 			else
+// 				std::cout << "predecessor of 99 is " << succ->key << std::endl;
+// 		}
+// 		{
+// 			Node<ValueType>* succ = BST.predecessor(BST.search(7));
+// 			if (succ == nullptr)
+// 				std::cout << "predecessor of 7 is NULL " << std::endl;
+// 			else
+// 				std::cout << "predecessor of 7 is " << succ->key << std::endl;
+// 		}
+
+// 		std::cout << "┃━━━━━━━━━━━━━━━━━━━━━━━━━┃ Printing The Tree ┃━━━━━━━━━━━━━━━━━━━━━━━━┃\n\n\n\n\n" << std::endl;
+// 		BST.print();
+// 		std::cout << "\n\n\n\n\n┃━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━┃" << std::endl;
+
+// 		BST.remove(77);
+
+// 		std::cout << "┃━━━━━━━━━━━━━━━━━━━━━━━━━┃ Printing The Tree ┃━━━━━━━━━━━━━━━━━━━━━━━━┃\n\n\n\n\n" << std::endl;
+// 		BST.print();
+// 		std::cout << "\n\n\n\n\n┃━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━┃" << std::endl;
+// 	}
+// }
+
+
 int main()
 {
 	typedef	int	ValueType;
 	{
 		Tree<ValueType> BST;
 
-		BST.insert(10);
-		BST.insert(7);
-		BST.insert(77);
-		BST.insert(8);
-		BST.insert(66);
-		BST.insert(88);
-		BST.insert(99);
-		BST.insert(33);
+		BST.insert(1);
+		BST.insert(2);
+		BST.insert(3);
 
-
-		Node<ValueType>* min = BST.Min();
-		std::cout << min->key << std::endl;
-		Node<ValueType>* Max = BST.Max();
-		std::cout << Max->key << std::endl;
-		Node<ValueType>* search = BST.search(33);
-		std::cout << search->key << std::endl;
-
-		/*             find the successor of a node                         */
-		{
-			Node<ValueType>* succ = BST.successor(BST.search(10));
-			if (succ == nullptr)
-				std::cout << "successor of 99 is NULL " << std::endl;
-			else
-			std::cout << "successor of 10 is " << succ->key << std::endl;
-		}
-		{
-			Node<ValueType>* succ = BST.successor(BST.search(8));
-			if (succ == nullptr)
-				std::cout << "successor of 99 is NULL " << std::endl;
-			else
-			std::cout << "successor of 8 is " << succ->key << std::endl;
-		}
-		{
-			Node<ValueType>* succ = BST.successor(BST.search(99));
-			if (succ == nullptr)
-				std::cout << "successor of 99 is NULL " << std::endl;
-			else
-				std::cout << "successor of 99 is " << succ->key << std::endl;
-		}
-		{
-			Node<ValueType>* succ = BST.successor(BST.search(7));
-			if (succ == nullptr)
-				std::cout << "successor of 7 is NULL " << std::endl;
-			else
-				std::cout << "successor of 7 is " << succ->key << std::endl;
-		}
-
-		/*             find the predecessor of a node                         */
-		{
-			Node<ValueType>* succ = BST.predecessor(BST.search(10));
-			if (succ == nullptr)
-				std::cout << "predecessor of 99 is NULL " << std::endl;
-			else
-			std::cout << "predecessor of 10 is " << succ->key << std::endl;
-		}
-		{
-			Node<ValueType>* succ = BST.predecessor(BST.search(8));
-			if (succ == nullptr)
-				std::cout << "predecessor of 99 is NULL " << std::endl;
-			else
-			std::cout << "predecessor of 8 is " << succ->key << std::endl;
-		}
-		{
-			Node<ValueType>* succ = BST.predecessor(BST.search(99));
-			if (succ == nullptr)
-				std::cout << "predecessor of 99 is NULL " << std::endl;
-			else
-				std::cout << "predecessor of 99 is " << succ->key << std::endl;
-		}
-		{
-			Node<ValueType>* succ = BST.predecessor(BST.search(7));
-			if (succ == nullptr)
-				std::cout << "predecessor of 7 is NULL " << std::endl;
-			else
-				std::cout << "predecessor of 7 is " << succ->key << std::endl;
-		}
-
-		std::cout << "┃━━━━━━━━━━━━━━━━━━━━━━━━━┃ Printing The Tree ┃━━━━━━━━━━━━━━━━━━━━━━━━┃\n\n\n\n\n" << std::endl;
 		BST.print();
-		std::cout << "\n\n\n\n\n┃━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━┃" << std::endl;
-
-		BST.remove(77);
-
-		std::cout << "┃━━━━━━━━━━━━━━━━━━━━━━━━━┃ Printing The Tree ┃━━━━━━━━━━━━━━━━━━━━━━━━┃\n\n\n\n\n" << std::endl;
-		BST.print();
-		std::cout << "\n\n\n\n\n┃━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━┃" << std::endl;
 	}
 }
