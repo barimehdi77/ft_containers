@@ -6,7 +6,7 @@
 /*   By: mbari <mbari@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/27 14:35:25 by mbari             #+#    #+#             */
-/*   Updated: 2022/02/11 15:31:24 by mbari            ###   ########.fr       */
+/*   Updated: 2022/02/12 22:38:48 by mbari            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -67,6 +67,38 @@ class Tree
 					this->_insert(temp->right, newNode);
 			}
 		};
+
+		Node<T>*	_remove(Node<T>* root, T key)
+		{
+			if (root == nullptr) return (nullptr);
+			else if (key < root->key)
+				root->left = this->_remove(root->left, key);
+			else if (key > root->key)
+				root->right = this->_remove(root->right, key);
+			else
+			{
+				if (root->left == nullptr)
+				{
+					Node<T>* temp = root->right;
+					delete root;
+					return (temp);
+				}
+				else if (root->right == nullptr)
+				{
+					Node<T>* temp = root->left;
+					delete root;
+					return (temp);
+				}
+				else
+				{
+					Node<T>* MaxValue = this->_Max(root->left);
+					root->key = MaxValue->key;
+					root->left = this->_remove(root->left, MaxValue->key);
+				}
+			}
+			return (root);
+		};
+
 		Node<T>* _search(Node<T>* temp, T key)
 		{
 			if (temp == nullptr)
@@ -94,26 +126,31 @@ class Tree
 			return (temp);
 		}
 
-		// int		setSubTreeHeight(Node<T>* temp)
-		// {
-		// 	if (temp == nullptr)
-		// 		return -1;
+		int		setSubTreeHeight(Node<T>* temp)
+		{
+			if (temp == nullptr)
+				return -1;
 
-		// 	if (temp->left)
-		// 		temp->left->height = this->setSubTreeHeight(temp->left);
-		// 	if(temp->right)
-		// 		temp->right->height = this->setSubTreeHeight(temp->right);
+			if (temp->left)
+				temp->left->height = this->setSubTreeHeight(temp->left);
+			if(temp->right)
+				temp->right->height = this->setSubTreeHeight(temp->right);
 
-		// 	if (temp->left == nullptr && temp->right == nullptr)
-		// 		return (0);
+			if (temp->left == nullptr && temp->right == nullptr)
+				return (1);
 
-		// 	return (1 + std::max(temp->right->height, temp->left->height));
-		// }
+			if (temp->left == nullptr)
+				return (1 + temp->right->height);
+			else if (temp->right == nullptr)
+				return (1 + temp->left->height);
+			else
+				return (1 + std::max(temp->right->height, temp->left->height));
+		}
 
-		// void	setHeight()
-		// {
-		// 	this->_Root->height = setSubTreeHeight(this->_Root);
-		// }
+		void	setHeight()
+		{
+			this->_Root->height = setSubTreeHeight(this->_Root);
+		}
 
 
 	public:
@@ -124,8 +161,14 @@ class Tree
 				this->_Root = newnode;
 			else
 				this->_insert(this->_Root, newnode);
-			// this->setHeight();
+			this->setHeight();
 		};
+
+		void	remove(T key)
+		{
+			this->_Root = this->_remove(this->_Root, key);
+			this->setHeight();
+		}
 
 		Node<T>*	Min()
 		{
@@ -220,15 +263,15 @@ class Tree
 			printTree(root->right, trunk, true);
 
 			if (!prev) {
-				trunk->str = "———";
+				trunk->str = "═══";
 			}
 			else if (isLeft)
 			{
-				trunk->str = ".———";
-				prev_str = "   |";
+				trunk->str = "╔═══";
+				prev_str = "   ║";
 			}
 			else {
-				trunk->str = "`———";
+				trunk->str = "╚═══";
 				prev->str = prev_str;
 			}
 
@@ -242,7 +285,7 @@ class Tree
 			if (prev) {
 				prev->str = prev_str;
 			}
-			trunk->str = "   |";
+			trunk->str = "   ║";
 
 			printTree(root->left, trunk, false);
 		}
