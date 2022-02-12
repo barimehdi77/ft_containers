@@ -6,7 +6,7 @@
 /*   By: mbari <mbari@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/27 14:35:25 by mbari             #+#    #+#             */
-/*   Updated: 2022/02/12 23:54:23 by mbari            ###   ########.fr       */
+/*   Updated: 2022/02/12 23:57:01 by mbari            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -49,24 +49,24 @@ class Tree
 		{
 			if ((node->left->height - node->right->height) > 1 ||
 				(node->left->height - node->right->height) < -1)
-				this->_reBalance(node);
+				_reBalance(node);
 			if (node->parent == nullptr)
 				retunr ;
-			this->_checkBalance(node->parent);
+			_checkBalance(node->parent);
 		};
 
 		void	_reBalance(Node<T>* node)
 		{
-			if (this->setSubTreeHeight(node->left) - this->setSubTreeHeight(node->right) > 1)
+			if (setSubTreeHeight(node->left) - setSubTreeHeight(node->right) > 1)
 			{
-				if (this->setSubTreeHeight(node->left->left) > this->setSubTreeHeight(node->left->right))
+				if (setSubTreeHeight(node->left->left) > setSubTreeHeight(node->left->right))
 					node = rightRotate(node);
 				else
 					node = leftRotate(node);
 			}
 			else
 			{
-				if (this->setSubTreeHeight(node->right->left) > this->setSubTreeHeight(node->right->right))
+				if (setSubTreeHeight(node->right->left) > setSubTreeHeight(node->right->right))
 					node = rightRotate(node);
 				else
 					node = leftRotate(node);
@@ -85,7 +85,7 @@ class Tree
 					temp->left->parent = temp;
 				}
 				else
-					this->_insert(temp->left, newNode);
+					_insert(temp->left, newNode);
 			}
 			else
 			{
@@ -95,18 +95,18 @@ class Tree
 					temp->right->parent = temp;
 				}
 				else
-					this->_insert(temp->right, newNode);
+					_insert(temp->right, newNode);
 			}
-			this->CheckBalance(newNode);
+			_checkBalance(newNode);
 		};
 
 		Node<T>*	_remove(Node<T>* root, T key)
 		{
 			if (root == nullptr) return (nullptr);
 			else if (key < root->key)
-				root->left = this->_remove(root->left, key);
+				root->left = _remove(root->left, key);
 			else if (key > root->key)
-				root->right = this->_remove(root->right, key);
+				root->right = _remove(root->right, key);
 			else
 			{
 				if (root->left == nullptr)
@@ -123,9 +123,9 @@ class Tree
 				}
 				else
 				{
-					Node<T>* MaxValue = this->_Max(root->left);
+					Node<T>* MaxValue = _Max(root->left);
 					root->key = MaxValue->key;
-					root->left = this->_remove(root->left, MaxValue->key);
+					root->left = _remove(root->left, MaxValue->key);
 				}
 			}
 			return (root);
@@ -139,9 +139,9 @@ class Tree
 			if (temp->key == key)
 				return (temp);
 			else if (temp->key > key)
-				return (this->_search(temp->left, key));
+				return (_search(temp->left, key));
 			else if (temp->key < key)
-				return (this->_search(temp->right, key));
+				return (_search(temp->right, key));
 
 			return (nullptr);
 		}
@@ -164,9 +164,9 @@ class Tree
 				return -1;
 
 			if (temp->left)
-				temp->left->height = this->setSubTreeHeight(temp->left);
+				temp->left->height = setSubTreeHeight(temp->left);
 			if(temp->right)
-				temp->right->height = this->setSubTreeHeight(temp->right);
+				temp->right->height = setSubTreeHeight(temp->right);
 
 			if (temp->left == nullptr && temp->right == nullptr)
 				return (1);
@@ -192,14 +192,14 @@ class Tree
 			if (!this->_Root)
 				this->_Root = newnode;
 			else
-				this->_insert(this->_Root, newnode);
-			this->setHeight();
+				_insert(this->_Root, newnode);
+			setHeight();
 		};
 
 		void	remove(T key)
 		{
-			this->_Root = this->_remove(this->_Root, key);
-			this->setHeight();
+			this->_Root = _remove(this->_Root, key);
+			setHeight();
 		}
 
 		Node<T>*	Min()
@@ -225,13 +225,13 @@ class Tree
 			if (this->_Root == nullptr)
 				return (nullptr);
 			else
-				return (this->_search(this->_Root, key));
+				return (_search(this->_Root, key));
 		}
 
 		Node<T>* successor(Node<T>* node)
 		{
 			if (node->right != nullptr)
-				return (this->_Min(node->right));
+				return (_Min(node->right));
 
 			Node<T>* temp = node->parent;
 			while (temp != nullptr && node == temp->right)
@@ -244,7 +244,7 @@ class Tree
 		Node<T>* predecessor(Node<T>* node)
 		{
 			if (node->left != nullptr)
-				return (this->_Max(node->left));
+				return (_Max(node->left));
 
 			Node<T>* temp = node->parent;
 			while (temp != nullptr && node == temp->left)
