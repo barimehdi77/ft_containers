@@ -6,7 +6,7 @@
 /*   By: mbari <mbari@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/27 14:35:25 by mbari             #+#    #+#             */
-/*   Updated: 2022/02/12 22:38:48 by mbari            ###   ########.fr       */
+/*   Updated: 2022/02/12 23:54:23 by mbari            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,6 +44,37 @@ class Tree
 
 
 	private:
+
+		void	_checkBalance(Node<T>* node)
+		{
+			if ((node->left->height - node->right->height) > 1 ||
+				(node->left->height - node->right->height) < -1)
+				this->_reBalance(node);
+			if (node->parent == nullptr)
+				retunr ;
+			this->_checkBalance(node->parent);
+		};
+
+		void	_reBalance(Node<T>* node)
+		{
+			if (this->setSubTreeHeight(node->left) - this->setSubTreeHeight(node->right) > 1)
+			{
+				if (this->setSubTreeHeight(node->left->left) > this->setSubTreeHeight(node->left->right))
+					node = rightRotate(node);
+				else
+					node = leftRotate(node);
+			}
+			else
+			{
+				if (this->setSubTreeHeight(node->right->left) > this->setSubTreeHeight(node->right->right))
+					node = rightRotate(node);
+				else
+					node = leftRotate(node);
+			}
+			if (node->parent == nullptr)
+				this->_Root = node;
+		};
+
 		void	_insert(Node<T>* temp, Node<T>* newNode)
 		{
 			if (temp->key > newNode->key)
@@ -66,6 +97,7 @@ class Tree
 				else
 					this->_insert(temp->right, newNode);
 			}
+			this->CheckBalance(newNode);
 		};
 
 		Node<T>*	_remove(Node<T>* root, T key)
@@ -177,7 +209,7 @@ class Tree
 			while (tmp->left)
 				tmp = tmp->left;
 			return (tmp);
-		}
+		};
 
 		Node<T>* Max()
 		{
