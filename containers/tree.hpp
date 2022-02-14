@@ -6,7 +6,7 @@
 /*   By: mbari <mbari@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/27 14:35:25 by mbari             #+#    #+#             */
-/*   Updated: 2022/02/14 15:55:07 by mbari            ###   ########.fr       */
+/*   Updated: 2022/02/14 17:24:07 by mbari            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,7 +23,7 @@ struct Node
 
 	public:
 		// Node(): _key(0), left(nullptr), right(nullptr) {};
-		Node(T key): key(key), left(nullptr), right(nullptr), parent(nullptr) , height(0) {};
+		Node(T key): key(key), left(nullptr), right(nullptr), parent(nullptr) , height(1) {};
 		// Node (const Node& x) {*this = x; };
 		// Node(T key, const Node & l, const Node & r): _key(key), left(l), right(r) {};
 		~Node() {};
@@ -55,15 +55,11 @@ class Tree
 	private:
 
 
-		int		_getHeight(Node<T>* temp)
+		int		_Height(Node<T>* temp)
 		{
 			if (temp == nullptr)
 				return (-1);
-
-			int leftSubTree = _getHeight(temp->left);
-			int rightSubTee = _getHeight(temp->right);
-
-			return (1 + std::max(leftSubTree, rightSubTee));
+			return (temp->height);
 		};
 
 		Node<T>* leftRotate(Node<T>* node)
@@ -114,8 +110,8 @@ class Tree
 
 		void	_checkBalance(Node<T>* node)
 		{
-			if ((_getHeight(node->left) - _getHeight(node->right)) > 1 ||
-				(_getHeight(node->left) - _getHeight(node->right)) < -1)
+			if ((_Height(node->left) - _Height(node->right)) > 1 ||
+				(_Height(node->left) - _Height(node->right)) < -1)
 					_reBalance(node);
 			if (node->parent == nullptr)
 				return ;
@@ -124,16 +120,16 @@ class Tree
 
 		void	_reBalance(Node<T>* node)
 		{
-			if (_getHeight(node->left) - _getHeight(node->right) > 1)
+			if (_Height(node->left) - _Height(node->right) > 1)
 			{
-				if (_getHeight(node->left->left) > _getHeight(node->left->right))
+				if (_Height(node->left->left) > _Height(node->left->right))
 					node = rightRotate(node);
 				else
 					node = LeftRightRotate(node);
 			}
 			else
 			{
-				if (_getHeight(node->right->right) > _getHeight(node->right->left))
+				if (_Height(node->right->right) > _Height(node->right->left))
 					node = leftRotate(node);
 				else
 					node = RightLeftRotate(node);
@@ -164,8 +160,9 @@ class Tree
 				else
 					_insert(temp->right, newNode);
 			}
-			print();
-			_checkBalance(newNode);
+			// print();
+			// _checkBalance(newNode);
+			_ReSetHeight(newNode);
 		};
 
 		Node<T>*	_remove(Node<T>* root, T key)
@@ -196,6 +193,7 @@ class Tree
 					root->left = _remove(root->left, MaxValue->key);
 				}
 			}
+			_ReSetHeight(root);
 			return (root);
 		};
 
@@ -212,45 +210,37 @@ class Tree
 				return (_search(temp->right, key));
 
 			return (nullptr);
-		}
+		};
+
 		Node<T>* _Min(Node<T>* temp)
 		{
 			while (temp->left != nullptr)
 				temp = temp->left;
 			return (temp);
-		}
+		};
+
 		Node<T>* _Max(Node<T>* temp)
 		{
 			while (temp->right != nullptr)
 				temp = temp->right;
 			return (temp);
-		}
+		};
 
-		int		setSubTreeHeight(Node<T>* temp)
+		void		_ReSetHeight(Node<T>* temp)
 		{
-			if (temp == nullptr)
-				return -1;
-
-			if (temp->left)
-				temp->left->height = setSubTreeHeight(temp->left);
-			if(temp->right)
-				temp->right->height = setSubTreeHeight(temp->right);
-
-			if (temp->left == nullptr && temp->right == nullptr)
-				return (1);
-
-			if (temp->left == nullptr)
-				return (1 + temp->right->height);
-			else if (temp->right == nullptr)
-				return (1 + temp->left->height);
-			else
-				return (1 + std::max(temp->right->height, temp->left->height));
-		}
-
-		void	setHeight()
-		{
-			this->_Root->height = setSubTreeHeight(this->_Root);
-		}
+			while (temp)
+			{
+				if (!temp->left && !temp->right)
+					temp->height = 1;
+				else if (!temp->left)
+					temp->height = 1 + temp->right->height;
+				else if (!temp->right)
+					temp->height = 1 + temp->left->height;
+				else
+					temp->height = 1 + std::max(temp->right->height, temp->left->height);
+				temp = temp->parent;
+			}
+		};
 
 
 	public:
@@ -261,13 +251,13 @@ class Tree
 				this->_Root = newnode;
 			else
 				_insert(this->_Root, newnode);
-			setHeight();
+			// setHeight();
 		};
 
 		void	remove(T key)
 		{
 			this->_Root = _remove(this->_Root, key);
-			setHeight();
+			// setHeight();
 		}
 
 		Node<T>*	Min()
