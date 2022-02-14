@@ -679,15 +679,13 @@ int main()
 	{
 		Tree<ValueType> BST;
 
-		// BST.insert(10);
-		// BST.insert(3);
-		// // BST.insert(5);
-		// BST.insert(4);
-		// BST.insert(5);
-		// BST.insert(6);
-		// BST.insert(7);
-		BST.insert(10);
+		BST.insert(1);
+		BST.insert(3);
+		BST.insert(5);
+		BST.insert(4);
+		BST.insert(6);
 		BST.insert(7);
+		BST.insert(10);
 		BST.insert(77);
 		BST.insert(8);
 		BST.insert(66);
@@ -700,7 +698,7 @@ int main()
 		BST.print();
 		std::cout << "\n\n\n\n\n┃━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━┃" << std::endl;
 
-		BST.remove(99);
+		BST.remove(10);
 
 		std::cout << "┃━━━━━━━━━━━━━━━━━━━━━━━━━┃ Printing The Tree ┃━━━━━━━━━━━━━━━━━━━━━━━━┃\n\n\n\n\n" << std::endl;
 		BST.print();

@@ -6,7 +6,7 @@
 /*   By: mbari <mbari@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/27 14:35:25 by mbari             #+#    #+#             */
-/*   Updated: 2022/02/14 17:24:07 by mbari            ###   ########.fr       */
+/*   Updated: 2022/02/14 18:34:18 by mbari            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -58,42 +58,49 @@ class Tree
 		int		_Height(Node<T>* temp)
 		{
 			if (temp == nullptr)
-				return (-1);
+				return (0);
 			return (temp->height);
 		};
 
-		Node<T>* leftRotate(Node<T>* node)
+		int _getBalanceFactor(Node<T>* N)
 		{
-			Node<T>* temp = node->right;
-			node->right = temp->left;
-			temp->left = node;
-			temp->parent = node->parent;
-			node->parent = temp;
-			if (node->parent)
-			{
-				if (node == node->parent->right)
-					node->parent->right = temp;
-				else
-					node->parent->left = temp;
-			}
-			return (temp);
+			if (N == NULL)
+				return 0;
+			return (_Height(N->left) - _Height(N->right));
+		}
+
+		Node<T>* leftRotate(Node<T>* x)
+		{
+			Node<T>* y = x->right;
+			Node<T>* T2 = y->left;
+			y->left = x;
+			x->right = T2;
+			if (x->parent)
+				x->parent->right = y;
+			y->parent = x->parent;
+			x->parent = y;
+			if (T2 != nullptr)
+				T2->parent = x;
+			x->height = std::max(_Height(x->left), _Height(x->right)) + 1;
+			y->height = std::max(_Height(y->left), _Height(y->right)) + 1;
+			return y;
 		};
 
-		Node<T>* rightRotate(Node<T>* node)
+		Node<T>* rightRotate(Node<T>* y)
 		{
-			Node<T>* temp = node->left;
-			node->left = temp->right;
-			temp->right = node;
-			temp->parent = node->parent;
-			node->parent = temp;
-			if (node->parent)
-			{
-				if (node == node->parent->right)
-					node->parent->right = temp;
-				else
-					node->parent->left = temp;
-			}
-			return (temp);
+			Node<T>* x = y->left;
+			Node<T>* T2 = x->right;
+			x->right = y;
+			y->left = T2;
+			if (y->parent)
+				y->parent->right = x;
+			x->parent = y->parent;
+			y->parent = x;
+			if (T2 != nullptr)
+				T2->parent = y;
+			y->height = std::max(_Height(y->left), _Height(y->right)) + 1;
+			x->height = std::max(_Height(x->left), _Height(x->right)) + 1;
+			return x;
 		};
 
 		Node<T>* RightLeftRotate(Node<T>* node)
@@ -108,28 +115,29 @@ class Tree
 			return (rightRotate(node));
 		};
 
-		void	_checkBalance(Node<T>* node)
-		{
-			if ((_Height(node->left) - _Height(node->right)) > 1 ||
-				(_Height(node->left) - _Height(node->right)) < -1)
-					_reBalance(node);
-			if (node->parent == nullptr)
-				return ;
-			_checkBalance(node->parent);
-		};
+		// void	_checkBalance(Node<T>* node)
+		// {
+		// 	int	balanceFactor = _getBalanceFactor(node);
+		// 	if (balanceFactor > 1 || balanceFactor < -1)
+		// 			_reBalance(node);
+		// 	// if (node->parent == nullptr)
+		// 	// 	return ;
+		// 	// _checkBalance(node->parent);
+		// };
 
 		void	_reBalance(Node<T>* node)
 		{
-			if (_Height(node->left) - _Height(node->right) > 1)
+			int	balanceFactor = _getBalanceFactor(node);
+			if (balanceFactor > 1)
 			{
-				if (_Height(node->left->left) > _Height(node->left->right))
+				if (_getBalanceFactor(node->left) >= 0)
 					node = rightRotate(node);
 				else
 					node = LeftRightRotate(node);
 			}
-			else
+			else if (balanceFactor < -1)
 			{
-				if (_Height(node->right->right) > _Height(node->right->left))
+				if (_getBalanceFactor(node->right))
 					node = leftRotate(node);
 				else
 					node = RightLeftRotate(node);
@@ -162,7 +170,8 @@ class Tree
 			}
 			// print();
 			// _checkBalance(newNode);
-			_ReSetHeight(newNode);
+			_ReSetHeight(temp);
+			_reBalance(temp);
 		};
 
 		Node<T>*	_remove(Node<T>* root, T key)
@@ -194,6 +203,7 @@ class Tree
 				}
 			}
 			_ReSetHeight(root);
+			_reBalance(root);
 			return (root);
 		};
 
@@ -353,15 +363,15 @@ class Tree
 			printTree(root->right, trunk, true);
 
 			if (!prev) {
-				trunk->str = "═══";
+				trunk->str = "———";
 			}
 			else if (isLeft)
 			{
-				trunk->str = "╔═══";
-				prev_str = "   ║";
+				trunk->str = ".———";
+				prev_str = "   |";
 			}
 			else {
-				trunk->str = "╚═══";
+				trunk->str = "`———";
 				prev->str = prev_str;
 			}
 
@@ -375,7 +385,7 @@ class Tree
 			if (prev) {
 				prev->str = prev_str;
 			}
-			trunk->str = "   ║";
+			trunk->str = "   |";
 
 			printTree(root->left, trunk, false);
 		}
