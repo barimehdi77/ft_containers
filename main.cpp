@@ -681,7 +681,7 @@ int main()
 
 		BST.insert(1);
 		BST.insert(3);
-		BST.insert(5);
+		BST.insert(2);
 		BST.insert(4);
 		BST.insert(6);
 		BST.insert(7);
@@ -692,13 +692,22 @@ int main()
 		BST.insert(88);
 		BST.insert(99);
 		BST.insert(33);
+		BST.insert(84);
+		BST.insert(30);
+		BST.insert(34);
+		BST.insert(9);
+		BST.insert(50);
+		BST.insert(31);
+		BST.insert(13);
+		BST.insert(70);
+		BST.insert(42);
 
 
-		std::cout << "┃━━━━━━━━━━━━━━━━━━━━━━━━━┃ Printing The Tree ┃━━━━━━━━━━━━━━━━━━━━━━━━┃\n\n\n\n\n" << std::endl;
-		BST.print();
-		std::cout << "\n\n\n\n\n┃━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━┃" << std::endl;
+		// std::cout << "┃━━━━━━━━━━━━━━━━━━━━━━━━━┃ Printing The Tree ┃━━━━━━━━━━━━━━━━━━━━━━━━┃\n\n\n\n\n" << std::endl;
+		// BST.print();
+		// std::cout << "\n\n\n\n\n┃━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━┃" << std::endl;
 
-		BST.remove(10);
+		// BST.remove(10);
 
 		std::cout << "┃━━━━━━━━━━━━━━━━━━━━━━━━━┃ Printing The Tree ┃━━━━━━━━━━━━━━━━━━━━━━━━┃\n\n\n\n\n" << std::endl;
 		BST.print();

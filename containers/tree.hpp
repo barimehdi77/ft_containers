@@ -6,11 +6,12 @@
 /*   By: mbari <mbari@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/27 14:35:25 by mbari             #+#    #+#             */
-/*   Updated: 2022/02/14 18:34:18 by mbari            ###   ########.fr       */
+/*   Updated: 2022/02/14 20:28:33 by mbari            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 // #define COUNT 10
+#include "../colors.hpp"
 template <class T>
 struct Node
 {
@@ -73,10 +74,16 @@ class Tree
 		{
 			Node<T>* y = x->right;
 			Node<T>* T2 = y->left;
+			Node<T>* p = x->parent;
 			y->left = x;
 			x->right = T2;
-			if (x->parent)
-				x->parent->right = y;
+			if (p)
+			{
+				if (p->left == x)
+					p->left = y;
+				else
+					p->right = y;
+			}
 			y->parent = x->parent;
 			x->parent = y;
 			if (T2 != nullptr)
@@ -90,10 +97,16 @@ class Tree
 		{
 			Node<T>* x = y->left;
 			Node<T>* T2 = x->right;
+			Node<T>* p = y->parent;
 			x->right = y;
 			y->left = T2;
-			if (y->parent)
-				y->parent->right = x;
+			if (p)
+			{
+				if (p->right == y)
+					p->right = x;
+				else
+					p->left = x;
+			}
 			x->parent = y->parent;
 			y->parent = x;
 			if (T2 != nullptr)
@@ -137,13 +150,15 @@ class Tree
 			}
 			else if (balanceFactor < -1)
 			{
-				if (_getBalanceFactor(node->right))
+				if (_getBalanceFactor(node->right) <= 0)
 					node = leftRotate(node);
 				else
 					node = RightLeftRotate(node);
 			}
-			if (node->parent == nullptr)
+			if (node->parent == nullptr){
 				this->_Root = node;
+				node->parent = nullptr;
+			}
 		};
 
 		void	_insert(Node<T>* temp, Node<T>* newNode)
@@ -170,7 +185,10 @@ class Tree
 			}
 			// print();
 			// _checkBalance(newNode);
+			if (temp->key == 34 && newNode->key == 42)
+				std::cout << "found" << std::endl;
 			_ReSetHeight(temp);
+			std::cout << "done inserting " << temp->key << std::endl;
 			_reBalance(temp);
 		};
 
@@ -238,24 +256,25 @@ class Tree
 
 		void		_ReSetHeight(Node<T>* temp)
 		{
-			while (temp)
-			{
+		// 	while (temp)
+		// 	{
 				if (!temp->left && !temp->right)
 					temp->height = 1;
-				else if (!temp->left)
+				else if (temp->left == nullptr)
 					temp->height = 1 + temp->right->height;
-				else if (!temp->right)
+				else if (temp->right == nullptr)
 					temp->height = 1 + temp->left->height;
 				else
 					temp->height = 1 + std::max(temp->right->height, temp->left->height);
-				temp = temp->parent;
-			}
+			// 	temp = temp->parent;
+			// }
 		};
 
 
 	public:
 		void	insert(T key)
 		{
+			std::cout << "inserting " << key << std::endl;
 			Node<T> * newnode = new Node<T>(key);
 			if (!this->_Root)
 				this->_Root = newnode;
@@ -376,11 +395,11 @@ class Tree
 			}
 
 			showTrunks(trunk);
-			std::cout << " " << root->key;
+			std::cout << " " RED << root->key << RESET;
 			if (root->parent != nullptr)
-				std::cout << " {P: " << root->parent->key << "} H: " << root->height << std::endl;
+				std::cout << " {P: " << root->parent->key << "} H: " << root->height << GREEN " FB: " << _getBalanceFactor(root) << RESET<< std::endl;
 			else
-				std::cout << " {P: NULL" << "} H: " << root->height << std::endl;
+				std::cout << " {P: NULL" << "} H: " << root->height  << GREEN " FB: " << _getBalanceFactor(root) << RESET << std::endl;
 
 			if (prev) {
 				prev->str = prev_str;
@@ -390,10 +409,47 @@ class Tree
 			printTree(root->left, trunk, false);
 		}
 
+		// void printTree(Node<T>* root, std::string indent, bool last)
+		// {
+		// 	if (root != nullptr)
+		// 	{
+		// 		std::cout << indent;
+		// 		if (last) {
+		// 		std::cout << "R----";
+		// 		indent += "   ";
+		// 		} else {
+		// 		std::cout << "L----";
+		// 		indent += "|  ";
+		// 		}
+		// 		std::cout << root->key << std::endl;
+		// 		printTree(root->left, indent, false);
+		// 		printTree(root->right, indent, true);
+		// 	}
+		// }
+
+		// void	print2DUtil(Node<T>* root, int space)
+		// {
+		// 	if (root == NULL)
+		// 		return;
+		// 	space += 10;
+		// 	print2DUtil(root->right, space);
+		// 	std::cout << std::endl;
+		// 	for (int i = 10; i < space; i++)
+		// 		std::cout << " ";
+		// 	std::cout << "{" << root->key << "} " << root->height << "\n";
+		// 	print2DUtil(root->left, space);
+		// };
+
 
 
 		public: /*             print function                         */
 			void	print() { printTree(this->_Root, nullptr, false); };
+			// void	print()
+			// {
+			// 	std::cout << "||||||||||||||||\n";
+			// 	print2DUtil(this->_Root, 0);
+			// 	std::cout << "||||||||||||||||\n\n";
+			// };
 
 };
 
