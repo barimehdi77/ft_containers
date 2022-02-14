@@ -6,7 +6,7 @@
 /*   By: mbari <mbari@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/27 14:35:25 by mbari             #+#    #+#             */
-/*   Updated: 2022/02/13 00:45:38 by mbari            ###   ########.fr       */
+/*   Updated: 2022/02/14 15:55:07 by mbari            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -71,7 +71,15 @@ class Tree
 			Node<T>* temp = node->right;
 			node->right = temp->left;
 			temp->left = node;
+			temp->parent = node->parent;
 			node->parent = temp;
+			if (node->parent)
+			{
+				if (node == node->parent->right)
+					node->parent->right = temp;
+				else
+					node->parent->left = temp;
+			}
 			return (temp);
 		};
 
@@ -80,7 +88,15 @@ class Tree
 			Node<T>* temp = node->left;
 			node->left = temp->right;
 			temp->right = node;
+			temp->parent = node->parent;
 			node->parent = temp;
+			if (node->parent)
+			{
+				if (node == node->parent->right)
+					node->parent->right = temp;
+				else
+					node->parent->left = temp;
+			}
 			return (temp);
 		};
 
@@ -100,7 +116,7 @@ class Tree
 		{
 			if ((_getHeight(node->left) - _getHeight(node->right)) > 1 ||
 				(_getHeight(node->left) - _getHeight(node->right)) < -1)
-				_reBalance(node);
+					_reBalance(node);
 			if (node->parent == nullptr)
 				return ;
 			_checkBalance(node->parent);
@@ -113,14 +129,14 @@ class Tree
 				if (_getHeight(node->left->left) > _getHeight(node->left->right))
 					node = rightRotate(node);
 				else
-					node = leftRotate(node);
+					node = LeftRightRotate(node);
 			}
 			else
 			{
-				if (_getHeight(node->right->left) > _getHeight(node->right->right))
-					node = rightRotate(node);
-				else
+				if (_getHeight(node->right->right) > _getHeight(node->right->left))
 					node = leftRotate(node);
+				else
+					node = RightLeftRotate(node);
 			}
 			if (node->parent == nullptr)
 				this->_Root = node;
@@ -148,6 +164,7 @@ class Tree
 				else
 					_insert(temp->right, newNode);
 			}
+			print();
 			_checkBalance(newNode);
 		};
 
