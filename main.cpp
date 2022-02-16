@@ -676,99 +676,142 @@
 
 // int main()
 // {
-// 	typedef	int	ValueType;
-// 	{
-// 		Tree<ValueType> BST;
+	// typedef	int	ValueType;
+	// {
+	// 	Tree<ValueType> BST;
 
-// 		BST.insert(1);
-// 		BST.insert(3);
-// 		BST.insert(2);
-// 		BST.insert(4);
-// 		BST.insert(6);
-// 		BST.insert(7);
-// 		BST.insert(10);
-// 		BST.insert(77);
-// 		BST.insert(8);
-// 		BST.insert(66);
-// 		BST.insert(88);
-// 		BST.insert(99);
-// 		BST.insert(33);
-// 		BST.insert(84);
-// 		BST.insert(30);
-// 		BST.insert(34);
-// 		BST.insert(9);
-// 		BST.insert(50);
-// 		BST.insert(31);
-// 		BST.insert(13);
-// 		BST.insert(70);
-// 		BST.insert(42);
+	// 	BST.insert(1);
+	// 	BST.insert(3);
+	// 	BST.insert(2);
+	// 	BST.insert(4);
+	// 	BST.insert(6);
+	// 	BST.insert(7);
+	// 	BST.insert(10);
+	// 	BST.insert(77);
+	// 	BST.insert(8);
+	// 	BST.insert(66);
+	// 	BST.insert(88);
+	// 	BST.insert(99);
+	// 	BST.insert(33);
+	// 	BST.insert(84);
+	// 	BST.insert(30);
+	// 	BST.insert(34);
+	// 	BST.insert(9);
+	// 	BST.insert(50);
+	// 	BST.insert(31);
+	// 	BST.insert(13);
+	// 	BST.insert(70);
+	// 	BST.insert(42);
 
 
-// 		// std::cout << "┃━━━━━━━━━━━━━━━━━━━━━━━━━┃ Printing The Tree ┃━━━━━━━━━━━━━━━━━━━━━━━━┃\n\n\n\n\n" << std::endl;
-// 		// BST.print();
-// 		// std::cout << "\n\n\n\n\n┃━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━┃" << std::endl;
+	// 	// std::cout << "┃━━━━━━━━━━━━━━━━━━━━━━━━━┃ Printing The Tree ┃━━━━━━━━━━━━━━━━━━━━━━━━┃\n\n\n\n\n" << std::endl;
+	// 	// BST.print();
+	// 	// std::cout << "\n\n\n\n\n┃━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━┃" << std::endl;
 
-// 		// BST.remove(10);
+	// 	// BST.remove(10);
 
-// 		std::cout << "┃━━━━━━━━━━━━━━━━━━━━━━━━━┃ Printing The Tree ┃━━━━━━━━━━━━━━━━━━━━━━━━┃\n\n\n\n\n" << std::endl;
-// 		BST.print();
-// 		std::cout << "\n\n\n\n\n┃━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━┃" << std::endl;
-// 	}
+	// 	std::cout << "┃━━━━━━━━━━━━━━━━━━━━━━━━━┃ Printing The Tree ┃━━━━━━━━━━━━━━━━━━━━━━━━┃\n\n\n\n\n" << std::endl;
+	// 	BST.print();
+	// 	std::cout << "\n\n\n\n\n┃━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━┃" << std::endl;
+	// }
 // }
 
 
-#include <utility>      // std::pair
-#include <iostream>     // std::cout
+// #include <utility>      // std::pair
+// #include <iostream>     // std::cout
 
-int main ()
+// int main ()
+// {
+// 	std::cout << "┃━━━━━━━━━━━━━━━━━━━━━━━━━┃ Test STD pair relational operators ┃━━━━━━━━━━━━━━━━━━━━━━━━┃" << std::endl;
+// 	{
+// 		std::pair<int,char> foo (10,'z');
+// 		std::pair<int,char> bar (90,'a');
+
+// 		if (foo==bar) std::cout << "{std} foo and bar are equal\n";
+// 		if (foo!=bar) std::cout << "{std} foo and bar are not equal\n";
+// 		if (foo< bar) std::cout << "{std} foo is less than bar\n";
+// 		if (foo> bar) std::cout << "{std} foo is greater than bar\n";
+// 		if (foo<=bar) std::cout << "{std} foo is less than or equal to bar\n";
+// 		if (foo>=bar) std::cout << "{std} foo is greater than or equal to bar\n";
+// 	}
+// 	std::cout << "┃━━━━━━━━━━━━━━━━━━━━━━━━━┃ Test FT pair relational operators ┃━━━━━━━━━━━━━━━━━━━━━━━━┃" << std::endl;
+// 	{
+// 		ft::pair<int,char> foo (10,'z');
+// 		ft::pair<int,char> bar (90,'a');
+
+// 		if (foo==bar) std::cout << "{ft} foo and bar are equal\n";
+// 		if (foo!=bar) std::cout << "{ft} foo and bar are not equal\n";
+// 		if (foo< bar) std::cout << "{ft} foo is less than bar\n";
+// 		if (foo> bar) std::cout << "{ft} foo is greater than bar\n";
+// 		if (foo<=bar) std::cout << "{ft} foo is less than or equal to bar\n";
+// 		if (foo>=bar) std::cout << "{ft} foo is greater than or equal to bar\n";
+// 	}
+// 	std::cout << "┃━━━━━━━━━━━━━━━━━━━━━━━━━┃ Test STD make_pair ┃━━━━━━━━━━━━━━━━━━━━━━━━┃" << std::endl;
+// 	{
+// 		std::pair <int,int> foo;
+// 		std::pair <int,int> bar;
+
+// 		foo = std::make_pair (10,20);
+// 		bar = std::make_pair (10.5,'A'); // ok: implicit conversion from pair<double,char>
+
+// 		std::cout << "{std} foo: " << foo.first << ", " << foo.second << '\n';
+// 		std::cout << "{std} bar: " << bar.first << ", " << bar.second << '\n';
+
+// 	}
+// 	std::cout << "┃━━━━━━━━━━━━━━━━━━━━━━━━━┃ Test FT make_pair ┃━━━━━━━━━━━━━━━━━━━━━━━━┃" << std::endl;
+// 	{
+// 		ft::pair <int,int> foo;
+// 		ft::pair <int,int> bar;
+
+// 		foo = ft::make_pair (10,20);
+// 		bar = ft::make_pair (10.5,'A'); // ok: implicit conversion from pair<double,char>
+
+// 		std::cout << "{ft} foo: " << foo.first << ", " << foo.second << '\n';
+// 		std::cout << "{ft} bar: " << bar.first << ", " << bar.second << '\n';
+
+// 	};
+// 	return 0;
+// }
+
+
+int main()
 {
-	std::cout << "┃━━━━━━━━━━━━━━━━━━━━━━━━━┃ Test STD pair relational operators ┃━━━━━━━━━━━━━━━━━━━━━━━━┃" << std::endl;
+		typedef	ft::pair<char, int>	ValueType;
 	{
-		std::pair<int,char> foo (10,'z');
-		std::pair<int,char> bar (90,'a');
+		Tree<ValueType> BST;
 
-		if (foo==bar) std::cout << "{std} foo and bar are equal\n";
-		if (foo!=bar) std::cout << "{std} foo and bar are not equal\n";
-		if (foo< bar) std::cout << "{std} foo is less than bar\n";
-		if (foo> bar) std::cout << "{std} foo is greater than bar\n";
-		if (foo<=bar) std::cout << "{std} foo is less than or equal to bar\n";
-		if (foo>=bar) std::cout << "{std} foo is greater than or equal to bar\n";
+		BST.insert(ValueType('A', 77));
+		BST.insert(ValueType('R', 77));
+		BST.insert(ValueType('M', 77));
+		BST.insert(ValueType('a', 77));
+		BST.insert(ValueType('r', 77));
+		BST.insert(ValueType('t', 77));
+		BST.insert(ValueType('w', 77));
+		BST.insert(ValueType('q', 77));
+		BST.insert(ValueType('s', 77));
+		BST.insert(ValueType('d', 77));
+		BST.insert(ValueType('f', 77));
+		BST.insert(ValueType('g', 77));
+		BST.insert(ValueType('h', 77));
+		BST.insert(ValueType('j', 77));
+		BST.insert(ValueType('j', 77));
+		BST.insert(ValueType('k', 77));
+		BST.insert(ValueType('l', 77));
+		BST.insert(ValueType('z', 77));
+		BST.insert(ValueType('x', 77));
+		BST.insert(ValueType('c', 77));
+		BST.insert(ValueType('v', 77));
+		BST.insert(ValueType('b', 77));
+
+
+		// std::cout << "┃━━━━━━━━━━━━━━━━━━━━━━━━━┃ Printing The Tree ┃━━━━━━━━━━━━━━━━━━━━━━━━┃\n\n\n\n\n" << std::endl;
+		// BST.print();
+		// std::cout << "\n\n\n\n\n┃━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━┃" << std::endl;
+
+		// BST.remove(10);
+
+		std::cout << "┃━━━━━━━━━━━━━━━━━━━━━━━━━┃ Printing The Tree ┃━━━━━━━━━━━━━━━━━━━━━━━━┃\n\n\n\n\n" << std::endl;
+		BST.print();
+		std::cout << "\n\n\n\n\n┃━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━┃" << std::endl;
 	}
-	std::cout << "┃━━━━━━━━━━━━━━━━━━━━━━━━━┃ Test FT pair relational operators ┃━━━━━━━━━━━━━━━━━━━━━━━━┃" << std::endl;
-	{
-		ft::pair<int,char> foo (10,'z');
-		ft::pair<int,char> bar (90,'a');
-
-		if (foo==bar) std::cout << "{ft} foo and bar are equal\n";
-		if (foo!=bar) std::cout << "{ft} foo and bar are not equal\n";
-		if (foo< bar) std::cout << "{ft} foo is less than bar\n";
-		if (foo> bar) std::cout << "{ft} foo is greater than bar\n";
-		if (foo<=bar) std::cout << "{ft} foo is less than or equal to bar\n";
-		if (foo>=bar) std::cout << "{ft} foo is greater than or equal to bar\n";
-	}
-	std::cout << "┃━━━━━━━━━━━━━━━━━━━━━━━━━┃ Test STD make_pair ┃━━━━━━━━━━━━━━━━━━━━━━━━┃" << std::endl;
-	{
-		std::pair <int,int> foo;
-		std::pair <int,int> bar;
-
-		foo = std::make_pair (10,20);
-		bar = std::make_pair (10.5,'A'); // ok: implicit conversion from pair<double,char>
-
-		std::cout << "{std} foo: " << foo.first << ", " << foo.second << '\n';
-		std::cout << "{std} bar: " << bar.first << ", " << bar.second << '\n';
-
-	}
-	std::cout << "┃━━━━━━━━━━━━━━━━━━━━━━━━━┃ Test FT make_pair ┃━━━━━━━━━━━━━━━━━━━━━━━━┃" << std::endl;
-	{
-		ft::pair <int,int> foo;
-		ft::pair <int,int> bar;
-
-		foo = ft::make_pair (10,20);
-		bar = ft::make_pair (10.5,'A'); // ok: implicit conversion from pair<double,char>
-
-		std::cout << "{ft} foo: " << foo.first << ", " << foo.second << '\n';
-		std::cout << "{ft} bar: " << bar.first << ", " << bar.second << '\n';
-
-	};
-	return 0;
 }

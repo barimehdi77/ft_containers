@@ -6,7 +6,7 @@
 /*   By: mbari <mbari@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/27 14:35:25 by mbari             #+#    #+#             */
-/*   Updated: 2022/02/16 15:46:34 by mbari            ###   ########.fr       */
+/*   Updated: 2022/02/16 20:39:10 by mbari            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -162,10 +162,7 @@ class Tree
 				else
 					_insert(temp->right, newNode);
 			}
-			if (temp->key == 34 && newNode->key == 42)
-				std::cout << "found" << std::endl;
 			_ReSetHeight(temp);
-			std::cout << "done inserting " << temp->key << std::endl;
 			_reBalance(temp);
 		};
 
@@ -247,7 +244,6 @@ class Tree
 	public:
 		void	insert(T key)
 		{
-			std::cout << "inserting " << key << std::endl;
 			Node<T> * newnode = new Node<T>(key);
 			if (!this->_Root)
 				this->_Root = newnode;
@@ -366,9 +362,9 @@ class Tree
 			}
 
 			showTrunks(trunk);
-			std::cout << " " RED << root->key << RESET;
+			std::cout << RED "{ " << root->key.first << " | " << root->key.second << " } "<< RESET;
 			if (root->parent != nullptr)
-				std::cout << " {P: " << root->parent->key << "} H: " << root->height << GREEN " FB: " << _getBalanceFactor(root) << RESET<< std::endl;
+				std::cout << " {P: " << root->parent->key.first << "} H: " << root->height << GREEN " FB: " << _getBalanceFactor(root) << RESET<< std::endl;
 			else
 				std::cout << " {P: NULL" << "} H: " << root->height  << GREEN " FB: " << _getBalanceFactor(root) << RESET << std::endl;
 
