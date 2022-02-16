@@ -6,7 +6,7 @@
 /*   By: mbari <mbari@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/27 14:35:25 by mbari             #+#    #+#             */
-/*   Updated: 2022/02/14 20:28:33 by mbari            ###   ########.fr       */
+/*   Updated: 2022/02/16 15:46:34 by mbari            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,24 +35,12 @@ struct Node
 	// 	T get_Key() const { return (this->_key); };
 };
 
-
 template <class T>
 class Tree
 {
 	private:
 		Node<T> * _Root = nullptr;
 
-
-
-/*
-	leftrotation
-	node = mid->parent;
-	mid->left = node;
-
-	right rotation
-	node = mid->parent;
-	mid->right = node;
-*/
 	private:
 
 
@@ -128,15 +116,6 @@ class Tree
 			return (rightRotate(node));
 		};
 
-		// void	_checkBalance(Node<T>* node)
-		// {
-		// 	int	balanceFactor = _getBalanceFactor(node);
-		// 	if (balanceFactor > 1 || balanceFactor < -1)
-		// 			_reBalance(node);
-		// 	// if (node->parent == nullptr)
-		// 	// 	return ;
-		// 	// _checkBalance(node->parent);
-		// };
 
 		void	_reBalance(Node<T>* node)
 		{
@@ -183,8 +162,6 @@ class Tree
 				else
 					_insert(temp->right, newNode);
 			}
-			// print();
-			// _checkBalance(newNode);
 			if (temp->key == 34 && newNode->key == 42)
 				std::cout << "found" << std::endl;
 			_ReSetHeight(temp);
@@ -256,8 +233,6 @@ class Tree
 
 		void		_ReSetHeight(Node<T>* temp)
 		{
-		// 	while (temp)
-		// 	{
 				if (!temp->left && !temp->right)
 					temp->height = 1;
 				else if (temp->left == nullptr)
@@ -266,8 +241,6 @@ class Tree
 					temp->height = 1 + temp->left->height;
 				else
 					temp->height = 1 + std::max(temp->right->height, temp->left->height);
-			// 	temp = temp->parent;
-			// }
 		};
 
 
@@ -280,14 +253,12 @@ class Tree
 				this->_Root = newnode;
 			else
 				_insert(this->_Root, newnode);
-			// setHeight();
 		};
 
 		void	remove(T key)
 		{
 			this->_Root = _remove(this->_Root, key);
-			// setHeight();
-		}
+		};
 
 		Node<T>*	Min()
 		{
@@ -305,7 +276,7 @@ class Tree
 			while (tmp->right)
 				tmp = tmp->right;
 			return (tmp);
-		}
+		};
 
 		Node<T>* search(T key)
 		{
@@ -313,7 +284,7 @@ class Tree
 				return (nullptr);
 			else
 				return (_search(this->_Root, key));
-		}
+		};
 
 		Node<T>* successor(Node<T>* node)
 		{
@@ -327,7 +298,7 @@ class Tree
 				temp = temp->parent;
 			}
 			return (temp);
-		}
+		};
 		Node<T>* predecessor(Node<T>* node)
 		{
 			if (node->left != nullptr)
@@ -340,7 +311,7 @@ class Tree
 				temp = temp->parent;
 			}
 			return (temp);
-		}
+		};
 
 		T	get_Key() const { return (this->_Root->key); };
 		T	get_height() const { return (this->_Root->height); };
@@ -368,7 +339,7 @@ class Tree
 
 			showTrunks(p->prev);
 			std::cout << p->str;
-		}
+		};
 
 		void printTree(Node<T>* root, Trunk *prev, bool isLeft)
 		{
@@ -407,49 +378,11 @@ class Tree
 			trunk->str = "   |";
 
 			printTree(root->left, trunk, false);
-		}
-
-		// void printTree(Node<T>* root, std::string indent, bool last)
-		// {
-		// 	if (root != nullptr)
-		// 	{
-		// 		std::cout << indent;
-		// 		if (last) {
-		// 		std::cout << "R----";
-		// 		indent += "   ";
-		// 		} else {
-		// 		std::cout << "L----";
-		// 		indent += "|  ";
-		// 		}
-		// 		std::cout << root->key << std::endl;
-		// 		printTree(root->left, indent, false);
-		// 		printTree(root->right, indent, true);
-		// 	}
-		// }
-
-		// void	print2DUtil(Node<T>* root, int space)
-		// {
-		// 	if (root == NULL)
-		// 		return;
-		// 	space += 10;
-		// 	print2DUtil(root->right, space);
-		// 	std::cout << std::endl;
-		// 	for (int i = 10; i < space; i++)
-		// 		std::cout << " ";
-		// 	std::cout << "{" << root->key << "} " << root->height << "\n";
-		// 	print2DUtil(root->left, space);
-		// };
+		};
 
 
 
 		public: /*             print function                         */
 			void	print() { printTree(this->_Root, nullptr, false); };
-			// void	print()
-			// {
-			// 	std::cout << "||||||||||||||||\n";
-			// 	print2DUtil(this->_Root, 0);
-			// 	std::cout << "||||||||||||||||\n\n";
-			// };
 
 };
-
