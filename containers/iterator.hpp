@@ -6,7 +6,7 @@
 /*   By: mbari <mbari@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/06 12:09:44 by mbari             #+#    #+#             */
-/*   Updated: 2022/01/19 21:10:47 by mbari            ###   ########.fr       */
+/*   Updated: 2022/02/18 19:45:33 by mbari            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -115,7 +115,7 @@ namespace ft
 	template <class Iterator>
 	typename VecIter<Iterator>::difference_type operator- (const VecIter<Iterator>& lhs, const VecIter<Iterator>& rhs)
 	{ return (lhs.base() - rhs.base()); };
-	
+
 	template<class T>
 	class reverse_iterator : public iterator<std::random_access_iterator_tag, T>
 	{

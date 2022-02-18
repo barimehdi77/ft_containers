@@ -6,7 +6,7 @@
 /*   By: mbari <mbari@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/27 14:35:25 by mbari             #+#    #+#             */
-/*   Updated: 2022/02/16 20:39:10 by mbari            ###   ########.fr       */
+/*   Updated: 2022/02/18 20:09:23 by mbari            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,15 +35,24 @@ struct Node
 	// 	T get_Key() const { return (this->_key); };
 };
 
-template <class T>
+template <class T, class Compare, class Allocator>
 class Tree
 {
-	private:
-		Node<T> * _Root = nullptr;
+	public:
+		typedef T									value_type;
+		typedef Compare								value_compare;
+		typedef Allocator							allocator_type;
 
 	private:
+		Node<T> * _Root;
+		Node<T> * _end;
 
-
+	public:
+		Tree()
+		{
+		
+		};
+	private:
 		int		_Height(Node<T>* temp)
 		{
 			if (temp == nullptr)

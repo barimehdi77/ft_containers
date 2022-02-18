@@ -781,6 +781,7 @@ int main()
 		Tree<ValueType> BST;
 
 		BST.insert(ValueType('A', 77));
+		BST.insert(ValueType('A', 88));
 		BST.insert(ValueType('R', 77));
 		BST.insert(ValueType('M', 77));
 		BST.insert(ValueType('a', 77));
