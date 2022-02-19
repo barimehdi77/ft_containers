@@ -6,7 +6,7 @@
 /*   By: mbari <mbari@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/27 14:35:25 by mbari             #+#    #+#             */
-/*   Updated: 2022/02/18 20:09:23 by mbari            ###   ########.fr       */
+/*   Updated: 2022/02/19 17:10:43 by mbari            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,43 +35,55 @@ struct Node
 	// 	T get_Key() const { return (this->_key); };
 };
 
-template <class T, class Compare, class Allocator>
+template <class T, class Compare = std::less<T>, class Allocator = std::allocator<Node<T> > >
 class Tree
 {
 	public:
 		typedef T									value_type;
 		typedef Compare								value_compare;
 		typedef Allocator							allocator_type;
+		typedef Node<value_type>					Node_type;
+		// typedef typename allocator_type::template rebind<Node_type>::other allocater_node;
 
 	private:
-		Node<T> * _Root;
-		Node<T> * _end;
+		allocator_type								_alloc;
+		value_compare								_comp;
+		Node_type*									_root;
+		Node_type*									_end;
+		int											_size;
 
 	public:
-		Tree()
+		Tree(const value_compare &compare = value_compare(), const allocator_type& alloc = allocator_type()): _size(0)
 		{
-		
+			this->_alloc = alloc;
+			this->_comp = compare;
+			//this->_end = this->_alloc.allocate((Node_type()));
+			this->_end = this->_alloc.allocate(1);
+			this->_alloc.construct(this->_end, value_type('Q', 77));
+			this->_root = this->_end;
+			// this->_root->parent = this->_end;
+			// this->_end->left = this->_root;
 		};
 	private:
-		int		_Height(Node<T>* temp)
+		int		_Height(Node_type* temp)
 		{
 			if (temp == nullptr)
 				return (0);
 			return (temp->height);
 		};
 
-		int _getBalanceFactor(Node<T>* N)
+		int _getBalanceFactor(Node_type* N)
 		{
 			if (N == NULL)
 				return 0;
 			return (_Height(N->left) - _Height(N->right));
 		}
 
-		Node<T>* leftRotate(Node<T>* x)
+		Node_type* leftRotate(Node_type* x)
 		{
-			Node<T>* y = x->right;
-			Node<T>* T2 = y->left;
-			Node<T>* p = x->parent;
+			Node_type* y = x->right;
+			Node_type* T2 = y->left;
+			Node_type* p = x->parent;
 			y->left = x;
 			x->right = T2;
 			if (p)
@@ -90,11 +102,11 @@ class Tree
 			return y;
 		};
 
-		Node<T>* rightRotate(Node<T>* y)
+		Node_type* rightRotate(Node_type* y)
 		{
-			Node<T>* x = y->left;
-			Node<T>* T2 = x->right;
-			Node<T>* p = y->parent;
+			Node_type* x = y->left;
+			Node_type* T2 = x->right;
+			Node_type* p = y->parent;
 			x->right = y;
 			y->left = T2;
 			if (p)
@@ -113,20 +125,20 @@ class Tree
 			return x;
 		};
 
-		Node<T>* RightLeftRotate(Node<T>* node)
+		Node_type* RightLeftRotate(Node_type* node)
 		{
 			node->right = rightRotate(node->right);
 			return (leftRotate(node));
 		};
 
-		Node<T>* LeftRightRotate(Node<T>* node)
+		Node_type* LeftRightRotate(Node_type* node)
 		{
 			node->left = leftRotate(node->left);
 			return (rightRotate(node));
 		};
 
 
-		void	_reBalance(Node<T>* node)
+		void	_reBalance(Node_type* node)
 		{
 			int	balanceFactor = _getBalanceFactor(node);
 			if (balanceFactor > 1)
@@ -144,12 +156,12 @@ class Tree
 					node = RightLeftRotate(node);
 			}
 			if (node->parent == nullptr){
-				this->_Root = node;
+				this->_root = node;
 				node->parent = nullptr;
 			}
 		};
 
-		void	_insert(Node<T>* temp, Node<T>* newNode)
+		void	_insert(Node_type* temp, Node_type* newNode)
 		{
 			if (temp->key > newNode->key)
 			{
@@ -175,7 +187,7 @@ class Tree
 			_reBalance(temp);
 		};
 
-		Node<T>*	_remove(Node<T>* root, T key)
+		Node_type*	_remove(Node_type* root, T key)
 		{
 			if (root == nullptr) return (nullptr);
 			else if (key < root->key)
@@ -186,19 +198,19 @@ class Tree
 			{
 				if (root->left == nullptr)
 				{
-					Node<T>* temp = root->right;
+					Node_type* temp = root->right;
 					delete root;
 					return (temp);
 				}
 				else if (root->right == nullptr)
 				{
-					Node<T>* temp = root->left;
+					Node_type* temp = root->left;
 					delete root;
 					return (temp);
 				}
 				else
 				{
-					Node<T>* MaxValue = _Max(root->left);
+					Node_type* MaxValue = _Max(root->left);
 					root->key = MaxValue->key;
 					root->left = _remove(root->left, MaxValue->key);
 				}
@@ -208,7 +220,7 @@ class Tree
 			return (root);
 		};
 
-		Node<T>* _search(Node<T>* temp, T key)
+		Node_type* _search(Node_type* temp, T key)
 		{
 			if (temp == nullptr)
 				return (nullptr);
@@ -223,21 +235,21 @@ class Tree
 			return (nullptr);
 		};
 
-		Node<T>* _Min(Node<T>* temp)
+		Node_type* _Min(Node_type* temp)
 		{
 			while (temp->left != nullptr)
 				temp = temp->left;
 			return (temp);
 		};
 
-		Node<T>* _Max(Node<T>* temp)
+		Node_type* _Max(Node_type* temp)
 		{
 			while (temp->right != nullptr)
 				temp = temp->right;
 			return (temp);
 		};
 
-		void		_ReSetHeight(Node<T>* temp)
+		void		_ReSetHeight(Node_type* temp)
 		{
 				if (!temp->left && !temp->right)
 					temp->height = 1;
@@ -253,50 +265,54 @@ class Tree
 	public:
 		void	insert(T key)
 		{
-			Node<T> * newnode = new Node<T>(key);
-			if (!this->_Root)
-				this->_Root = newnode;
+			Node_type * newnode = new Node_type(key);
+			if (this->_root == this->_end)
+			{
+				this->_root = newnode;
+				this->_root->parent = this->_end;
+				this->_end->left = this->_root;
+			}
 			else
-				_insert(this->_Root, newnode);
+				_insert(this->_root, newnode);
 		};
 
 		void	remove(T key)
 		{
-			this->_Root = _remove(this->_Root, key);
+			this->_root = _remove(this->_root, key);
 		};
 
-		Node<T>*	Min()
+		Node_type*	Min()
 		{
-			Node<T> * tmp = this->_Root;
+			Node_type * tmp = this->_root;
 
 			while (tmp->left)
 				tmp = tmp->left;
 			return (tmp);
 		};
 
-		Node<T>* Max()
+		Node_type* Max()
 		{
-			Node<T>* tmp = this->_Root;
+			Node_type* tmp = this->_root;
 
 			while (tmp->right)
 				tmp = tmp->right;
 			return (tmp);
 		};
 
-		Node<T>* search(T key)
+		Node_type* search(T key)
 		{
-			if (this->_Root == nullptr)
+			if (this->_root == this->_end)
 				return (nullptr);
 			else
-				return (_search(this->_Root, key));
+				return (_search(this->_root, key));
 		};
 
-		Node<T>* successor(Node<T>* node)
+		Node_type* successor(Node_type* node)
 		{
 			if (node->right != nullptr)
 				return (_Min(node->right));
 
-			Node<T>* temp = node->parent;
+			Node_type* temp = node->parent;
 			while (temp != nullptr && node == temp->right)
 			{
 				node = temp;
@@ -304,12 +320,12 @@ class Tree
 			}
 			return (temp);
 		};
-		Node<T>* predecessor(Node<T>* node)
+		Node_type* predecessor(Node_type* node)
 		{
 			if (node->left != nullptr)
 				return (_Max(node->left));
 
-			Node<T>* temp = node->parent;
+			Node_type* temp = node->parent;
 			while (temp != nullptr && node == temp->left)
 			{
 				node = temp;
@@ -318,8 +334,8 @@ class Tree
 			return (temp);
 		};
 
-		T	get_Key() const { return (this->_Root->key); };
-		T	get_height() const { return (this->_Root->height); };
+		T	get_Key() const { return (this->_root->key); };
+		T	get_height() const { return (this->_root->height); };
 
 		private: /*             Private Functions for printing The tree                         */
 
@@ -346,7 +362,7 @@ class Tree
 			std::cout << p->str;
 		};
 
-		void printTree(Node<T>* root, Trunk *prev, bool isLeft)
+		void printTree(Node_type* root, Trunk *prev, bool isLeft)
 		{
 			if (root == nullptr) {
 				return;
@@ -377,6 +393,7 @@ class Tree
 			else
 				std::cout << " {P: NULL" << "} H: " << root->height  << GREEN " FB: " << _getBalanceFactor(root) << RESET << std::endl;
 
+			// std::cout << GREEN << "ROOT Parent : " << this->_root->parent->key.first << RESET << std::endl;
 			if (prev) {
 				prev->str = prev_str;
 			}
@@ -388,6 +405,6 @@ class Tree
 
 
 		public: /*             print function                         */
-			void	print() { printTree(this->_Root, nullptr, false); };
+			void	print() { printTree(this->_root, nullptr, false); };
 
 };
