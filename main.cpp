@@ -805,14 +805,14 @@ int main()
 		BST.insert(ValueType(75, "77"));
 
 
+		BST.print();
 		std::cout << "┃━━━━━━━━━━━━━━━━━━━━━━━━━┃ Printing The Tree ┃━━━━━━━━━━━━━━━━━━━━━━━━┃\n\n\n\n\n" << std::endl;
-		// BST.print();
 		{
-			Node<ValueType>* succ = BST.predecessor(BST.search(ValueType(99, "77")));
+			Node<ValueType>* succ = BST.successor(BST.search(ValueType(99, "77")));
 			if (succ == nullptr)
-				std::cout << "predecessor of 99 is NULL " << std::endl;
+				std::cout << "successor of 99 is NULL " << std::endl;
 			else
-				std::cout << "predecessor of 99 is " << succ->key.first << std::endl;
+				std::cout << "successor of 99 is " << succ->key.first << std::endl;
 		}
 		std::cout << "\n\n\n\n\n┃━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━┃" << std::endl;
 

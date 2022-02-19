@@ -6,7 +6,7 @@
 /*   By: mbari <mbari@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/27 14:35:25 by mbari             #+#    #+#             */
-/*   Updated: 2022/02/19 23:03:13 by mbari            ###   ########.fr       */
+/*   Updated: 2022/02/20 00:26:39 by mbari            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -232,7 +232,7 @@ class Tree
 				return (temp);
 			else if (this->_comp(key, temp->key))
 				return (_search(temp->left, key));
-			else if (this->_comp(key, temp->key))
+			else if (!this->_comp(key, temp->key))
 				return (_search(temp->right, key));
 
 			return (nullptr);
@@ -330,7 +330,7 @@ class Tree
 				return (_Max(node->left));
 
 			Node_type* temp = node->parent;
-			while (temp != nullptr && node == temp->left)
+			while (temp != this->_end && node == temp->left)
 			{
 				node = temp;
 				temp = temp->parent;
