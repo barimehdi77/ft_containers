@@ -776,44 +776,62 @@
 
 int main()
 {
-		typedef	ft::pair<char, int>	ValueType;
+		typedef	ft::pair<int, std::string>	ValueType;
 	{
 		Tree<ValueType> BST;
 
-
-		BST.insert(ValueType('A', 77));
-		BST.insert(ValueType('B', 88));
-		BST.insert(ValueType('R', 77));
-		BST.insert(ValueType('M', 77));
-		BST.insert(ValueType('a', 77));
-		BST.insert(ValueType('r', 77));
-		BST.insert(ValueType('t', 77));
-		BST.insert(ValueType('w', 77));
-		BST.insert(ValueType('q', 77));
-		BST.insert(ValueType('s', 77));
-		BST.insert(ValueType('d', 77));
-		BST.insert(ValueType('f', 77));
-		BST.insert(ValueType('g', 77));
-		BST.insert(ValueType('h', 77));
-		BST.insert(ValueType('j', 77));
-		BST.insert(ValueType('j', 77));
-		BST.insert(ValueType('k', 77));
-		BST.insert(ValueType('l', 77));
-		BST.insert(ValueType('z', 77));
-		BST.insert(ValueType('x', 77));
-		BST.insert(ValueType('c', 77));
-		BST.insert(ValueType('v', 77));
-		BST.insert(ValueType('b', 77));
+		BST.insert(ValueType(51, "77"));
+		BST.insert(ValueType(77, "88"));
+		BST.insert(ValueType(12, "77"));
+		BST.insert(ValueType(7, "77"));
+		BST.insert(ValueType(3, "77"));
+		BST.insert(ValueType(15, "77"));
+		BST.insert(ValueType(44, "77"));
+		BST.insert(ValueType(99, "77"));
+		BST.insert(ValueType(78, "77"));
+		BST.insert(ValueType(55, "77"));
+		BST.insert(ValueType(69, "77"));
+		BST.insert(ValueType(45, "77"));
+		BST.insert(ValueType(57, "77"));
+		BST.insert(ValueType(10, "77"));
+		BST.insert(ValueType(71, "77"));
+		BST.insert(ValueType(96, "77"));
+		BST.insert(ValueType(24, "77"));
+		BST.insert(ValueType(11, "77"));
+		BST.insert(ValueType(17, "77"));
+		BST.insert(ValueType(19, "77"));
+		BST.insert(ValueType(16, "77"));
+		BST.insert(ValueType(35, "77"));
+		BST.insert(ValueType(75, "77"));
 
 
 		std::cout << "┃━━━━━━━━━━━━━━━━━━━━━━━━━┃ Printing The Tree ┃━━━━━━━━━━━━━━━━━━━━━━━━┃\n\n\n\n\n" << std::endl;
-		BST.print();
+		// BST.print();
+		{
+			Node<ValueType>* succ = BST.predecessor(BST.search(ValueType(99, "77")));
+			if (succ == nullptr)
+				std::cout << "predecessor of 99 is NULL " << std::endl;
+			else
+				std::cout << "predecessor of 99 is " << succ->key.first << std::endl;
+		}
 		std::cout << "\n\n\n\n\n┃━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━┃" << std::endl;
 
-		BST.remove(ValueType('d', 77));
+		// BST.remove(ValueType(77, "77"));
 
 		std::cout << "┃━━━━━━━━━━━━━━━━━━━━━━━━━┃ Printing The Tree ┃━━━━━━━━━━━━━━━━━━━━━━━━┃\n\n\n\n\n" << std::endl;
 		BST.print();
 		std::cout << "\n\n\n\n\n┃━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━┃" << std::endl;
 	}
 }
+
+
+// template <typename A, typename B, typename C = std::less<A> >
+// bool fun(A a, B b, C cmp = C())
+// {
+//     return cmp(a, b);
+// }
+
+// int main()
+// {
+// 	std::cout << !fun(1,2) << std::endl;
+// }

@@ -6,7 +6,7 @@
 /*   By: mbari <mbari@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/27 14:35:25 by mbari             #+#    #+#             */
-/*   Updated: 2022/02/19 17:51:25 by mbari            ###   ########.fr       */
+/*   Updated: 2022/02/19 23:03:13 by mbari            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -59,12 +59,27 @@ class Tree
 			this->_comp = compare;
 			//this->_end = this->_alloc.allocate((Node_type()));
 			this->_end = this->_alloc.allocate(1);
-			this->_alloc.construct(this->_end, value_type('Q', 77));
+			// this->_alloc.construct(this->_end, value_type(7777, "77"));
 			this->_root = this->_end;
 			// this->_root->parent = this->_end;
 			// this->_end->left = this->_root;
 		};
+		~Tree()
+		{
+			_inOrder(this->_root);
+			this->_alloc.deallocate(this->_end, 1);
+		};
+
 	private:
+		void	_inOrder(Node_type* node)
+		{
+			if (node != nullptr)
+			{
+				_inOrder(node->left);
+				this->_alloc.deallocate(node, 1);
+				_inOrder(node->right);
+			}
+		};
 		int		_Height(Node_type* temp)
 		{
 			if (temp == nullptr)
@@ -162,9 +177,10 @@ class Tree
 		{
 			if (temp == nullptr)
 				return (newNode);
-			if (temp->key > newNode->key)
+			// if (temp->key > newNode->key)
+			if (!this->_comp(temp->key, newNode->key))
 				temp->left = _insert(temp->left, newNode);
-			else if (temp->key < newNode->key)
+			else if (this->_comp(temp->key, newNode->key))
 				temp->right = _insert(temp->right, newNode);
 			else
 				return (temp);
@@ -176,9 +192,10 @@ class Tree
 		Node_type*	_remove(Node_type* root, T key)
 		{
 			if (root == nullptr) return (nullptr);
-			else if (key < root->key)
+			// else if (key < root->key)
+			else if (this->_comp(key, root->key))
 				root->left = _remove(root->left, key);
-			else if (key > root->key)
+			else if (this->_comp(key, root->key))
 				root->right = _remove(root->right, key);
 			else
 			{
@@ -186,14 +203,12 @@ class Tree
 				{
 					Node_type* temp = root->right;
 					this->_alloc.deallocate(root, 1);
-					// delete root;
 					return (temp);
 				}
 				else if (root->right == nullptr)
 				{
 					Node_type* temp = root->left;
 					this->_alloc.deallocate(root, 1);
-					// delete root;
 					return (temp);
 				}
 				else
@@ -215,9 +230,9 @@ class Tree
 
 			if (temp->key == key)
 				return (temp);
-			else if (temp->key > key)
+			else if (this->_comp(key, temp->key))
 				return (_search(temp->left, key));
-			else if (temp->key < key)
+			else if (this->_comp(key, temp->key))
 				return (_search(temp->right, key));
 
 			return (nullptr);
