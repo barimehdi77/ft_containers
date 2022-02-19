@@ -6,7 +6,7 @@
 /*   By: mbari <mbari@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/27 14:35:25 by mbari             #+#    #+#             */
-/*   Updated: 2022/02/19 17:10:43 by mbari            ###   ########.fr       */
+/*   Updated: 2022/02/19 17:51:25 by mbari            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -138,53 +138,39 @@ class Tree
 		};
 
 
-		void	_reBalance(Node_type* node)
+		Node_type*	_reBalance(Node_type* node)
 		{
 			int	balanceFactor = _getBalanceFactor(node);
 			if (balanceFactor > 1)
 			{
 				if (_getBalanceFactor(node->left) >= 0)
-					node = rightRotate(node);
+					return (rightRotate(node));
 				else
-					node = LeftRightRotate(node);
+					return (LeftRightRotate(node));
 			}
 			else if (balanceFactor < -1)
 			{
 				if (_getBalanceFactor(node->right) <= 0)
-					node = leftRotate(node);
+					return (leftRotate(node));
 				else
-					node = RightLeftRotate(node);
+					return (RightLeftRotate(node));
 			}
-			if (node->parent == nullptr){
-				this->_root = node;
-				node->parent = nullptr;
-			}
+			return (node);
 		};
 
-		void	_insert(Node_type* temp, Node_type* newNode)
+		Node_type*	_insert(Node_type* temp, Node_type* newNode)
 		{
+			if (temp == nullptr)
+				return (newNode);
 			if (temp->key > newNode->key)
-			{
-				if (temp->left == nullptr)
-				{
-					temp->left = newNode;
-					temp->left->parent = temp;
-				}
-				else
-					_insert(temp->left, newNode);
-			}
+				temp->left = _insert(temp->left, newNode);
+			else if (temp->key < newNode->key)
+				temp->right = _insert(temp->right, newNode);
 			else
-			{
-				if (temp->right == nullptr)
-				{
-					temp->right = newNode;
-					temp->right->parent = temp;
-				}
-				else
-					_insert(temp->right, newNode);
-			}
+				return (temp);
 			_ReSetHeight(temp);
-			_reBalance(temp);
+			temp = _reBalance(temp);
+			return (temp);
 		};
 
 		Node_type*	_remove(Node_type* root, T key)
@@ -199,13 +185,15 @@ class Tree
 				if (root->left == nullptr)
 				{
 					Node_type* temp = root->right;
-					delete root;
+					this->_alloc.deallocate(root, 1);
+					// delete root;
 					return (temp);
 				}
 				else if (root->right == nullptr)
 				{
 					Node_type* temp = root->left;
-					delete root;
+					this->_alloc.deallocate(root, 1);
+					// delete root;
 					return (temp);
 				}
 				else
@@ -251,21 +239,22 @@ class Tree
 
 		void		_ReSetHeight(Node_type* temp)
 		{
-				if (!temp->left && !temp->right)
-					temp->height = 1;
-				else if (temp->left == nullptr)
-					temp->height = 1 + temp->right->height;
-				else if (temp->right == nullptr)
-					temp->height = 1 + temp->left->height;
-				else
-					temp->height = 1 + std::max(temp->right->height, temp->left->height);
+			if (!temp->left && !temp->right)
+				temp->height = 1;
+			else if (temp->left == nullptr)
+				temp->height = 1 + temp->right->height;
+			else if (temp->right == nullptr)
+				temp->height = 1 + temp->left->height;
+			else
+				temp->height = 1 + std::max(temp->right->height, temp->left->height);
 		};
 
 
 	public:
 		void	insert(T key)
 		{
-			Node_type * newnode = new Node_type(key);
+			Node_type * newnode = this->_alloc.allocate(1);
+			this->_alloc.construct(newnode, key);
 			if (this->_root == this->_end)
 			{
 				this->_root = newnode;
@@ -273,7 +262,7 @@ class Tree
 				this->_end->left = this->_root;
 			}
 			else
-				_insert(this->_root, newnode);
+				this->_root = _insert(this->_root, newnode);
 		};
 
 		void	remove(T key)

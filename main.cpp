@@ -784,33 +784,33 @@ int main()
 		BST.insert(ValueType('A', 77));
 		BST.insert(ValueType('B', 88));
 		BST.insert(ValueType('R', 77));
-		// BST.insert(ValueType('M', 77));
-		// BST.insert(ValueType('a', 77));
-		// BST.insert(ValueType('r', 77));
-		// BST.insert(ValueType('t', 77));
-		// BST.insert(ValueType('w', 77));
-		// BST.insert(ValueType('q', 77));
-		// BST.insert(ValueType('s', 77));
-		// BST.insert(ValueType('d', 77));
-		// BST.insert(ValueType('f', 77));
-		// BST.insert(ValueType('g', 77));
-		// BST.insert(ValueType('h', 77));
-		// BST.insert(ValueType('j', 77));
-		// BST.insert(ValueType('j', 77));
-		// BST.insert(ValueType('k', 77));
-		// BST.insert(ValueType('l', 77));
-		// BST.insert(ValueType('z', 77));
-		// BST.insert(ValueType('x', 77));
-		// BST.insert(ValueType('c', 77));
-		// BST.insert(ValueType('v', 77));
-		// BST.insert(ValueType('b', 77));
+		BST.insert(ValueType('M', 77));
+		BST.insert(ValueType('a', 77));
+		BST.insert(ValueType('r', 77));
+		BST.insert(ValueType('t', 77));
+		BST.insert(ValueType('w', 77));
+		BST.insert(ValueType('q', 77));
+		BST.insert(ValueType('s', 77));
+		BST.insert(ValueType('d', 77));
+		BST.insert(ValueType('f', 77));
+		BST.insert(ValueType('g', 77));
+		BST.insert(ValueType('h', 77));
+		BST.insert(ValueType('j', 77));
+		BST.insert(ValueType('j', 77));
+		BST.insert(ValueType('k', 77));
+		BST.insert(ValueType('l', 77));
+		BST.insert(ValueType('z', 77));
+		BST.insert(ValueType('x', 77));
+		BST.insert(ValueType('c', 77));
+		BST.insert(ValueType('v', 77));
+		BST.insert(ValueType('b', 77));
 
 
-		// std::cout << "┃━━━━━━━━━━━━━━━━━━━━━━━━━┃ Printing The Tree ┃━━━━━━━━━━━━━━━━━━━━━━━━┃\n\n\n\n\n" << std::endl;
-		// BST.print();
-		// std::cout << "\n\n\n\n\n┃━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━┃" << std::endl;
+		std::cout << "┃━━━━━━━━━━━━━━━━━━━━━━━━━┃ Printing The Tree ┃━━━━━━━━━━━━━━━━━━━━━━━━┃\n\n\n\n\n" << std::endl;
+		BST.print();
+		std::cout << "\n\n\n\n\n┃━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━┃" << std::endl;
 
-		// BST.remove(10);
+		BST.remove(ValueType('d', 77));
 
 		std::cout << "┃━━━━━━━━━━━━━━━━━━━━━━━━━┃ Printing The Tree ┃━━━━━━━━━━━━━━━━━━━━━━━━┃\n\n\n\n\n" << std::endl;
 		BST.print();
