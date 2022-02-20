@@ -6,12 +6,12 @@
 /*   By: mbari <mbari@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/11 19:46:30 by mbari             #+#    #+#             */
-/*   Updated: 2022/02/16 20:37:15 by mbari            ###   ########.fr       */
+/*   Updated: 2022/02/20 01:49:19 by mbari            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef UTILS_HPP
-#define UTILS_HPP
+#ifndef MAPUTILS_HPP
+#define MAPUTILS_HPP
 
 #include "vector.hpp"
 namespace ft

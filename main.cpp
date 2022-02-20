@@ -16,7 +16,7 @@
 #include "containers/vector/vector.hpp"
 #include "containers/map/tree.hpp"
 #include "colors.hpp"
-// #include "containers/utils.hpp"
+#include "containers/map/utils.hpp"
 #include <vector>
 #include <map>
 
