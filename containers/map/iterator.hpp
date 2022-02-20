@@ -6,17 +6,17 @@
 /*   By: mbari <mbari@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/06 12:09:44 by mbari             #+#    #+#             */
-/*   Updated: 2022/02/18 19:45:33 by mbari            ###   ########.fr       */
+/*   Updated: 2022/02/20 01:13:40 by mbari            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef ITERATOR
-#define ITERATOR
+#ifndef MAPITERATOR_HPP
+#define MAPITERATOR_HPP
 
 #include <iostream>
 #include <string>
 
-namespace ft
+/*namespace ft
 {
 	template <	class Category,					// Category to which the iterator belongs to.
 				class T,						// Type of elements pointed by the iterator.
@@ -50,7 +50,7 @@ namespace ft
 		typedef T								value_type;
 		typedef T*								pointer;
 		typedef T&								reference;
-		typedef std::random_access_iterator_tag	iterator_category;
+		typedef std::bidirectional_iterator_tag	iterator_category;
 	};
 
 	template <class T>
@@ -60,10 +60,10 @@ namespace ft
 		typedef T								value_type;
 		typedef T*								pointer;
 		typedef T&								reference;
-		typedef std::random_access_iterator_tag	iterator_category;
+		typedef std::bidirectional_iterator_tag	iterator_category;
 	};
 	template<class T>
-	class VecIter : public iterator<std::random_access_iterator_tag, T>
+	class MapIter : public iterator<std::random_access_iterator_tag, T>
 	{
 		public:
 			typedef T													iterator_type;
@@ -77,43 +77,43 @@ namespace ft
 			iterator_type	_it;
 
 		public:
-			VecIter(): _it(nullptr) {};
-			explicit	VecIter( iterator_type x ): _it(x) {};
+			MapIter(): _it(nullptr) {};
+			explicit	MapIter( iterator_type x ): _it(x) {};
 			template <class Iter>
-			VecIter ( const VecIter<Iter>& vec_it ): _it(vec_it.base()) {};
+			MapIter ( const MapIter<Iter>& vec_it ): _it(vec_it.base()) {};
 
 			iterator_type	base() const							{ return (this->_it); };
 			reference		operator*() const						{ return (*this->_it); };
-			VecIter			operator+( difference_type n ) const	{ return (VecIter(this->_it + n)); };
-			VecIter			operator-( difference_type n ) const	{ return (VecIter(this->_it - n)); };
-			VecIter&		operator++()							{++this->_it; return (*this); };					// pre-increment
-			VecIter			operator++(int)							{ VecIter temp(*this); ++(*this); return (temp); }; // post-increment
-			VecIter&		operator--()							{--this->_it; return (*this); };					// pre-decrement
-			VecIter			operator--(int)							{ VecIter temp(*this); --(*this); return (temp); };	// post-decrement
-			VecIter&		operator+=( difference_type n )			{ this->_it += n; return (*this); };
-			VecIter&		operator-=( difference_type n )			{ this->_it -= n; return (*this); };
+			MapIter			operator+( difference_type n ) const	{ return (MapIter(this->_it + n)); };
+			MapIter			operator-( difference_type n ) const	{ return (MapIter(this->_it - n)); };
+			MapIter&		operator++()							{++this->_it; return (*this); };					// pre-increment
+			MapIter			operator++(int)							{ MapIter temp(*this); ++(*this); return (temp); }; // post-increment
+			MapIter&		operator--()							{--this->_it; return (*this); };					// pre-decrement
+			MapIter			operator--(int)							{ MapIter temp(*this); --(*this); return (temp); };	// post-decrement
+			MapIter&		operator+=( difference_type n )			{ this->_it += n; return (*this); };
+			MapIter&		operator-=( difference_type n )			{ this->_it -= n; return (*this); };
 			pointer			operator->()							{ return (&(operator*())); };
 			reference		operator[]( difference_type n ) const	{ return (*(this->_it + n)); };
 	};
 
 	template <class Iterator>
-	bool operator== (const VecIter<Iterator>& lhs, const VecIter<Iterator>& rhs) { return (lhs.base() == rhs.base()); };
+	bool operator== (const MapIter<Iterator>& lhs, const MapIter<Iterator>& rhs) { return (lhs.base() == rhs.base()); };
 	template <class Iterator>
-	bool operator!= (const VecIter<Iterator>& lhs, const VecIter<Iterator>& rhs) { return (lhs.base() != rhs.base()); };
+	bool operator!= (const MapIter<Iterator>& lhs, const MapIter<Iterator>& rhs) { return (lhs.base() != rhs.base()); };
 	template <class Iterator>
-	bool operator<  (const VecIter<Iterator>& lhs, const VecIter<Iterator>& rhs) { return (lhs.base() < rhs.base()); };
+	bool operator<  (const MapIter<Iterator>& lhs, const MapIter<Iterator>& rhs) { return (lhs.base() < rhs.base()); };
 	template <class Iterator>
-	bool operator<= (const VecIter<Iterator>& lhs, const VecIter<Iterator>& rhs) { return (lhs.base() <= rhs.base()); };
+	bool operator<= (const MapIter<Iterator>& lhs, const MapIter<Iterator>& rhs) { return (lhs.base() <= rhs.base()); };
 	template <class Iterator>
-	bool operator>  (const VecIter<Iterator>& lhs, const VecIter<Iterator>& rhs) { return (lhs.base() > rhs.base()); };
+	bool operator>  (const MapIter<Iterator>& lhs, const MapIter<Iterator>& rhs) { return (lhs.base() > rhs.base()); };
 	template <class Iterator>
-	bool operator>=  (const VecIter<Iterator>& lhs, const VecIter<Iterator>& rhs) { return (lhs.base() >= rhs.base()); };
+	bool operator>=  (const MapIter<Iterator>& lhs, const MapIter<Iterator>& rhs) { return (lhs.base() >= rhs.base()); };
 
 	template <class Iterator>
-	VecIter<Iterator> operator+ (typename VecIter<Iterator>::difference_type n, const VecIter<Iterator>& vec_it)
-	{ return (VecIter<Iterator>( vec_it + n)); };
+	MapIter<Iterator> operator+ (typename MapIter<Iterator>::difference_type n, const MapIter<Iterator>& vec_it)
+	{ return (MapIter<Iterator>( vec_it + n)); };
 	template <class Iterator>
-	typename VecIter<Iterator>::difference_type operator- (const VecIter<Iterator>& lhs, const VecIter<Iterator>& rhs)
+	typename MapIter<Iterator>::difference_type operator- (const MapIter<Iterator>& lhs, const MapIter<Iterator>& rhs)
 	{ return (lhs.base() - rhs.base()); };
 
 	template<class T>
@@ -175,5 +175,5 @@ namespace ft
 };
 
 
-
+*/
 #endif

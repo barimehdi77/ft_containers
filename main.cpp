@@ -13,11 +13,10 @@
 
 #include <iostream>
 #include <iterator>
-#include "containers/iterator.hpp"
+#include "containers/vector/vector.hpp"
+#include "containers/map/tree.hpp"
 #include "colors.hpp"
-#include "containers/vector.hpp"
-#include "containers/tree.hpp"
-#include "containers/utils.hpp"
+// #include "containers/utils.hpp"
 #include <vector>
 #include <map>
 
@@ -509,44 +508,44 @@
 
 /* -------------------------- |Test swap function| --------------------------*/
 
-// int main()
-// {
-// 	{
-// 		typedef int		 ValueType;
-// 		std::cout << YELLOW;
-// 		std::cout << "/* -------------------------- printing ft_vec and std_vec -------------------------- */" << std::endl;
-// 		ft::vector<ValueType> ft_vec(7, 77);
-// 		std::vector<ValueType> std_vec(7, 77);
-// 		PrintVecData<ValueType>(ft_vec, std_vec);
-// 		std::cout << BLUE;
-// 		std::cout << "/* -------------------------- printing std_swap and ft_swap -------------------------- */" << std::endl;
-// 		std::vector<ValueType> std_swap;
-// 		std_swap.push_back(77);
-// 		std_swap.push_back(7);
-// 		std_swap.push_back(10);
-// 		std_swap.push_back(33);
-// 		std_swap.push_back(42);
-// 		ft::vector<ValueType> ft_swap;
-// 		ft_swap.push_back(77);
-// 		ft_swap.push_back(7);
-// 		ft_swap.push_back(10);
-// 		ft_swap.push_back(33);
-// 		ft_swap.push_back(42);
-// 		PrintVecData<ValueType>(ft_swap, std_swap);
-// 		std::cout << RED;
-// 		std::cout << "/* -------------------------- testing swap function -------------------------- */" << std::endl;
-// 		ft::swap(ft_vec, ft_swap);
-// 		std::swap(std_vec, std_swap);
-// 		std::cout << CYAN;
-// 		std::cout << "/* -------------------------- printing ft_swap and std_swap after swapping -------------------------- */" << std::endl;
-// 		PrintVecData<ValueType>(ft_swap, std_swap);
-// 		std::cout << PURPLE;
-// 		std::cout << "/* -------------------------- printing ft_vec and std_vec after swapping -------------------------- */" << std::endl;
-// 		PrintVecData<ValueType>(ft_vec, std_vec);
-// 		std::cout << RESET;
-// 	}
-// 	return (0);
-// }
+int main()
+{
+	{
+		typedef int		 ValueType;
+		std::cout << YELLOW;
+		std::cout << "/* -------------------------- printing ft_vec and std_vec -------------------------- */" << std::endl;
+		ft::vector<ValueType> ft_vec(7, 77);
+		std::vector<ValueType> std_vec(7, 77);
+		PrintVecData<ValueType>(ft_vec, std_vec);
+		std::cout << BLUE;
+		std::cout << "/* -------------------------- printing std_swap and ft_swap -------------------------- */" << std::endl;
+		std::vector<ValueType> std_swap;
+		std_swap.push_back(77);
+		std_swap.push_back(7);
+		std_swap.push_back(10);
+		std_swap.push_back(33);
+		std_swap.push_back(42);
+		ft::vector<ValueType> ft_swap;
+		ft_swap.push_back(77);
+		ft_swap.push_back(7);
+		ft_swap.push_back(10);
+		ft_swap.push_back(33);
+		ft_swap.push_back(42);
+		PrintVecData<ValueType>(ft_swap, std_swap);
+		std::cout << RED;
+		std::cout << "/* -------------------------- testing swap function -------------------------- */" << std::endl;
+		ft::swap(ft_vec, ft_swap);
+		std::swap(std_vec, std_swap);
+		std::cout << CYAN;
+		std::cout << "/* -------------------------- printing ft_swap and std_swap after swapping -------------------------- */" << std::endl;
+		PrintVecData<ValueType>(ft_swap, std_swap);
+		std::cout << PURPLE;
+		std::cout << "/* -------------------------- printing ft_vec and std_vec after swapping -------------------------- */" << std::endl;
+		PrintVecData<ValueType>(ft_vec, std_vec);
+		std::cout << RESET;
+	}
+	return (0);
+}
 
 /* -------------------------- |Test reverse_iterator| --------------------------*/
 
@@ -774,55 +773,55 @@
 // }
 
 
-int main()
-{
-		typedef	ft::pair<int, std::string>	ValueType;
-	{
-		Tree<ValueType> BST;
+// int main()
+// {
+// 		typedef	ft::pair<int, std::string>	ValueType;
+// 	{
+// 		Tree<ValueType> BST;
 
-		BST.insert(ValueType(51, "77"));
-		BST.insert(ValueType(77, "88"));
-		BST.insert(ValueType(12, "77"));
-		BST.insert(ValueType(7, "77"));
-		BST.insert(ValueType(3, "77"));
-		BST.insert(ValueType(15, "77"));
-		BST.insert(ValueType(44, "77"));
-		BST.insert(ValueType(99, "77"));
-		BST.insert(ValueType(78, "77"));
-		BST.insert(ValueType(55, "77"));
-		BST.insert(ValueType(69, "77"));
-		BST.insert(ValueType(45, "77"));
-		BST.insert(ValueType(57, "77"));
-		BST.insert(ValueType(10, "77"));
-		BST.insert(ValueType(71, "77"));
-		BST.insert(ValueType(96, "77"));
-		BST.insert(ValueType(24, "77"));
-		BST.insert(ValueType(11, "77"));
-		BST.insert(ValueType(17, "77"));
-		BST.insert(ValueType(19, "77"));
-		BST.insert(ValueType(16, "77"));
-		BST.insert(ValueType(35, "77"));
-		BST.insert(ValueType(75, "77"));
+// 		BST.insert(ValueType(51, "77"));
+// 		BST.insert(ValueType(77, "88"));
+// 		BST.insert(ValueType(12, "77"));
+// 		BST.insert(ValueType(7, "77"));
+// 		BST.insert(ValueType(3, "77"));
+// 		BST.insert(ValueType(15, "77"));
+// 		BST.insert(ValueType(44, "77"));
+// 		BST.insert(ValueType(99, "77"));
+// 		BST.insert(ValueType(78, "77"));
+// 		BST.insert(ValueType(55, "77"));
+// 		BST.insert(ValueType(69, "77"));
+// 		BST.insert(ValueType(45, "77"));
+// 		BST.insert(ValueType(57, "77"));
+// 		BST.insert(ValueType(10, "77"));
+// 		BST.insert(ValueType(71, "77"));
+// 		BST.insert(ValueType(96, "77"));
+// 		BST.insert(ValueType(24, "77"));
+// 		BST.insert(ValueType(11, "77"));
+// 		BST.insert(ValueType(17, "77"));
+// 		BST.insert(ValueType(19, "77"));
+// 		BST.insert(ValueType(16, "77"));
+// 		BST.insert(ValueType(35, "77"));
+// 		BST.insert(ValueType(75, "77"));
 
 
-		BST.print();
-		std::cout << "┃━━━━━━━━━━━━━━━━━━━━━━━━━┃ Printing The Tree ┃━━━━━━━━━━━━━━━━━━━━━━━━┃\n\n\n\n\n" << std::endl;
-		{
-			Node<ValueType>* succ = BST.successor(BST.search(ValueType(99, "77")));
-			if (succ == nullptr)
-				std::cout << "successor of 99 is NULL " << std::endl;
-			else
-				std::cout << "successor of 99 is " << succ->key.first << std::endl;
-		}
-		std::cout << "\n\n\n\n\n┃━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━┃" << std::endl;
+// 		BST.print();
+// 		std::cout << "┃━━━━━━━━━━━━━━━━━━━━━━━━━┃ Printing The Tree ┃━━━━━━━━━━━━━━━━━━━━━━━━┃\n\n\n\n\n" << std::endl;
+// 		{
+// 			Node<ValueType>* succ = BST.successor(BST.search(ValueType(99, "77")));
+// 			if (succ == nullptr)
+// 				std::cout << "successor of 99 is NULL " << std::endl;
+// 			else
+// 				std::cout << "successor of 99 is " << succ->key.first << std::endl;
+// 		}
+// 		std::cout << "\n\n\n\n\n┃━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━┃" << std::endl;
 
-		// BST.remove(ValueType(77, "77"));
+// 		// BST.remove(ValueType(77, "77"));
 
-		std::cout << "┃━━━━━━━━━━━━━━━━━━━━━━━━━┃ Printing The Tree ┃━━━━━━━━━━━━━━━━━━━━━━━━┃\n\n\n\n\n" << std::endl;
-		BST.print();
-		std::cout << "\n\n\n\n\n┃━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━┃" << std::endl;
-	}
-}
+// 		std::cout << "┃━━━━━━━━━━━━━━━━━━━━━━━━━┃ Printing The Tree ┃━━━━━━━━━━━━━━━━━━━━━━━━┃\n\n\n\n\n" << std::endl;
+// 		BST.print();
+// 		std::cout << "\n\n\n\n\n┃━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━┃" << std::endl;
+// 	}
+// }
 
 
 // template <typename A, typename B, typename C = std::less<A> >

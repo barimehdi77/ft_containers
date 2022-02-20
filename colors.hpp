@@ -6,7 +6,7 @@
 /*   By: mbari <mbari@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/13 16:59:21 by mbari             #+#    #+#             */
-/*   Updated: 2022/01/27 11:57:48 by mbari            ###   ########.fr       */
+/*   Updated: 2022/02/20 01:07:39 by mbari            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,7 +21,7 @@
 # define PURPLE "\e[1;35m"
 # define BLUE "\e[1;34m"
 
-#include "containers/vector.hpp"
+#include "containers/vector/vector.hpp"
 #include <vector>
 
 template<typename T>
