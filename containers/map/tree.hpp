@@ -6,12 +6,13 @@
 /*   By: mbari <mbari@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/27 14:35:25 by mbari             #+#    #+#             */
-/*   Updated: 2022/02/20 01:33:41 by mbari            ###   ########.fr       */
+/*   Updated: 2022/02/20 08:54:04 by mbari            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 // #define COUNT 10
 #include "../../colors.hpp"
+// #include "iterator.hpp"
 template <class T>
 struct Node
 {
@@ -49,10 +50,10 @@ class Tree
 		typedef typename allocator_type::pointer			pointer;
 		typedef typename allocator_type::const_pointer		const_pointer;
 		typedef typename allocator_type::size_type			size_type;
-		typedef MapIter<pointer>							iterator;
-		typedef MapIter<const_pointer>						const_iterator;
-		typedef ft::reverse_iterator<pointer>				reverse_iterator;
-		typedef ft::reverse_iterator<const_pointer>			const_reverse_iterator;
+		// typedef ft::MapIter<pointer>							iterator;
+		// typedef ft::MapIter<const_pointer>						const_iterator;
+		// typedef ft::reverse_iterator<pointer>				reverse_iterator;
+		// typedef ft::reverse_iterator<const_pointer>			const_reverse_iterator;
 		// typedef typename allocator_type::template rebind<Node_type>::other allocater_node;
 
 	private:

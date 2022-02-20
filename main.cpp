@@ -773,64 +773,79 @@
 // }
 
 
-int main()
-{
-		typedef	ft::pair<int, std::string>	ValueType;
-	{
-		Tree<ValueType> BST;
-
-		BST.insert(ValueType(51, "77"));
-		BST.insert(ValueType(77, "88"));
-		BST.insert(ValueType(12, "77"));
-		BST.insert(ValueType(7, "77"));
-		BST.insert(ValueType(3, "77"));
-		BST.insert(ValueType(15, "77"));
-		BST.insert(ValueType(44, "77"));
-		BST.insert(ValueType(99, "77"));
-		BST.insert(ValueType(78, "77"));
-		BST.insert(ValueType(55, "77"));
-		BST.insert(ValueType(69, "77"));
-		BST.insert(ValueType(45, "77"));
-		BST.insert(ValueType(57, "77"));
-		BST.insert(ValueType(10, "77"));
-		BST.insert(ValueType(71, "77"));
-		BST.insert(ValueType(96, "77"));
-		BST.insert(ValueType(24, "77"));
-		BST.insert(ValueType(11, "77"));
-		BST.insert(ValueType(17, "77"));
-		BST.insert(ValueType(19, "77"));
-		BST.insert(ValueType(16, "77"));
-		BST.insert(ValueType(35, "77"));
-		BST.insert(ValueType(75, "77"));
-
-
-		BST.print();
-		std::cout << "┃━━━━━━━━━━━━━━━━━━━━━━━━━┃ Printing The Tree ┃━━━━━━━━━━━━━━━━━━━━━━━━┃\n\n\n\n\n" << std::endl;
-		{
-			Node<ValueType>* succ = BST.successor(BST.search(ValueType(99, "77")));
-			if (succ == nullptr)
-				std::cout << "successor of 99 is NULL " << std::endl;
-			else
-				std::cout << "successor of 99 is " << succ->key.first << std::endl;
-		}
-		std::cout << "\n\n\n\n\n┃━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━┃" << std::endl;
-
-		// BST.remove(ValueType(77, "77"));
-
-		std::cout << "┃━━━━━━━━━━━━━━━━━━━━━━━━━┃ Printing The Tree ┃━━━━━━━━━━━━━━━━━━━━━━━━┃\n\n\n\n\n" << std::endl;
-		BST.print();
-		std::cout << "\n\n\n\n\n┃━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━┃" << std::endl;
-	}
-}
-
-
-// template <typename A, typename B, typename C = std::less<A> >
-// bool fun(A a, B b, C cmp = C())
-// {
-//     return cmp(a, b);
-// }
-
 // int main()
 // {
-// 	std::cout << !fun(1,2) << std::endl;
+// 		typedef	ft::pair<int, std::string>	ValueType;
+// 	{
+// 		Tree<ValueType> BST;
+
+// 		BST.insert(ValueType(51, "77"));
+// 		BST.insert(ValueType(77, "88"));
+// 		BST.insert(ValueType(12, "77"));
+// 		BST.insert(ValueType(7, "77"));
+// 		BST.insert(ValueType(3, "77"));
+// 		BST.insert(ValueType(15, "77"));
+// 		BST.insert(ValueType(44, "77"));
+// 		BST.insert(ValueType(99, "77"));
+// 		BST.insert(ValueType(78, "77"));
+// 		BST.insert(ValueType(55, "77"));
+// 		BST.insert(ValueType(69, "77"));
+// 		BST.insert(ValueType(45, "77"));
+// 		BST.insert(ValueType(57, "77"));
+// 		BST.insert(ValueType(10, "77"));
+// 		BST.insert(ValueType(71, "77"));
+// 		BST.insert(ValueType(96, "77"));
+// 		BST.insert(ValueType(24, "77"));
+// 		BST.insert(ValueType(11, "77"));
+// 		BST.insert(ValueType(17, "77"));
+// 		BST.insert(ValueType(19, "77"));
+// 		BST.insert(ValueType(16, "77"));
+// 		BST.insert(ValueType(35, "77"));
+// 		BST.insert(ValueType(75, "77"));
+
+
+// 		BST.print();
+// 		std::cout << "┃━━━━━━━━━━━━━━━━━━━━━━━━━┃ Printing The Tree ┃━━━━━━━━━━━━━━━━━━━━━━━━┃\n\n\n\n\n" << std::endl;
+// 		{
+// 			Node<ValueType>* succ = BST.successor(BST.search(ValueType(99, "77")));
+// 			if (succ == nullptr)
+// 				std::cout << "successor of 99 is NULL " << std::endl;
+// 			else
+// 				std::cout << "successor of 99 is " << succ->key.first << std::endl;
+// 		}
+// 		std::cout << "\n\n\n\n\n┃━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━┃" << std::endl;
+
+// 		// BST.remove(ValueType(77, "77"));
+
+// 		std::cout << "┃━━━━━━━━━━━━━━━━━━━━━━━━━┃ Printing The Tree ┃━━━━━━━━━━━━━━━━━━━━━━━━┃\n\n\n\n\n" << std::endl;
+// 		BST.print();
+// 		std::cout << "\n\n\n\n\n┃━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━┃" << std::endl;
+// 	}
 // }
+
+
+int main()
+{
+	{
+		std::vector<int> foo (3,100);   // three ints with a value of 100
+		std::vector<int> bar (2,200);   // two ints with a value of 200
+
+		if (foo==bar) std::cout << "foo and bar are equal\n";
+		if (foo!=bar) std::cout << "foo and bar are not equal\n";
+		if (foo< bar) std::cout << "foo is less than bar\n";
+		if (foo> bar) std::cout << "foo is greater than bar\n";
+		if (foo<=bar) std::cout << "foo is less than or equal to bar\n";
+		if (foo>=bar) std::cout << "foo is greater than or equal to bar\n";
+	}
+	{
+		ft::vector<int> foo (3,100);   // three ints with a value of 100
+		ft::vector<int> bar (2,200);   // two ints with a value of 200
+
+		if (foo==bar) std::cout << "foo and bar are equal\n";
+		if (foo!=bar) std::cout << "foo and bar are not equal\n";
+		if (foo< bar) std::cout << "foo is less than bar\n";
+		if (foo> bar) std::cout << "foo is greater than bar\n";
+		if (foo<=bar) std::cout << "foo is less than or equal to bar\n";
+		if (foo>=bar) std::cout << "foo is greater than or equal to bar\n";
+	}
+}
