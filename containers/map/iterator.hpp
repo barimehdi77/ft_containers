@@ -6,7 +6,7 @@
 /*   By: mbari <mbari@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/06 12:09:44 by mbari             #+#    #+#             */
-/*   Updated: 2022/02/20 01:13:40 by mbari            ###   ########.fr       */
+/*   Updated: 2022/02/20 01:19:11 by mbari            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,7 +16,7 @@
 #include <iostream>
 #include <string>
 
-/*namespace ft
+namespace ft
 {
 	template <	class Category,					// Category to which the iterator belongs to.
 				class T,						// Type of elements pointed by the iterator.
@@ -175,5 +175,4 @@
 };
 
 
-*/
 #endif
