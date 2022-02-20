@@ -6,7 +6,7 @@
 /*   By: mbari <mbari@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/06 12:09:44 by mbari             #+#    #+#             */
-/*   Updated: 2022/02/20 01:19:11 by mbari            ###   ########.fr       */
+/*   Updated: 2022/02/20 01:20:32 by mbari            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -63,7 +63,7 @@ namespace ft
 		typedef std::bidirectional_iterator_tag	iterator_category;
 	};
 	template<class T>
-	class MapIter : public iterator<std::random_access_iterator_tag, T>
+	class MapIter : public iterator<std::bidirectional_iterator_tag, T>
 	{
 		public:
 			typedef T													iterator_type;
@@ -84,14 +84,10 @@ namespace ft
 
 			iterator_type	base() const							{ return (this->_it); };
 			reference		operator*() const						{ return (*this->_it); };
-			MapIter			operator+( difference_type n ) const	{ return (MapIter(this->_it + n)); };
-			MapIter			operator-( difference_type n ) const	{ return (MapIter(this->_it - n)); };
 			MapIter&		operator++()							{++this->_it; return (*this); };					// pre-increment
 			MapIter			operator++(int)							{ MapIter temp(*this); ++(*this); return (temp); }; // post-increment
 			MapIter&		operator--()							{--this->_it; return (*this); };					// pre-decrement
 			MapIter			operator--(int)							{ MapIter temp(*this); --(*this); return (temp); };	// post-decrement
-			MapIter&		operator+=( difference_type n )			{ this->_it += n; return (*this); };
-			MapIter&		operator-=( difference_type n )			{ this->_it -= n; return (*this); };
 			pointer			operator->()							{ return (&(operator*())); };
 			reference		operator[]( difference_type n ) const	{ return (*(this->_it + n)); };
 	};
