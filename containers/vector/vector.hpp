@@ -6,7 +6,7 @@
 /*   By: mbari <mbari@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/12/26 12:04:04 by mbari             #+#    #+#             */
-/*   Updated: 2022/02/21 19:44:02 by mbari            ###   ########.fr       */
+/*   Updated: 2022/02/21 19:54:15 by mbari            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -51,11 +51,11 @@ namespace ft
 			explicit vector (const allocator_type& alloc = allocator_type()): _alloc(alloc), _vec(nullptr), _size(0), _capacity(0) {};
 			explicit vector (	size_type n, const value_type& val = value_type(), const allocator_type& alloc = allocator_type()):
 					_alloc(alloc), _size(0), _capacity(0), _vec(nullptr)
-			{ this->insert(this->begin(), n, val); };
+			{ this->assign(n, val); };
 			template <class InputIterator>
 			vector (InputIterator first, InputIterator last,const allocator_type& alloc = allocator_type(), typename ft::enable_if<!is_integral<InputIterator>::value, bool>::type = true):
 				_alloc(alloc), _size(0), _capacity(0), _vec(nullptr)
-			{ this->insert(this->begin(), first, last); };
+			{ this->assign(first, last); };
 			vector (const vector& x) { *this = x; };
 
 		public: /*             destructor                         */
