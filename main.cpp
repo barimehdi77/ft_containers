@@ -581,49 +581,49 @@
 // {
 // 	typedef	int	ValueType;
 // 	{
-// 		Tree<ValueType> BST;
+// 		Tree<ValueType> AVL;
 
-// 		BST.insert(10);
-// 		BST.insert(7);
-// 		BST.insert(77);
-// 		BST.insert(8);
-// 		BST.insert(66);
-// 		BST.insert(88);
-// 		BST.insert(99);
-// 		BST.insert(33);
+// 		AVL.insert(10);
+// 		AVL.insert(7);
+// 		AVL.insert(77);
+// 		AVL.insert(8);
+// 		AVL.insert(66);
+// 		AVL.insert(88);
+// 		AVL.insert(99);
+// 		AVL.insert(33);
 
 
-// 		Node<ValueType>* min = BST.Min();
+// 		Node<ValueType>* min = AVL.Min();
 // 		std::cout << min->key << std::endl;
-// 		Node<ValueType>* Max = BST.Max();
+// 		Node<ValueType>* Max = AVL.Max();
 // 		std::cout << Max->key << std::endl;
-// 		Node<ValueType>* search = BST.search(33);
+// 		Node<ValueType>* search = AVL.search(33);
 // 		std::cout << search->key << std::endl;
 
 // 		/*             find the successor of a node                         */
 // 		{
-// 			Node<ValueType>* succ = BST.successor(BST.search(10));
+// 			Node<ValueType>* succ = AVL.successor(AVL.search(10));
 // 			if (succ == nullptr)
 // 				std::cout << "successor of 99 is NULL " << std::endl;
 // 			else
 // 			std::cout << "successor of 10 is " << succ->key << std::endl;
 // 		}
 // 		{
-// 			Node<ValueType>* succ = BST.successor(BST.search(8));
+// 			Node<ValueType>* succ = AVL.successor(AVL.search(8));
 // 			if (succ == nullptr)
 // 				std::cout << "successor of 99 is NULL " << std::endl;
 // 			else
 // 			std::cout << "successor of 8 is " << succ->key << std::endl;
 // 		}
 // 		{
-// 			Node<ValueType>* succ = BST.successor(BST.search(99));
+// 			Node<ValueType>* succ = AVL.successor(AVL.search(99));
 // 			if (succ == nullptr)
 // 				std::cout << "successor of 99 is NULL " << std::endl;
 // 			else
 // 				std::cout << "successor of 99 is " << succ->key << std::endl;
 // 		}
 // 		{
-// 			Node<ValueType>* succ = BST.successor(BST.search(7));
+// 			Node<ValueType>* succ = AVL.successor(AVL.search(7));
 // 			if (succ == nullptr)
 // 				std::cout << "successor of 7 is NULL " << std::endl;
 // 			else
@@ -632,28 +632,28 @@
 
 // 		/*             find the predecessor of a node                         */
 // 		{
-// 			Node<ValueType>* succ = BST.predecessor(BST.search(10));
+// 			Node<ValueType>* succ = AVL.predecessor(AVL.search(10));
 // 			if (succ == nullptr)
 // 				std::cout << "predecessor of 99 is NULL " << std::endl;
 // 			else
 // 			std::cout << "predecessor of 10 is " << succ->key << std::endl;
 // 		}
 // 		{
-// 			Node<ValueType>* succ = BST.predecessor(BST.search(8));
+// 			Node<ValueType>* succ = AVL.predecessor(AVL.search(8));
 // 			if (succ == nullptr)
 // 				std::cout << "predecessor of 99 is NULL " << std::endl;
 // 			else
 // 			std::cout << "predecessor of 8 is " << succ->key << std::endl;
 // 		}
 // 		{
-// 			Node<ValueType>* succ = BST.predecessor(BST.search(99));
+// 			Node<ValueType>* succ = AVL.predecessor(AVL.search(99));
 // 			if (succ == nullptr)
 // 				std::cout << "predecessor of 99 is NULL " << std::endl;
 // 			else
 // 				std::cout << "predecessor of 99 is " << succ->key << std::endl;
 // 		}
 // 		{
-// 			Node<ValueType>* succ = BST.predecessor(BST.search(7));
+// 			Node<ValueType>* succ = AVL.predecessor(AVL.search(7));
 // 			if (succ == nullptr)
 // 				std::cout << "predecessor of 7 is NULL " << std::endl;
 // 			else
@@ -661,13 +661,13 @@
 // 		}
 
 	// 	std::cout << "┃━━━━━━━━━━━━━━━━━━━━━━━━━┃ Printing The Tree ┃━━━━━━━━━━━━━━━━━━━━━━━━┃\n\n\n\n\n" << std::endl;
-	// 	BST.print();
+	// 	AVL.print();
 	// 	std::cout << "\n\n\n\n\n┃━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━┃" << std::endl;
 
-	// 	BST.remove(77);
+	// 	AVL.remove(77);
 
 	// 	std::cout << "┃━━━━━━━━━━━━━━━━━━━━━━━━━┃ Printing The Tree ┃━━━━━━━━━━━━━━━━━━━━━━━━┃\n\n\n\n\n" << std::endl;
-	// 	BST.print();
+	// 	AVL.print();
 	// 	std::cout << "\n\n\n\n\n┃━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━┃" << std::endl;
 	// }
 // }
@@ -677,40 +677,40 @@
 // {
 	// typedef	int	ValueType;
 	// {
-	// 	Tree<ValueType> BST;
+	// 	Tree<ValueType> AVL;
 
-	// 	BST.insert(1);
-	// 	BST.insert(3);
-	// 	BST.insert(2);
-	// 	BST.insert(4);
-	// 	BST.insert(6);
-	// 	BST.insert(7);
-	// 	BST.insert(10);
-	// 	BST.insert(77);
-	// 	BST.insert(8);
-	// 	BST.insert(66);
-	// 	BST.insert(88);
-	// 	BST.insert(99);
-	// 	BST.insert(33);
-	// 	BST.insert(84);
-	// 	BST.insert(30);
-	// 	BST.insert(34);
-	// 	BST.insert(9);
-	// 	BST.insert(50);
-	// 	BST.insert(31);
-	// 	BST.insert(13);
-	// 	BST.insert(70);
-	// 	BST.insert(42);
+	// 	AVL.insert(1);
+	// 	AVL.insert(3);
+	// 	AVL.insert(2);
+	// 	AVL.insert(4);
+	// 	AVL.insert(6);
+	// 	AVL.insert(7);
+	// 	AVL.insert(10);
+	// 	AVL.insert(77);
+	// 	AVL.insert(8);
+	// 	AVL.insert(66);
+	// 	AVL.insert(88);
+	// 	AVL.insert(99);
+	// 	AVL.insert(33);
+	// 	AVL.insert(84);
+	// 	AVL.insert(30);
+	// 	AVL.insert(34);
+	// 	AVL.insert(9);
+	// 	AVL.insert(50);
+	// 	AVL.insert(31);
+	// 	AVL.insert(13);
+	// 	AVL.insert(70);
+	// 	AVL.insert(42);
 
 
 	// 	// std::cout << "┃━━━━━━━━━━━━━━━━━━━━━━━━━┃ Printing The Tree ┃━━━━━━━━━━━━━━━━━━━━━━━━┃\n\n\n\n\n" << std::endl;
-	// 	// BST.print();
+	// 	// AVL.print();
 	// 	// std::cout << "\n\n\n\n\n┃━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━┃" << std::endl;
 
-	// 	// BST.remove(10);
+	// 	// AVL.remove(10);
 
 	// 	std::cout << "┃━━━━━━━━━━━━━━━━━━━━━━━━━┃ Printing The Tree ┃━━━━━━━━━━━━━━━━━━━━━━━━┃\n\n\n\n\n" << std::endl;
-	// 	BST.print();
+	// 	AVL.print();
 	// 	std::cout << "\n\n\n\n\n┃━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━┃" << std::endl;
 	// }
 // }
@@ -773,56 +773,59 @@
 // }
 
 
-// int main()
-// {
-// 		typedef	ft::pair<int, std::string>	ValueType;
-// 	{
-// 		Tree<ValueType> BST;
+int main()
+{
+		typedef	ft::pair<int, std::string>	ValueType;
+	{
+		Tree<ValueType> AVL;
 
-// 		BST.insert(ValueType(51, "77"));
-// 		BST.insert(ValueType(77, "88"));
-// 		BST.insert(ValueType(12, "77"));
-// 		BST.insert(ValueType(7, "77"));
-// 		BST.insert(ValueType(3, "77"));
-// 		BST.insert(ValueType(15, "77"));
-// 		BST.insert(ValueType(44, "77"));
-// 		BST.insert(ValueType(99, "77"));
-// 		BST.insert(ValueType(78, "77"));
-// 		BST.insert(ValueType(55, "77"));
-// 		BST.insert(ValueType(69, "77"));
-// 		BST.insert(ValueType(45, "77"));
-// 		BST.insert(ValueType(57, "77"));
-// 		BST.insert(ValueType(10, "77"));
-// 		BST.insert(ValueType(71, "77"));
-// 		BST.insert(ValueType(96, "77"));
-// 		BST.insert(ValueType(24, "77"));
-// 		BST.insert(ValueType(11, "77"));
-// 		BST.insert(ValueType(17, "77"));
-// 		BST.insert(ValueType(19, "77"));
-// 		BST.insert(ValueType(16, "77"));
-// 		BST.insert(ValueType(35, "77"));
-// 		BST.insert(ValueType(75, "77"));
+		AVL.insert(ValueType(51, "77"));
+		AVL.insert(ValueType(77, "88"));
+		AVL.insert(ValueType(12, "77"));
+		AVL.insert(ValueType(7, "77"));
+		AVL.insert(ValueType(3, "77"));
+		AVL.insert(ValueType(15, "77"));
+		AVL.insert(ValueType(44, "77"));
+		AVL.insert(ValueType(99, "77"));
+		AVL.insert(ValueType(78, "77"));
+		AVL.insert(ValueType(55, "77"));
+		AVL.insert(ValueType(69, "77"));
+		AVL.insert(ValueType(45, "77"));
+		AVL.insert(ValueType(57, "77"));
+		AVL.insert(ValueType(10, "77"));
+		AVL.insert(ValueType(71, "77"));
+		AVL.insert(ValueType(96, "77"));
+		AVL.insert(ValueType(24, "77"));
+		AVL.insert(ValueType(11, "77"));
+		AVL.insert(ValueType(17, "77"));
+		AVL.insert(ValueType(19, "77"));
+		AVL.insert(ValueType(16, "77"));
+		AVL.insert(ValueType(35, "77"));
+		AVL.insert(ValueType(75, "77"));
 
 
-// 		BST.print();
-// 		std::cout << "┃━━━━━━━━━━━━━━━━━━━━━━━━━┃ Printing The Tree ┃━━━━━━━━━━━━━━━━━━━━━━━━┃\n\n\n\n\n" << std::endl;
-// 		{
-// 			Node<ValueType>* succ = BST.successor(BST.search(ValueType(99, "77")));
-// 			if (succ == nullptr)
-// 				std::cout << "successor of 99 is NULL " << std::endl;
-// 			else
-// 				std::cout << "successor of 99 is " << succ->key.first << std::endl;
-// 		}
-// 		std::cout << "\n\n\n\n\n┃━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━┃" << std::endl;
+		// AVL.print();
+		std::cout << "┃━━━━━━━━━━━━━━━━━━━━━━━━━┃ Printing The Tree ┃━━━━━━━━━━━━━━━━━━━━━━━━┃\n\n\n\n\n" << std::endl;
+		// std::cout << *AVL.begin() << std::endl;
+		// {
+		// 	Node<ValueType>* succ = AVL.successor(AVL.search(ValueType(99, "77")));
+		// 	if (succ == nullptr)
+		// 		std::cout << "successor of 99 is NULL " << std::endl;
+		// 	else
+		// 		std::cout << "successor of 99 is " << succ->key.first << std::endl;
+		// }
+		std::cout << "\n\n\n\n\n┃━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━┃" << std::endl;
 
-// 		// BST.remove(ValueType(77, "77"));
+		// AVL.remove(ValueType(77, "77"));
 
-// 		std::cout << "┃━━━━━━━━━━━━━━━━━━━━━━━━━┃ Printing The Tree ┃━━━━━━━━━━━━━━━━━━━━━━━━┃\n\n\n\n\n" << std::endl;
-// 		BST.print();
-// 		std::cout << "\n\n\n\n\n┃━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━┃" << std::endl;
-// 	}
-// }
+		std::cout << "┃━━━━━━━━━━━━━━━━━━━━━━━━━┃ Printing The Tree ┃━━━━━━━━━━━━━━━━━━━━━━━━┃\n\n\n\n\n" << std::endl;
+		AVL.print();
+		std::cout << "\n\n\n\n\n┃━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━┃" << std::endl;
+	}
+}
 
+
+/*
 int main()
 {
 	{
@@ -848,3 +851,4 @@ int main()
 		if (foo>=bar) std::cout << "foo is greater than or equal to bar\n";
 	}
 }
+*/

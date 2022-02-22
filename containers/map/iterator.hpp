@@ -6,7 +6,7 @@
 /*   By: mbari <mbari@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/06 12:09:44 by mbari             #+#    #+#             */
-/*   Updated: 2022/02/22 23:43:31 by mbari            ###   ########.fr       */
+/*   Updated: 2022/02/23 00:20:22 by mbari            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,7 +37,7 @@ namespace ft
 	// 	typedef T&								reference;
 	// 	typedef std::bidirectional_iterator_tag	iterator_category;
 	// };
-	template<class T>
+	template<class T, class Node_ptr>
 	class TreeIter : public std::iterator<std::bidirectional_iterator_tag, T>
 	{
 		public:
@@ -49,43 +49,43 @@ namespace ft
 			typedef typename iterator_traits<T>::reference				reference;
 
 		private:
-			iterator_type	_it;
+			Node_ptr	_it;
 
 		public:
 			TreeIter(): _it(nullptr) {};
-			explicit	TreeIter( iterator_type x ): _it(x) {};
+			explicit	TreeIter( Node_ptr x ): _it(x) {};
 			template <class Iter>
-			TreeIter ( const TreeIter<Iter>& vec_it ): _it(vec_it.base()) {};
+			TreeIter ( const TreeIter<Iter, Node_ptr>& vec_it ): _it(vec_it.base()) {};
 
-			iterator_type	base() const							{ return (this->_it); };
+			Node_ptr		base() const							{ return (this->_it); };
 			reference		operator*() const						{ return (*this->_it); };
 			TreeIter&		operator++()							{++this->_it; return (*this); };					// pre-increment
-			TreeIter			operator++(int)							{ TreeIter temp(*this); ++(*this); return (temp); }; // post-increment
+			TreeIter		operator++(int)							{ TreeIter temp(*this); ++(*this); return (temp); }; // post-increment
 			TreeIter&		operator--()							{--this->_it; return (*this); };					// pre-decrement
-			TreeIter			operator--(int)							{ TreeIter temp(*this); --(*this); return (temp); };	// post-decrement
+			TreeIter		operator--(int)							{ TreeIter temp(*this); --(*this); return (temp); };	// post-decrement
 			pointer			operator->()							{ return (&(operator*())); };
 			reference		operator[]( difference_type n ) const	{ return (*(this->_it + n)); };
 	};
 
-	template <class Iterator>
-	bool operator== (const TreeIter<Iterator>& lhs, const TreeIter<Iterator>& rhs) { return (lhs.base() == rhs.base()); };
-	template <class Iterator>
-	bool operator!= (const TreeIter<Iterator>& lhs, const TreeIter<Iterator>& rhs) { return (lhs.base() != rhs.base()); };
-	template <class Iterator>
-	bool operator<  (const TreeIter<Iterator>& lhs, const TreeIter<Iterator>& rhs) { return (lhs.base() < rhs.base()); };
-	template <class Iterator>
-	bool operator<= (const TreeIter<Iterator>& lhs, const TreeIter<Iterator>& rhs) { return (lhs.base() <= rhs.base()); };
-	template <class Iterator>
-	bool operator>  (const TreeIter<Iterator>& lhs, const TreeIter<Iterator>& rhs) { return (lhs.base() > rhs.base()); };
-	template <class Iterator>
-	bool operator>=  (const TreeIter<Iterator>& lhs, const TreeIter<Iterator>& rhs) { return (lhs.base() >= rhs.base()); };
+	// template <class Iterator>
+	// bool operator== (const TreeIter<Iterator>& lhs, const TreeIter<Iterator>& rhs) { return (lhs.base() == rhs.base()); };
+	// template <class Iterator>
+	// bool operator!= (const TreeIter<Iterator>& lhs, const TreeIter<Iterator>& rhs) { return (lhs.base() != rhs.base()); };
+	// template <class Iterator>
+	// bool operator<  (const TreeIter<Iterator>& lhs, const TreeIter<Iterator>& rhs) { return (lhs.base() < rhs.base()); };
+	// template <class Iterator>
+	// bool operator<= (const TreeIter<Iterator>& lhs, const TreeIter<Iterator>& rhs) { return (lhs.base() <= rhs.base()); };
+	// template <class Iterator>
+	// bool operator>  (const TreeIter<Iterator>& lhs, const TreeIter<Iterator>& rhs) { return (lhs.base() > rhs.base()); };
+	// template <class Iterator>
+	// bool operator>=  (const TreeIter<Iterator>& lhs, const TreeIter<Iterator>& rhs) { return (lhs.base() >= rhs.base()); };
 
-	template <class Iterator>
-	TreeIter<Iterator> operator+ (typename TreeIter<Iterator>::difference_type n, const TreeIter<Iterator>& vec_it)
-	{ return (TreeIter<Iterator>( vec_it + n)); };
-	template <class Iterator>
-	typename TreeIter<Iterator>::difference_type operator- (const TreeIter<Iterator>& lhs, const TreeIter<Iterator>& rhs)
-	{ return (lhs.base() - rhs.base()); };
+	// template <class Iterator>
+	// TreeIter<Iterator> operator+ (typename TreeIter<Iterator>::difference_type n, const TreeIter<Iterator>& vec_it)
+	// { return (TreeIter<Iterator>( vec_it + n)); };
+	// template <class Iterator>
+	// typename TreeIter<Iterator>::difference_type operator- (const TreeIter<Iterator>& lhs, const TreeIter<Iterator>& rhs)
+	// { return (lhs.base() - rhs.base()); };
 
 // 	template<class T>
 // 	class reverse_iterator : public iterator<std::random_access_iterator_tag, T>

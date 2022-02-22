@@ -6,7 +6,7 @@
 /*   By: mbari <mbari@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/27 14:35:25 by mbari             #+#    #+#             */
-/*   Updated: 2022/02/22 22:19:19 by mbari            ###   ########.fr       */
+/*   Updated: 2022/02/23 00:37:18 by mbari            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,14 +35,15 @@ class Tree
 		typedef Compare										value_compare;
 		typedef Allocator									allocator_type;
 		typedef Node<value_type>							Node_type;
+		typedef Node_type*									Node_ptr;
 		typedef typename allocator_type::reference			reference;
 		typedef typename allocator_type::const_reference	const_reference;
 		typedef typename allocator_type::difference_type	difference_type;
 		typedef typename allocator_type::pointer			pointer;
 		typedef typename allocator_type::const_pointer		const_pointer;
 		typedef typename allocator_type::size_type			size_type;
-		typedef ft::MapIter<pointer>							iterator;
-		typedef ft::MapIter<const_pointer>					const_iterator;
+		typedef ft::TreeIter<pointer, Node_ptr>				iterator;
+		typedef ft::TreeIter<const_pointer, Node_ptr>		const_iterator;
 		// typedef ft::reverse_iterator<pointer>				reverse_iterator;
 		// typedef ft::reverse_iterator<const_pointer>			const_reverse_iterator;
 		// typedef typename allocator_type::template rebind<Node_type>::other allocater_node;
@@ -50,8 +51,8 @@ class Tree
 	private:
 		allocator_type								_alloc;
 		value_compare								_comp;
-		Node_type*									_root;
-		Node_type*									_end;
+		Node_ptr									_root;
+		Node_ptr									_end;
 		int											_size;
 
 	public:
@@ -68,8 +69,11 @@ class Tree
 			this->_alloc.deallocate(this->_end, 1);
 		};
 
+	public:
+		// iterator begin() {return (iterator(this->Min()));};
+
 	private:
-		void	_inOrder(Node_type* node)
+		void	_inOrder(Node_ptr node)
 		{
 			if (node != nullptr)
 			{
@@ -78,25 +82,25 @@ class Tree
 				_inOrder(node->right);
 			}
 		};
-		int		_Height(Node_type* temp)
+		int		_Height(Node_ptr temp)
 		{
 			if (temp == nullptr)
 				return (0);
 			return (temp->height);
 		};
 
-		int _getBalanceFactor(Node_type* N)
+		int _getBalanceFactor(Node_ptr N)
 		{
 			if (N == NULL)
 				return 0;
 			return (_Height(N->left) - _Height(N->right));
 		}
 
-		Node_type* leftRotate(Node_type* x)
+		Node_ptr leftRotate(Node_ptr x)
 		{
-			Node_type* y = x->right;
-			Node_type* T2 = y->left;
-			Node_type* p = x->parent;
+			Node_ptr y = x->right;
+			Node_ptr T2 = y->left;
+			Node_ptr p = x->parent;
 			y->left = x;
 			x->right = T2;
 			if (p)
@@ -115,11 +119,11 @@ class Tree
 			return y;
 		};
 
-		Node_type* rightRotate(Node_type* y)
+		Node_ptr rightRotate(Node_ptr y)
 		{
-			Node_type* x = y->left;
-			Node_type* T2 = x->right;
-			Node_type* p = y->parent;
+			Node_ptr x = y->left;
+			Node_ptr T2 = x->right;
+			Node_ptr p = y->parent;
 			x->right = y;
 			y->left = T2;
 			if (p)
@@ -138,20 +142,20 @@ class Tree
 			return x;
 		};
 
-		Node_type* RightLeftRotate(Node_type* node)
+		Node_ptr RightLeftRotate(Node_ptr node)
 		{
 			node->right = rightRotate(node->right);
 			return (leftRotate(node));
 		};
 
-		Node_type* LeftRightRotate(Node_type* node)
+		Node_ptr LeftRightRotate(Node_ptr node)
 		{
 			node->left = leftRotate(node->left);
 			return (rightRotate(node));
 		};
 
 
-		Node_type*	_reBalance(Node_type* node)
+		Node_ptr	_reBalance(Node_ptr node)
 		{
 			int	balanceFactor = _getBalanceFactor(node);
 			if (balanceFactor > 1)
@@ -171,7 +175,7 @@ class Tree
 			return (node);
 		};
 
-		Node_type*	_insert(Node_type* temp, Node_type* newNode)
+		Node_ptr	_insert(Node_ptr temp, Node_ptr newNode)
 		{
 			if (temp == nullptr)
 				return (newNode);
@@ -186,7 +190,7 @@ class Tree
 			return (temp);
 		};
 
-		Node_type*	_remove(Node_type* root, T key)
+		Node_ptr	_remove(Node_ptr root, T key)
 		{
 			if (root == nullptr) return (nullptr);
 			// else if (key < root->key)
@@ -198,19 +202,19 @@ class Tree
 			{
 				if (root->left == nullptr)
 				{
-					Node_type* temp = root->right;
+					Node_ptr temp = root->right;
 					this->_alloc.deallocate(root, 1);
 					return (temp);
 				}
 				else if (root->right == nullptr)
 				{
-					Node_type* temp = root->left;
+					Node_ptr temp = root->left;
 					this->_alloc.deallocate(root, 1);
 					return (temp);
 				}
 				else
 				{
-					Node_type* MaxValue = _Max(root->left);
+					Node_ptr MaxValue = _Max(root->left);
 					root->key = MaxValue->key;
 					root->left = _remove(root->left, MaxValue->key);
 				}
@@ -220,7 +224,7 @@ class Tree
 			return (root);
 		};
 
-		Node_type* _search(Node_type* temp, T key)
+		Node_ptr _search(Node_ptr temp, T key)
 		{
 			if (temp == nullptr)
 				return (nullptr);
@@ -235,21 +239,21 @@ class Tree
 			return (nullptr);
 		};
 
-		Node_type* _Min(Node_type* temp)
+		Node_ptr _Min(Node_ptr temp)
 		{
 			while (temp->left != nullptr)
 				temp = temp->left;
 			return (temp);
 		};
 
-		Node_type* _Max(Node_type* temp)
+		Node_ptr _Max(Node_ptr temp)
 		{
 			while (temp->right != nullptr)
 				temp = temp->right;
 			return (temp);
 		};
 
-		void		_ReSetHeight(Node_type* temp)
+		void		_ReSetHeight(Node_ptr temp)
 		{
 			if (!temp->left && !temp->right)
 				temp->height = 1;
@@ -282,7 +286,7 @@ class Tree
 			this->_root = _remove(this->_root, key);
 		};
 
-		Node_type*	Min()
+		Node_ptr	Min()
 		{
 			Node_type * tmp = this->_root;
 
@@ -291,16 +295,16 @@ class Tree
 			return (tmp);
 		};
 
-		Node_type* Max()
+		Node_ptr Max()
 		{
-			Node_type* tmp = this->_root;
+			Node_ptr tmp = this->_root;
 
 			while (tmp->right)
 				tmp = tmp->right;
 			return (tmp);
 		};
 
-		Node_type* search(T key)
+		Node_ptr search(T key)
 		{
 			if (this->_root == this->_end)
 				return (nullptr);
@@ -308,12 +312,12 @@ class Tree
 				return (_search(this->_root, key));
 		};
 
-		Node_type* successor(Node_type* node)
+		Node_ptr successor(Node_ptr node)
 		{
 			if (node->right != nullptr)
 				return (_Min(node->right));
 
-			Node_type* temp = node->parent;
+			Node_ptr temp = node->parent;
 			while (temp != nullptr && node == temp->right)
 			{
 				node = temp;
@@ -321,12 +325,12 @@ class Tree
 			}
 			return (temp);
 		};
-		Node_type* predecessor(Node_type* node)
+		Node_ptr predecessor(Node_ptr node)
 		{
 			if (node->left != nullptr)
 				return (_Max(node->left));
 
-			Node_type* temp = node->parent;
+			Node_ptr temp = node->parent;
 			while (temp != this->_end && node == temp->left)
 			{
 				node = temp;
@@ -363,7 +367,7 @@ class Tree
 			std::cout << p->str;
 		};
 
-		void printTree(Node_type* root, Trunk *prev, bool isLeft)
+		void printTree(Node_ptr root, Trunk *prev, bool isLeft)
 		{
 			if (root == nullptr) {
 				return;
