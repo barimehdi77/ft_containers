@@ -6,7 +6,7 @@
 /*   By: mbari <mbari@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/06 12:09:44 by mbari             #+#    #+#             */
-/*   Updated: 2022/02/22 23:34:32 by mbari            ###   ########.fr       */
+/*   Updated: 2022/02/22 23:43:31 by mbari            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,7 +38,7 @@ namespace ft
 	// 	typedef std::bidirectional_iterator_tag	iterator_category;
 	// };
 	template<class T>
-	class MapIter : public std::iterator<std::bidirectional_iterator_tag, T>
+	class TreeIter : public std::iterator<std::bidirectional_iterator_tag, T>
 	{
 		public:
 			typedef T													iterator_type;
@@ -52,39 +52,39 @@ namespace ft
 			iterator_type	_it;
 
 		public:
-			MapIter(): _it(nullptr) {};
-			explicit	MapIter( iterator_type x ): _it(x) {};
+			TreeIter(): _it(nullptr) {};
+			explicit	TreeIter( iterator_type x ): _it(x) {};
 			template <class Iter>
-			MapIter ( const MapIter<Iter>& vec_it ): _it(vec_it.base()) {};
+			TreeIter ( const TreeIter<Iter>& vec_it ): _it(vec_it.base()) {};
 
 			iterator_type	base() const							{ return (this->_it); };
 			reference		operator*() const						{ return (*this->_it); };
-			MapIter&		operator++()							{++this->_it; return (*this); };					// pre-increment
-			MapIter			operator++(int)							{ MapIter temp(*this); ++(*this); return (temp); }; // post-increment
-			MapIter&		operator--()							{--this->_it; return (*this); };					// pre-decrement
-			MapIter			operator--(int)							{ MapIter temp(*this); --(*this); return (temp); };	// post-decrement
+			TreeIter&		operator++()							{++this->_it; return (*this); };					// pre-increment
+			TreeIter			operator++(int)							{ TreeIter temp(*this); ++(*this); return (temp); }; // post-increment
+			TreeIter&		operator--()							{--this->_it; return (*this); };					// pre-decrement
+			TreeIter			operator--(int)							{ TreeIter temp(*this); --(*this); return (temp); };	// post-decrement
 			pointer			operator->()							{ return (&(operator*())); };
 			reference		operator[]( difference_type n ) const	{ return (*(this->_it + n)); };
 	};
 
 	template <class Iterator>
-	bool operator== (const MapIter<Iterator>& lhs, const MapIter<Iterator>& rhs) { return (lhs.base() == rhs.base()); };
+	bool operator== (const TreeIter<Iterator>& lhs, const TreeIter<Iterator>& rhs) { return (lhs.base() == rhs.base()); };
 	template <class Iterator>
-	bool operator!= (const MapIter<Iterator>& lhs, const MapIter<Iterator>& rhs) { return (lhs.base() != rhs.base()); };
+	bool operator!= (const TreeIter<Iterator>& lhs, const TreeIter<Iterator>& rhs) { return (lhs.base() != rhs.base()); };
 	template <class Iterator>
-	bool operator<  (const MapIter<Iterator>& lhs, const MapIter<Iterator>& rhs) { return (lhs.base() < rhs.base()); };
+	bool operator<  (const TreeIter<Iterator>& lhs, const TreeIter<Iterator>& rhs) { return (lhs.base() < rhs.base()); };
 	template <class Iterator>
-	bool operator<= (const MapIter<Iterator>& lhs, const MapIter<Iterator>& rhs) { return (lhs.base() <= rhs.base()); };
+	bool operator<= (const TreeIter<Iterator>& lhs, const TreeIter<Iterator>& rhs) { return (lhs.base() <= rhs.base()); };
 	template <class Iterator>
-	bool operator>  (const MapIter<Iterator>& lhs, const MapIter<Iterator>& rhs) { return (lhs.base() > rhs.base()); };
+	bool operator>  (const TreeIter<Iterator>& lhs, const TreeIter<Iterator>& rhs) { return (lhs.base() > rhs.base()); };
 	template <class Iterator>
-	bool operator>=  (const MapIter<Iterator>& lhs, const MapIter<Iterator>& rhs) { return (lhs.base() >= rhs.base()); };
+	bool operator>=  (const TreeIter<Iterator>& lhs, const TreeIter<Iterator>& rhs) { return (lhs.base() >= rhs.base()); };
 
 	template <class Iterator>
-	MapIter<Iterator> operator+ (typename MapIter<Iterator>::difference_type n, const MapIter<Iterator>& vec_it)
-	{ return (MapIter<Iterator>( vec_it + n)); };
+	TreeIter<Iterator> operator+ (typename TreeIter<Iterator>::difference_type n, const TreeIter<Iterator>& vec_it)
+	{ return (TreeIter<Iterator>( vec_it + n)); };
 	template <class Iterator>
-	typename MapIter<Iterator>::difference_type operator- (const MapIter<Iterator>& lhs, const MapIter<Iterator>& rhs)
+	typename TreeIter<Iterator>::difference_type operator- (const TreeIter<Iterator>& lhs, const TreeIter<Iterator>& rhs)
 	{ return (lhs.base() - rhs.base()); };
 
 // 	template<class T>
