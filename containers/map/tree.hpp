@@ -6,13 +6,13 @@
 /*   By: mbari <mbari@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/27 14:35:25 by mbari             #+#    #+#             */
-/*   Updated: 2022/02/20 08:54:04 by mbari            ###   ########.fr       */
+/*   Updated: 2022/02/22 22:19:19 by mbari            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 // #define COUNT 10
 #include "../../colors.hpp"
-// #include "iterator.hpp"
+#include "iterator.hpp"
 template <class T>
 struct Node
 {
@@ -24,16 +24,7 @@ struct Node
 		int		height;
 
 	public:
-		// Node(): _key(0), left(nullptr), right(nullptr) {};
 		Node(T key): key(key), left(nullptr), right(nullptr), parent(nullptr) , height(1) {};
-		// Node (const Node& x) {*this = x; };
-		// Node(T key, const Node & l, const Node & r): _key(key), left(l), right(r) {};
-		~Node() {};
-		// Node& operator= (const Node& x)
-
-
-	// public:
-	// 	T get_Key() const { return (this->_key); };
 };
 
 template <class T, class Compare = std::less<T>, class Allocator = std::allocator<Node<T> > >
@@ -50,8 +41,8 @@ class Tree
 		typedef typename allocator_type::pointer			pointer;
 		typedef typename allocator_type::const_pointer		const_pointer;
 		typedef typename allocator_type::size_type			size_type;
-		// typedef ft::MapIter<pointer>							iterator;
-		// typedef ft::MapIter<const_pointer>						const_iterator;
+		typedef ft::MapIter<pointer>							iterator;
+		typedef ft::MapIter<const_pointer>					const_iterator;
 		// typedef ft::reverse_iterator<pointer>				reverse_iterator;
 		// typedef ft::reverse_iterator<const_pointer>			const_reverse_iterator;
 		// typedef typename allocator_type::template rebind<Node_type>::other allocater_node;
@@ -68,12 +59,8 @@ class Tree
 		{
 			this->_alloc = alloc;
 			this->_comp = compare;
-			//this->_end = this->_alloc.allocate((Node_type()));
 			this->_end = this->_alloc.allocate(1);
-			// this->_alloc.construct(this->_end, value_type(7777, "77"));
 			this->_root = this->_end;
-			// this->_root->parent = this->_end;
-			// this->_end->left = this->_root;
 		};
 		~Tree()
 		{
@@ -188,7 +175,6 @@ class Tree
 		{
 			if (temp == nullptr)
 				return (newNode);
-			// if (temp->key > newNode->key)
 			if (!this->_comp(temp->key, newNode->key))
 				temp->left = _insert(temp->left, newNode);
 			else if (this->_comp(temp->key, newNode->key))
