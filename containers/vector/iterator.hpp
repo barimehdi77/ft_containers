@@ -6,7 +6,7 @@
 /*   By: mbari <mbari@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/06 12:09:44 by mbari             #+#    #+#             */
-/*   Updated: 2022/02/22 23:34:52 by mbari            ###   ########.fr       */
+/*   Updated: 2022/02/22 23:40:39 by mbari            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -79,7 +79,7 @@ namespace ft
 	{
 		public:
 			typedef T													iterator_type;
-			typedef typename iterator_traits<T>::iterator_category		iterator_category;
+			typedef typename std::random_access_iterator_tag			iterator_category;
 			typedef typename iterator_traits<T>::value_type				value_type;
 			typedef	typename iterator_traits<T>::difference_type		difference_type;
 			typedef typename iterator_traits<T>::pointer				pointer;
