@@ -6,7 +6,7 @@
 /*   By: mbari <mbari@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/06 12:09:44 by mbari             #+#    #+#             */
-/*   Updated: 2022/02/20 01:32:45 by mbari            ###   ########.fr       */
+/*   Updated: 2022/02/22 22:13:54 by mbari            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -53,15 +53,15 @@ namespace ft
 		typedef std::bidirectional_iterator_tag	iterator_category;
 	};
 
-	template <class T>
-	struct iterator_traits<const T*>
-	{
-		typedef ptrdiff_t						difference_type;
-		typedef T								value_type;
-		typedef T*								pointer;
-		typedef T&								reference;
-		typedef std::bidirectional_iterator_tag	iterator_category;
-	};
+	// template <class T>
+	// struct iterator_traits<const T*>
+	// {
+	// 	typedef ptrdiff_t						difference_type;
+	// 	typedef T								value_type;
+	// 	typedef T*								pointer;
+	// 	typedef T&								reference;
+	// 	typedef std::bidirectional_iterator_tag	iterator_category;
+	// };
 	template<class T>
 	class MapIter : public iterator<std::bidirectional_iterator_tag, T>
 	{
