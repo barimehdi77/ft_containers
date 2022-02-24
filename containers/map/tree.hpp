@@ -6,7 +6,7 @@
 /*   By: mbari <mbari@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/27 14:35:25 by mbari             #+#    #+#             */
-/*   Updated: 2022/02/23 00:37:18 by mbari            ###   ########.fr       */
+/*   Updated: 2022/02/24 02:44:01 by mbari            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,17 +36,27 @@ class Tree
 		typedef Allocator									allocator_type;
 		typedef Node<value_type>							Node_type;
 		typedef Node_type*									Node_ptr;
-		typedef typename allocator_type::reference			reference;
-		typedef typename allocator_type::const_reference	const_reference;
-		typedef typename allocator_type::difference_type	difference_type;
-		typedef typename allocator_type::pointer			pointer;
-		typedef typename allocator_type::const_pointer		const_pointer;
-		typedef typename allocator_type::size_type			size_type;
+
+		/***********************************************************/
+		/*                                                         */
+		/*                                                         */
+		/*             Make sure to change the rebind              */
+		/*                    of std::allocator                    */
+		/*               when you add the map class                */
+		/*                                                         */
+		/*                                                         */
+		/***********************************************************/
+		typedef typename allocator_type::template rebind<T>::other allocater_node;
+		typedef typename allocater_node::reference			reference;
+		typedef typename allocater_node::const_reference	const_reference;
+		typedef typename allocater_node::difference_type	difference_type;
+		typedef typename allocater_node::pointer			pointer;
+		typedef typename allocater_node::const_pointer		const_pointer;
+		typedef typename allocater_node::size_type			size_type;
 		typedef ft::TreeIter<pointer, Node_ptr>				iterator;
 		typedef ft::TreeIter<const_pointer, Node_ptr>		const_iterator;
 		// typedef ft::reverse_iterator<pointer>				reverse_iterator;
 		// typedef ft::reverse_iterator<const_pointer>			const_reverse_iterator;
-		// typedef typename allocator_type::template rebind<Node_type>::other allocater_node;
 
 	private:
 		allocator_type								_alloc;
@@ -70,7 +80,10 @@ class Tree
 		};
 
 	public:
-		// iterator begin() {return (iterator(this->Min()));};
+		iterator		begin()				{ return (iterator(this->Min())); };
+		const_iterator	begin() const		{ return (const_iterator(this->Min())); };
+		iterator		end()				{ return (iterator(this->_end)); };
+		const_iterator	end()				{ return (const_iterator(this->_end)); };
 
 	private:
 		void	_inOrder(Node_ptr node)
