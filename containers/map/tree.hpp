@@ -6,7 +6,7 @@
 /*   By: mbari <mbari@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/27 14:35:25 by mbari             #+#    #+#             */
-/*   Updated: 2022/02/24 04:00:45 by mbari            ###   ########.fr       */
+/*   Updated: 2022/02/24 07:48:34 by mbari            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,7 +27,7 @@ struct Node
 		Node(T key): key(key), left(nullptr), right(nullptr), parent(nullptr) , height(1) {};
 };
 
-template <class T, class Compare = std::less<T>, class Allocator = std::allocator<Node<T> > >
+template <class T, class Compare, class Allocator>
 class Tree
 {
 	public:
@@ -198,9 +198,9 @@ class Tree
 		{
 			if (temp == nullptr)
 				return (newNode);
-			if (!this->_comp(temp->key, newNode->key))
+			if (!this->_comp(temp->key.first, newNode->key.first))
 				temp->left = _insert(temp->left, newNode);
-			else if (this->_comp(temp->key, newNode->key))
+			else if (this->_comp(temp->key.first, newNode->key.first))
 				temp->right = _insert(temp->right, newNode);
 			else
 				return (temp);
@@ -249,11 +249,11 @@ class Tree
 			if (temp == nullptr)
 				return (nullptr);
 
-			if (temp->key == key)
+			if (temp->key.first == key.first)
 				return (temp);
-			else if (this->_comp(key, temp->key))
+			else if (this->_comp(key.first, temp->key.first))
 				return (_search(temp->left, key));
-			else if (!this->_comp(key, temp->key))
+			else if (!this->_comp(key.first, temp->key.first))
 				return (_search(temp->right, key));
 
 			return (nullptr);
@@ -287,7 +287,7 @@ class Tree
 
 
 	public:
-		void	insert(T key)
+		Node_ptr	insert(T key)
 		{
 			Node_type * newnode = this->_alloc.allocate(1);
 			this->_alloc.construct(newnode, key);
@@ -303,6 +303,7 @@ class Tree
 				++this->_size;
 				this->_root = _insert(this->_root, newnode);
 			}
+			return (newnode);
 		};
 
 		void	remove(T key)

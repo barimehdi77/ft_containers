@@ -6,7 +6,7 @@
 /*   By: mbari <mbari@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/24 03:01:34 by mbari             #+#    #+#             */
-/*   Updated: 2022/02/24 03:55:19 by mbari            ###   ########.fr       */
+/*   Updated: 2022/02/24 04:45:44 by mbari            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -57,10 +57,28 @@ namespace ft
 			value_comp		_comp;
 
 
+		public: /*             Iterators                         */
+			iterator		begin()				{ return (this->_tree.begin()); };
+			const_iterator	begin() const		{ return (this->_tree.begin()); };
+			iterator		end()				{ return (this->_tree.end()); };
+			const_iterator	end() const			{ return (this->_tree.end()); };
+
 		public: /*             Capacity                         */
 			bool empty() const { return (this->_tree.empty()); };
 			size_type size() const { return (this->_tree.size()); };
 			size_type	max_size()	const	{ return (this->_tree.max_size()); };
+
+
+		public: /*             Modifiers                         */
+			ft::pair<iterator,bool> insert (const value_type& val)
+			{
+				Node_ptr node = this->_tree.search(val);
+				if (node != nullptr)
+					return (ft::pair<iterator,bool>(iterator(node), false));
+
+				Node_ptr inserted_node = this->_tree.insert(val);
+				return (ft::pair<iterator,bool>(iterator(inserted_node), true));
+			}
 
 
 	};

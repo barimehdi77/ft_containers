@@ -866,5 +866,7 @@ int main()
 	std::cout << "std:: " << std.empty() << std::endl;
 	std::cout << "ft:: " << ft.max_size() << std::endl;
 	std::cout << "std:: " << std.max_size() << std::endl;
+	ft.insert(ValueType(77, "test"));
 
+	
 }
