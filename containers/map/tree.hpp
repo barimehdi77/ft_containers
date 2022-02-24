@@ -6,7 +6,7 @@
 /*   By: mbari <mbari@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/27 14:35:25 by mbari             #+#    #+#             */
-/*   Updated: 2022/02/24 07:48:34 by mbari            ###   ########.fr       */
+/*   Updated: 2022/02/24 08:24:09 by mbari            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,34 +31,55 @@ template <class T, class Compare, class Allocator>
 class Tree
 {
 	public:
-		typedef T											value_type;
-		typedef Compare										value_compare;
-		typedef Allocator									allocator_type;
-		typedef Node<value_type>							Node_type;
-		typedef Node_type*									Node_ptr;
-
 		/***********************************************************/
 		/*                                                         */
+		/*             typedef all template parameters             */
 		/*                                                         */
-		/*             Make sure to change the rebind              */
-		/*                    of std::allocator                    */
-		/*               when you add the map class                */
+		/***********************************************************/
+		typedef T															value_type;
+		typedef Compare														value_compare;
+		typedef Allocator													allocator_type;
+
+	private:
+		/***********************************************************/
 		/*                                                         */
+		/*              typedef member Types of Nodes              */
 		/*                                                         */
 		/***********************************************************/
 		typedef typename allocator_type::template rebind<Node<T> >::other	allocator_node;
-		typedef typename allocator_node::reference					reference;
-		typedef typename allocator_node::const_reference			const_reference;
-		typedef typename allocator_node::difference_type			difference_type;
-		typedef typename allocator_node::pointer					pointer;
-		typedef typename allocator_node::const_pointer				const_pointer;
-		typedef typename allocator_node::size_type					size_type;
-		typedef ft::TreeIter<pointer, Node_ptr>						iterator;
-		typedef ft::TreeIter<const_pointer, Node_ptr>				const_iterator;
-		// typedef ft::reverse_iterator<pointer>					reverse_iterator;
-		// typedef ft::reverse_iterator<const_pointer>				const_reverse_iterator;
+		typedef typename allocator_node::reference							node_reference;
+		typedef typename allocator_node::const_reference					node_const_reference;
+		typedef typename allocator_node::difference_type					node_difference_type;
+		typedef typename allocator_node::pointer							node_pointer;
+		typedef typename allocator_node::const_pointer						node_const_pointer;
+		typedef typename allocator_node::size_type							node_size_type;
+		typedef Node<value_type>											Node_type;
+		typedef Node_type*													Node_ptr;
+
+	public:
+		/***********************************************************/
+		/*                                                         */
+		/*          typedef member Types of Tree iterator          */
+		/*                                                         */
+		/***********************************************************/
+		typedef typename allocator_type::reference							reference;
+		typedef typename allocator_type::const_reference					const_reference;
+		typedef typename allocator_type::difference_type					difference_type;
+		typedef typename allocator_type::pointer							pointer;
+		typedef typename allocator_type::const_pointer						const_pointer;
+		typedef typename allocator_type::size_type							size_type;
+		typedef ft::TreeIter<pointer, Node_ptr>								iterator;
+		typedef ft::TreeIter<const_pointer, Node_ptr>						const_iterator;
+		// typedef ft::reverse_iterator<pointer>								reverse_iterator;
+		// typedef ft::reverse_iterator<const_pointer>							const_reverse_iterator;
+
 
 	private:
+		/***********************************************************/
+		/*                                                         */
+		/*          Declare all attributes needed in Tree          */
+		/*                                                         */
+		/***********************************************************/
 		allocator_node								_alloc;
 		value_compare								_comp;
 		Node_ptr									_root;
@@ -66,6 +87,11 @@ class Tree
 		int											_size;
 
 	public:
+		/***********************************************************/
+		/*                                                         */
+		/*             Tree constructor and distructor             */
+		/*                                                         */
+		/***********************************************************/
 		Tree(const value_compare &compare = value_compare(), const allocator_type& alloc = allocator_type()): _size(0)
 		{
 			this->_alloc = alloc;
@@ -115,7 +141,7 @@ class Tree
 			return (_Height(N->left) - _Height(N->right));
 		}
 
-		Node_ptr leftRotate(Node_ptr x)
+		Node_ptr _leftRotate(Node_ptr x)
 		{
 			Node_ptr y = x->right;
 			Node_ptr T2 = y->left;
@@ -138,7 +164,7 @@ class Tree
 			return y;
 		};
 
-		Node_ptr rightRotate(Node_ptr y)
+		Node_ptr _rightRotate(Node_ptr y)
 		{
 			Node_ptr x = y->left;
 			Node_ptr T2 = x->right;
@@ -161,16 +187,16 @@ class Tree
 			return x;
 		};
 
-		Node_ptr RightLeftRotate(Node_ptr node)
+		Node_ptr _RightLeftRotate(Node_ptr node)
 		{
-			node->right = rightRotate(node->right);
-			return (leftRotate(node));
+			node->right = _rightRotate(node->right);
+			return (_leftRotate(node));
 		};
 
-		Node_ptr LeftRightRotate(Node_ptr node)
+		Node_ptr _LeftRightRotate(Node_ptr node)
 		{
-			node->left = leftRotate(node->left);
-			return (rightRotate(node));
+			node->left = _leftRotate(node->left);
+			return (_rightRotate(node));
 		};
 
 
@@ -180,16 +206,16 @@ class Tree
 			if (balanceFactor > 1)
 			{
 				if (_getBalanceFactor(node->left) >= 0)
-					return (rightRotate(node));
+					return (_rightRotate(node));
 				else
-					return (LeftRightRotate(node));
+					return (_LeftRightRotate(node));
 			}
 			else if (balanceFactor < -1)
 			{
 				if (_getBalanceFactor(node->right) <= 0)
-					return (leftRotate(node));
+					return (_leftRotate(node));
 				else
-					return (RightLeftRotate(node));
+					return (_RightLeftRotate(node));
 			}
 			return (node);
 		};
