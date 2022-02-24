@@ -806,7 +806,7 @@ int main()
 
 		// AVL.print();
 		std::cout << "┃━━━━━━━━━━━━━━━━━━━━━━━━━┃ Printing The Tree ┃━━━━━━━━━━━━━━━━━━━━━━━━┃\n\n\n\n\n" << std::endl;
-		std::cout << (*AVL.begin()).first << std::endl;
+		std::cout << AVL.getSize() << std::endl;
 		// {
 		// 	Node<ValueType>* succ = AVL.successor(AVL.search(ValueType(99, "77")));
 		// 	if (succ == nullptr)

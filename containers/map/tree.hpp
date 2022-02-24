@@ -6,7 +6,7 @@
 /*   By: mbari <mbari@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/27 14:35:25 by mbari             #+#    #+#             */
-/*   Updated: 2022/02/24 02:44:01 by mbari            ###   ########.fr       */
+/*   Updated: 2022/02/24 02:50:27 by mbari            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -83,7 +83,7 @@ class Tree
 		iterator		begin()				{ return (iterator(this->Min())); };
 		const_iterator	begin() const		{ return (const_iterator(this->Min())); };
 		iterator		end()				{ return (iterator(this->_end)); };
-		const_iterator	end()				{ return (const_iterator(this->_end)); };
+		const_iterator	end() const			{ return (const_iterator(this->_end)); };
 
 	private:
 		void	_inOrder(Node_ptr node)
@@ -206,7 +206,6 @@ class Tree
 		Node_ptr	_remove(Node_ptr root, T key)
 		{
 			if (root == nullptr) return (nullptr);
-			// else if (key < root->key)
 			else if (this->_comp(key, root->key))
 				root->left = _remove(root->left, key);
 			else if (this->_comp(key, root->key))
@@ -217,12 +216,14 @@ class Tree
 				{
 					Node_ptr temp = root->right;
 					this->_alloc.deallocate(root, 1);
+					--this->_size;
 					return (temp);
 				}
 				else if (root->right == nullptr)
 				{
 					Node_ptr temp = root->left;
 					this->_alloc.deallocate(root, 1);
+					--this->_size;
 					return (temp);
 				}
 				else
@@ -289,9 +290,13 @@ class Tree
 				this->_root = newnode;
 				this->_root->parent = this->_end;
 				this->_end->left = this->_root;
+				++this->_size;
 			}
 			else
+			{
+				++this->_size;
 				this->_root = _insert(this->_root, newnode);
+			}
 		};
 
 		void	remove(T key)
@@ -353,6 +358,7 @@ class Tree
 		};
 
 		T	get_Key() const { return (this->_root->key); };
+		int	getSize() const { return (this->_size); };
 		T	get_height() const { return (this->_root->height); };
 
 		private: /*             Private Functions for printing The tree                         */
