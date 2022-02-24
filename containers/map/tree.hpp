@@ -6,7 +6,7 @@
 /*   By: mbari <mbari@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/27 14:35:25 by mbari             #+#    #+#             */
-/*   Updated: 2022/02/24 02:51:48 by mbari            ###   ########.fr       */
+/*   Updated: 2022/02/24 03:28:29 by mbari            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,17 +46,17 @@ class Tree
 		/*                                                         */
 		/*                                                         */
 		/***********************************************************/
-		typedef typename allocator_type::template rebind<T>::other allocater_node;
-		typedef typename allocater_node::reference			reference;
-		typedef typename allocater_node::const_reference	const_reference;
-		typedef typename allocater_node::difference_type	difference_type;
-		typedef typename allocater_node::pointer			pointer;
-		typedef typename allocater_node::const_pointer		const_pointer;
-		typedef typename allocater_node::size_type			size_type;
-		typedef ft::TreeIter<pointer, Node_ptr>				iterator;
-		typedef ft::TreeIter<const_pointer, Node_ptr>		const_iterator;
-		// typedef ft::reverse_iterator<pointer>				reverse_iterator;
-		// typedef ft::reverse_iterator<const_pointer>			const_reverse_iterator;
+		typedef typename allocator_type::template rebind<T>::other	allocater_node;
+		typedef typename allocater_node::reference					reference;
+		typedef typename allocater_node::const_reference			const_reference;
+		typedef typename allocater_node::difference_type			difference_type;
+		typedef typename allocater_node::pointer					pointer;
+		typedef typename allocater_node::const_pointer				const_pointer;
+		typedef typename allocater_node::size_type					size_type;
+		typedef ft::TreeIter<pointer, Node_ptr>						iterator;
+		typedef ft::TreeIter<const_pointer, Node_ptr>				const_iterator;
+		// typedef ft::reverse_iterator<pointer>					reverse_iterator;
+		// typedef ft::reverse_iterator<const_pointer>				const_reverse_iterator;
 
 	private:
 		allocator_type								_alloc;
