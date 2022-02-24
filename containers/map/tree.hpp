@@ -6,7 +6,7 @@
 /*   By: mbari <mbari@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/27 14:35:25 by mbari             #+#    #+#             */
-/*   Updated: 2022/02/24 03:34:52 by mbari            ###   ########.fr       */
+/*   Updated: 2022/02/24 04:00:45 by mbari            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,20 +46,20 @@ class Tree
 		/*                                                         */
 		/*                                                         */
 		/***********************************************************/
-		typedef typename allocator_type::template rebind<T>::other	allocater_node;
-		typedef typename allocater_node::reference					reference;
-		typedef typename allocater_node::const_reference			const_reference;
-		typedef typename allocater_node::difference_type			difference_type;
-		typedef typename allocater_node::pointer					pointer;
-		typedef typename allocater_node::const_pointer				const_pointer;
-		typedef typename allocater_node::size_type					size_type;
+		typedef typename allocator_type::template rebind<Node<T> >::other	allocator_node;
+		typedef typename allocator_node::reference					reference;
+		typedef typename allocator_node::const_reference			const_reference;
+		typedef typename allocator_node::difference_type			difference_type;
+		typedef typename allocator_node::pointer					pointer;
+		typedef typename allocator_node::const_pointer				const_pointer;
+		typedef typename allocator_node::size_type					size_type;
 		typedef ft::TreeIter<pointer, Node_ptr>						iterator;
 		typedef ft::TreeIter<const_pointer, Node_ptr>				const_iterator;
 		// typedef ft::reverse_iterator<pointer>					reverse_iterator;
 		// typedef ft::reverse_iterator<const_pointer>				const_reverse_iterator;
 
 	private:
-		allocator_type								_alloc;
+		allocator_node								_alloc;
 		value_compare								_comp;
 		Node_ptr									_root;
 		Node_ptr									_end;
@@ -75,7 +75,8 @@ class Tree
 		};
 		~Tree()
 		{
-			_inOrder(this->_root);
+			if (this->_root != this->_end)
+				_inOrder(this->_root);
 			this->_alloc.deallocate(this->_end, 1);
 		};
 
@@ -88,7 +89,7 @@ class Tree
 	public: /*             Capacity                         */
 		bool empty() const { return (this->_size == 0); };
 		size_type size() const { return (this->_size); };
-		size_type	max_size()	const	{ return (std::min<size_type>(std::numeric_limits<size_type>::max() / sizeof(value_type), std::numeric_limits<difference_type>::max())); };
+		size_type	max_size()	const	{ return (std::min<size_type>(std::numeric_limits<size_type>::max() / sizeof(Node_type), std::numeric_limits<difference_type>::max())); };
 
 	private:
 		void	_inOrder(Node_ptr node)

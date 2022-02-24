@@ -14,9 +14,8 @@
 #include <iostream>
 #include <iterator>
 #include "containers/vector/vector.hpp"
-#include "containers/map/tree.hpp"
+#include "containers/map/map.hpp"
 #include "colors.hpp"
-#include "containers/map/utils.hpp"
 #include <vector>
 #include <map>
 
@@ -773,56 +772,56 @@
 // }
 
 
-int main()
-{
-		typedef	ft::pair<int, std::string>	ValueType;
-	{
-		Tree<ValueType> AVL;
+// int main()
+// {
+// 		typedef	ft::pair<int, std::string>	ValueType;
+// 	{
+// 		Tree<ValueType> AVL;
 
-		AVL.insert(ValueType(51, "77"));
-		AVL.insert(ValueType(77, "88"));
-		AVL.insert(ValueType(12, "77"));
-		AVL.insert(ValueType(7, "77"));
-		AVL.insert(ValueType(3, "77"));
-		AVL.insert(ValueType(15, "77"));
-		AVL.insert(ValueType(44, "77"));
-		AVL.insert(ValueType(99, "77"));
-		AVL.insert(ValueType(78, "77"));
-		AVL.insert(ValueType(55, "77"));
-		AVL.insert(ValueType(69, "77"));
-		AVL.insert(ValueType(45, "77"));
-		AVL.insert(ValueType(57, "77"));
-		AVL.insert(ValueType(10, "77"));
-		AVL.insert(ValueType(71, "77"));
-		AVL.insert(ValueType(96, "77"));
-		AVL.insert(ValueType(24, "77"));
-		AVL.insert(ValueType(11, "77"));
-		AVL.insert(ValueType(17, "77"));
-		AVL.insert(ValueType(19, "77"));
-		AVL.insert(ValueType(16, "77"));
-		AVL.insert(ValueType(35, "77"));
-		AVL.insert(ValueType(75, "77"));
+// 		AVL.insert(ValueType(51, "77"));
+// 		AVL.insert(ValueType(77, "88"));
+// 		AVL.insert(ValueType(12, "77"));
+// 		AVL.insert(ValueType(7, "77"));
+// 		AVL.insert(ValueType(3, "77"));
+// 		AVL.insert(ValueType(15, "77"));
+// 		AVL.insert(ValueType(44, "77"));
+// 		AVL.insert(ValueType(99, "77"));
+// 		AVL.insert(ValueType(78, "77"));
+// 		AVL.insert(ValueType(55, "77"));
+// 		AVL.insert(ValueType(69, "77"));
+// 		AVL.insert(ValueType(45, "77"));
+// 		AVL.insert(ValueType(57, "77"));
+// 		AVL.insert(ValueType(10, "77"));
+// 		AVL.insert(ValueType(71, "77"));
+// 		AVL.insert(ValueType(96, "77"));
+// 		AVL.insert(ValueType(24, "77"));
+// 		AVL.insert(ValueType(11, "77"));
+// 		AVL.insert(ValueType(17, "77"));
+// 		AVL.insert(ValueType(19, "77"));
+// 		AVL.insert(ValueType(16, "77"));
+// 		AVL.insert(ValueType(35, "77"));
+// 		AVL.insert(ValueType(75, "77"));
 
 
-		// AVL.print();
-		std::cout << "┃━━━━━━━━━━━━━━━━━━━━━━━━━┃ Printing The Tree ┃━━━━━━━━━━━━━━━━━━━━━━━━┃\n\n\n\n\n" << std::endl;
-		std::cout << AVL.getSize() << std::endl;
-		// {
-		// 	Node<ValueType>* succ = AVL.successor(AVL.search(ValueType(99, "77")));
-		// 	if (succ == nullptr)
-		// 		std::cout << "successor of 99 is NULL " << std::endl;
-		// 	else
-		// 		std::cout << "successor of 99 is " << succ->key.first << std::endl;
-		// }
-		std::cout << "\n\n\n\n\n┃━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━┃" << std::endl;
+// 		// AVL.print();
+// 		std::cout << "┃━━━━━━━━━━━━━━━━━━━━━━━━━┃ Printing The Tree ┃━━━━━━━━━━━━━━━━━━━━━━━━┃\n\n\n\n\n" << std::endl;
+// 		std::cout << AVL.getSize() << std::endl;
+// 		// {
+// 		// 	Node<ValueType>* succ = AVL.successor(AVL.search(ValueType(99, "77")));
+// 		// 	if (succ == nullptr)
+// 		// 		std::cout << "successor of 99 is NULL " << std::endl;
+// 		// 	else
+// 		// 		std::cout << "successor of 99 is " << succ->key.first << std::endl;
+// 		// }
+// 		std::cout << "\n\n\n\n\n┃━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━┃" << std::endl;
 
-		// AVL.remove(ValueType(77, "77"));
+// 		// AVL.remove(ValueType(77, "77"));
 
-		std::cout << "┃━━━━━━━━━━━━━━━━━━━━━━━━━┃ Printing The Tree ┃━━━━━━━━━━━━━━━━━━━━━━━━┃\n\n\n\n\n" << std::endl;
-		AVL.print();
-		std::cout << "\n\n\n\n\n┃━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━┃" << std::endl;
-	}
-}
+// 		std::cout << "┃━━━━━━━━━━━━━━━━━━━━━━━━━┃ Printing The Tree ┃━━━━━━━━━━━━━━━━━━━━━━━━┃\n\n\n\n\n" << std::endl;
+// 		AVL.print();
+// 		std::cout << "\n\n\n\n\n┃━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━┃" << std::endl;
+// 	}
+// }
 
 
 /*
@@ -852,3 +851,20 @@ int main()
 	}
 }
 */
+
+
+
+int main()
+{
+	typedef	ft::pair<int, std::string>	ValueType;
+	ft::map<int, std::string> ft;
+	std::map<int, std::string> std;
+
+	std::cout << "ft:: " << ft.size() << std::endl;
+	std::cout << "std:: " << std.size() << std::endl;
+	std::cout << "ft:: " << ft.empty() << std::endl;
+	std::cout << "std:: " << std.empty() << std::endl;
+	std::cout << "ft:: " << ft.max_size() << std::endl;
+	std::cout << "std:: " << std.max_size() << std::endl;
+
+}
