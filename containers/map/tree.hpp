@@ -6,7 +6,7 @@
 /*   By: mbari <mbari@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/27 14:35:25 by mbari             #+#    #+#             */
-/*   Updated: 2022/02/24 08:37:31 by mbari            ###   ########.fr       */
+/*   Updated: 2022/03/01 14:05:00 by mbari            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -225,10 +225,16 @@ class Tree
 			if (temp == nullptr)
 				return (newNode);
 			if (!this->_comp(temp->key.first, newNode->key.first))
+			{
 				temp->left = _insert(temp->left, newNode);
+				if (temp->left == newNode)
+					newNode->parent = temp;
+			}
 			else if (this->_comp(temp->key.first, newNode->key.first))
 			{
 				temp->right = _insert(temp->right, newNode);
+				if (temp->right == newNode)
+					newNode->parent = temp;
 				// if (temp->right->right == nullptr)
 				// 	temp->right->right = this->_end;
 			}
