@@ -6,7 +6,7 @@
 /*   By: mbari <mbari@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/27 14:35:25 by mbari             #+#    #+#             */
-/*   Updated: 2022/03/01 14:05:00 by mbari            ###   ########.fr       */
+/*   Updated: 2022/03/01 14:43:57 by mbari            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -222,7 +222,7 @@ class Tree
 
 		Node_ptr	_insert(Node_ptr temp, Node_ptr newNode)
 		{
-			if (temp == nullptr)
+			if (temp == nullptr || temp == this->_end)
 				return (newNode);
 			if (!this->_comp(temp->key.first, newNode->key.first))
 			{
@@ -235,8 +235,6 @@ class Tree
 				temp->right = _insert(temp->right, newNode);
 				if (temp->right == newNode)
 					newNode->parent = temp;
-				// if (temp->right->right == nullptr)
-				// 	temp->right->right = this->_end;
 			}
 			else
 				return (temp);
@@ -247,7 +245,7 @@ class Tree
 
 		Node_ptr	_remove(Node_ptr root, T key)
 		{
-			if (root == nullptr) return (nullptr);
+			if (root == nullptr || root == this->_end) return (nullptr);
 			else if (this->_comp(key, root->key))
 				root->left = _remove(root->left, key);
 			else if (this->_comp(key, root->key))
@@ -339,6 +337,8 @@ class Tree
 				++this->_size;
 				this->_root = _insert(this->_root, newnode);
 			}
+			Node_ptr max = Max();
+			max->right = this->_end;
 			return (newnode);
 		};
 
@@ -431,14 +431,14 @@ class Tree
 
 		void printTree(Node_ptr root, Trunk *prev, bool isLeft)
 		{
-			if (root == nullptr) {
+			if (root == nullptr || root == this->_end) {
 				return;
 			}
 
 			std::string prev_str = "    ";
 			Trunk *trunk = new Trunk(prev, prev_str);
-			if (root->right != this->_end)
-				printTree(root->right, trunk, true);
+			// if (root->right != this->_end)
+			printTree(root->right, trunk, true);
 
 			if (!prev) {
 				trunk->str = "———";
