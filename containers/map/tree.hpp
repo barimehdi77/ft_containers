@@ -6,7 +6,7 @@
 /*   By: mbari <mbari@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/27 14:35:25 by mbari             #+#    #+#             */
-/*   Updated: 2022/03/01 14:43:57 by mbari            ###   ########.fr       */
+/*   Updated: 2022/03/01 18:26:34 by mbari            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -360,7 +360,7 @@ class Tree
 		{
 			Node_ptr tmp = this->_root;
 
-			while (tmp->right)
+			while (tmp->right && tmp->right != this->_end)
 				tmp = tmp->right;
 			return (tmp);
 		};
@@ -431,10 +431,8 @@ class Tree
 
 		void printTree(Node_ptr root, Trunk *prev, bool isLeft)
 		{
-			if (root == nullptr || root == this->_end) {
+			if (root == nullptr || root == this->_end)
 				return;
-			}
-
 			std::string prev_str = "    ";
 			Trunk *trunk = new Trunk(prev, prev_str);
 			// if (root->right != this->_end)
