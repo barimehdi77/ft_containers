@@ -884,7 +884,7 @@ int main()
 	ft.insert(ft_ValueType(16, "77"));
 	ft.insert(ft_ValueType(35, "77"));
 	ft.insert(ft_ValueType(75, "77"));
-	/********inserting values to std::map*******/
+	// /********inserting values to std::map*******/
 	std.insert(std_ValueType(51, "77"));
 	std.insert(std_ValueType(77, "88"));
 	std.insert(std_ValueType(12, "77"));

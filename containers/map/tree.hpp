@@ -6,7 +6,7 @@
 /*   By: mbari <mbari@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/27 14:35:25 by mbari             #+#    #+#             */
-/*   Updated: 2022/02/24 08:24:09 by mbari            ###   ########.fr       */
+/*   Updated: 2022/02/24 08:37:31 by mbari            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -120,7 +120,7 @@ class Tree
 	private:
 		void	_inOrder(Node_ptr node)
 		{
-			if (node != nullptr)
+			if (node != nullptr && node != this->_end)
 			{
 				_inOrder(node->left);
 				this->_alloc.deallocate(node, 1);
@@ -227,7 +227,11 @@ class Tree
 			if (!this->_comp(temp->key.first, newNode->key.first))
 				temp->left = _insert(temp->left, newNode);
 			else if (this->_comp(temp->key.first, newNode->key.first))
+			{
 				temp->right = _insert(temp->right, newNode);
+				// if (temp->right->right == nullptr)
+				// 	temp->right->right = this->_end;
+			}
 			else
 				return (temp);
 			_ReSetHeight(temp);
@@ -272,7 +276,7 @@ class Tree
 
 		Node_ptr _search(Node_ptr temp, T key)
 		{
-			if (temp == nullptr)
+			if (temp == nullptr || temp == this->_end)
 				return (nullptr);
 
 			if (temp->key.first == key.first)
@@ -427,8 +431,8 @@ class Tree
 
 			std::string prev_str = "    ";
 			Trunk *trunk = new Trunk(prev, prev_str);
-
-			printTree(root->right, trunk, true);
+			if (root->right != this->_end)
+				printTree(root->right, trunk, true);
 
 			if (!prev) {
 				trunk->str = "———";
