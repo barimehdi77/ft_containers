@@ -6,7 +6,7 @@
 /*   By: mbari <mbari@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/24 03:01:34 by mbari             #+#    #+#             */
-/*   Updated: 2022/02/24 07:54:57 by mbari            ###   ########.fr       */
+/*   Updated: 2022/03/02 15:46:40 by mbari            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -79,10 +79,15 @@ namespace ft
 				Node_ptr inserted_node = this->_tree.insert(val);
 				return (ft::pair<iterator,bool>(iterator(inserted_node), true));
 			};
-			// iterator insert (iterator position, const value_type& val)
-			// {
-
-			// }
+			iterator insert (iterator position, const value_type& val)
+			{
+				difference_type diff = this->end() - position;
+				iterator		it = end();
+				while (diff != 0)
+				{
+					*(it)
+				}
+			}
 
 
 		public:
