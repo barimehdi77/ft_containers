@@ -6,7 +6,7 @@
 /*   By: mbari <mbari@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/27 14:35:25 by mbari             #+#    #+#             */
-/*   Updated: 2022/03/01 18:54:59 by mbari            ###   ########.fr       */
+/*   Updated: 2022/03/02 15:42:06 by mbari            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -274,7 +274,7 @@ namespace ft
 					}
 					else
 					{
-						Node_ptr MaxValue = _Max(root->left);
+						Node_ptr MaxValue = _TreeMax(root->left);
 						root->key = MaxValue->key;
 						root->left = _remove(root->left, MaxValue->key);
 					}
@@ -343,7 +343,7 @@ namespace ft
 					++this->_size;
 					this->_root = _insert(this->_root, newnode);
 				}
-				Max()->right = this->_end;
+				// Max()->right = this->_end;
 				return (newnode);
 			};
 
@@ -480,14 +480,15 @@ namespace ft
 	};
 
 	template<class Node_ptr>
-	Node_ptr _Min(Node_ptr temp)
+	Node_ptr _TreeMin(Node_ptr temp)
 	{
 		while (temp->left != nullptr)
 			temp = temp->left;
 		return (temp);
 	};
+
 	template<class Node_ptr>
-	Node_ptr _Max(Node_ptr temp)
+	Node_ptr _Tree_Max(Node_ptr temp)
 	{
 		while (temp->right != nullptr)
 			temp = temp->right;
@@ -498,7 +499,7 @@ namespace ft
 	Node_ptr successor(Node_ptr node)
 	{
 		if (node->right != nullptr)
-			return (_Min(node->right));
+			return (_TreeMin(node->right));
 
 		Node_ptr temp = node->parent;
 		while (temp != nullptr && node == temp->right)
@@ -513,10 +514,10 @@ namespace ft
 	Node_ptr predecessor(Node_ptr node)
 	{
 		if (node->left != nullptr)
-			return (_Max(node->left));
+			return (_Tree_Max(node->left));
 
 		Node_ptr temp = node->parent;
-		while (temp != node->end() && node == temp->left)
+		while (temp != nullptr && node == temp->left)
 		{
 			node = temp;
 			temp = temp->parent;

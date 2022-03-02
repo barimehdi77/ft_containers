@@ -919,10 +919,10 @@ int main()
 	std::cout << "ft:: " << ft.max_size() << std::endl;
 	std::cout << "std:: " << std.max_size() << std::endl;
 	std::cout << "\n\n\n\n\n┃━━━━━━━━━━━━━━━━━━━━━━━━━┃ Printing some values ┃━━━━━━━━━━━━━━━━━━━━━━━━┃\n\n\n\n\n" << std::endl;
-	ft::map<int, std::string>::iterator ft_it = ft.begin();
-	std::map<int, std::string>::iterator std_it = std.begin();
-	ft_it++;
-	std_it++;
+	ft::map<int, std::string>::iterator ft_it = ++ft.begin();
+	std::map<int, std::string>::iterator std_it = ++std.begin();
+	ft_it--;
+	std_it--;
 	std::cout << "ft.begin() = " << (*ft_it).first << std::endl;
 	std::cout << "std.begin() = " << (*std_it).first << std::endl;
 	std::cout << "\n\n\n\n\n┃━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━┃" << std::endl;

@@ -6,7 +6,7 @@
 /*   By: mbari <mbari@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/06 12:09:44 by mbari             #+#    #+#             */
-/*   Updated: 2022/03/01 18:46:28 by mbari            ###   ########.fr       */
+/*   Updated: 2022/03/02 15:17:37 by mbari            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,9 +43,9 @@ namespace ft
 
 			Node_ptr		base() const							{ return (this->_it); };
 			reference		operator*() const						{ return (this->_it->key); };
-			TreeIter&		operator++()							{successor(this->_it); return (*this); };						// pre-increment
+			TreeIter&		operator++()							{this->_it = successor(this->_it); return (*this); };				// pre-increment
 			TreeIter		operator++(int)							{ TreeIter temp(*this); ++(*this); return (temp); };	// post-increment
-			TreeIter&		operator--()							{predecessor(this->_it); return (*this); };						// pre-decrement
+			TreeIter&		operator--()							{this->_it = predecessor(this->_it); return (*this); };				// pre-decrement
 			TreeIter		operator--(int)							{ TreeIter temp(*this); --(*this); return (temp); };	// post-decrement
 			pointer			operator->()							{ return (&(operator*())); };
 			reference		operator[]( difference_type n ) const	{ return (*(this->_it + n)); };
