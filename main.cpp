@@ -911,16 +911,25 @@ int main()
 
 
 	std::cout << "\n\n\n\n\n┃━━━━━━━━━━━━━━━━━━━━━━━━━┃ Printing some values ┃━━━━━━━━━━━━━━━━━━━━━━━━┃\n\n\n\n\n" << std::endl;
-	ft::map<int, std::string>::iterator ft_it = ++ft.begin();
-	std::map<int, std::string>::iterator std_it = ++std.begin();
-	// ft_it--;
-	// std_it--;
-	std::cout << "ft\tprint the current node = " << ft_it->first << std::endl;
-	std::cout << "std\tprint the current node = " << std_it->first << std::endl;
-	ft_it = ft.insert(ft_it, ft_ValueType(9, "77"));
-	std_it = std.insert(std_it, std_ValueType(9, "77"));
-	std::cout << "ft\tsucc of the current node = " << (--ft_it)->first << std::endl;
-	std::cout << "std\tsucc of the current node  = " << (--std_it)->first << std::endl;
+	ft::map<int, std::string> ft_map;
+	std::map<int, std::string> std_map;
+	ft_map.insert(ft.begin(), ft.end());
+	std_map.insert(std.begin(), std.end());
+	std::cout << "ft\tfirst element in list = " << ft_map.begin()->first << std::endl;
+	std::cout << "std\tfirst element in list = " << std_map.begin()->first << std::endl;
+	std::cout << "\n\n\n\n\n┃━━━━━━━━━━━━━━━━━━━━━━━━━┃ Printing The Tree ┃━━━━━━━━━━━━━━━━━━━━━━━━┃\n\n\n\n\n" << std::endl;
+	ft_map.print();
+
+	// ft::map<int, std::string>::iterator ft_it = ++ft.begin();
+	// std::map<int, std::string>::iterator std_it = ++std.begin();
+	// // ft_it--;
+	// // std_it--;
+	// std::cout << "ft\tprint the current node = " << ft_it->first << std::endl;
+	// std::cout << "std\tprint the current node = " << std_it->first << std::endl;
+	// ft_it = ft.insert(ft_it, ft_ValueType(9, "77"));
+	// std_it = std.insert(std_it, std_ValueType(9, "77"));
+	// std::cout << "ft\tsucc of the current node = " << (--ft_it)->first << std::endl;
+	// std::cout << "std\tsucc of the current node  = " << (--std_it)->first << std::endl;
 	std::cout << "\n\n\n\n\n┃━━━━━━━━━━━━━━━━━━━━━━━━━┃ Printing The Tree ┃━━━━━━━━━━━━━━━━━━━━━━━━┃\n\n\n\n\n" << std::endl;
 	ft.print();
 	std::cout << "\n\n\n\n\n┃━━━━━━━━━━━━━━━━━━━━━━━━━┃ Printing The Map Info ┃━━━━━━━━━━━━━━━━━━━━━━━━┃\n\n\n\n\n" << std::endl;

@@ -6,7 +6,7 @@
 /*   By: mbari <mbari@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/24 03:01:34 by mbari             #+#    #+#             */
-/*   Updated: 2022/03/04 22:43:09 by mbari            ###   ########.fr       */
+/*   Updated: 2022/03/04 23:05:02 by mbari            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -87,7 +87,13 @@ namespace ft
 				else
 					position = insert(val).first;
 				return position;
-			}
+			};
+			template <class InputIterator>
+			void insert (InputIterator first, InputIterator last)
+			{
+				for (const_iterator it = end(); first != last; first++)
+					insert(*first);
+			};
 
 
 		public:
