@@ -6,7 +6,7 @@
 /*   By: mbari <mbari@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/27 14:35:25 by mbari             #+#    #+#             */
-/*   Updated: 2022/03/04 22:32:35 by mbari            ###   ########.fr       */
+/*   Updated: 2022/03/04 23:29:28 by mbari            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -252,9 +252,9 @@ namespace ft
 			Node_ptr	_remove(Node_ptr root, T key)
 			{
 				if (root == nullptr || root == this->_end) return (nullptr);
-				else if (this->_comp(key, root->key))
+				else if (this->_comp(key.first, root->key.first))
 					root->left = _remove(root->left, key);
-				else if (this->_comp(key, root->key))
+				else if (this->_comp(key.first, root->key.first))
 					root->right = _remove(root->right, key);
 				else
 				{
@@ -275,7 +275,7 @@ namespace ft
 					else
 					{
 						Node_ptr MaxValue = _TreeMax(root->left);
-						root->key = MaxValue->key;
+						root->key = T(MaxValue->key);
 						root->left = _remove(root->left, MaxValue->key);
 					}
 				}
@@ -508,7 +508,7 @@ namespace ft
 	};
 
 	template<class Node_ptr>
-	Node_ptr _Tree_Max(Node_ptr temp)
+	Node_ptr _TreeMax(Node_ptr temp)
 	{
 		while (temp->right != nullptr)
 			temp = temp->right;
@@ -534,7 +534,7 @@ namespace ft
 	Node_ptr predecessor(Node_ptr node)
 	{
 		if (node->left != nullptr)
-			return (_Tree_Max(node->left));
+			return (_TreeMax(node->left));
 
 		Node_ptr temp = node->parent;
 		while (temp != nullptr && node == temp->left)

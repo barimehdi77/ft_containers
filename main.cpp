@@ -854,6 +854,94 @@ int main()
 
 
 
+// int main()
+// {
+// 	typedef	ft::pair<int, std::string>	ft_ValueType;
+// 	typedef	std::pair<int, std::string>	std_ValueType;
+// 	ft::map<int, std::string> ft;
+// 	std::map<int, std::string> std;
+// 	/********inserting values to ft::map*******/
+// 	ft.insert(ft_ValueType(51, "77"));
+// 	ft.insert(ft_ValueType(77, "88"));
+// 	ft.insert(ft_ValueType(12, "77"));
+// 	ft.insert(ft_ValueType(7, "77"));
+// 	ft.insert(ft_ValueType(3, "77"));
+// 	ft.insert(ft_ValueType(15, "77"));
+// 	ft.insert(ft_ValueType(44, "77"));
+// 	ft.insert(ft_ValueType(99, "77"));
+// 	ft.insert(ft_ValueType(78, "77"));
+// 	ft.insert(ft_ValueType(55, "77"));
+// 	ft.insert(ft_ValueType(69, "77"));
+// 	ft.insert(ft_ValueType(45, "77"));
+// 	ft.insert(ft_ValueType(57, "77"));
+// 	ft.insert(ft_ValueType(10, "77"));
+// 	ft.insert(ft_ValueType(71, "77"));
+// 	ft.insert(ft_ValueType(96, "77"));
+// 	ft.insert(ft_ValueType(24, "77"));
+// 	ft.insert(ft_ValueType(11, "77"));
+// 	ft.insert(ft_ValueType(17, "77"));
+// 	ft.insert(ft_ValueType(19, "77"));
+// 	ft.insert(ft_ValueType(16, "77"));
+// 	ft.insert(ft_ValueType(35, "77"));
+// 	ft.insert(ft_ValueType(75, "77"));
+// 	/********inserting values to std::map*******/
+// 	std.insert(std_ValueType(51, "77"));
+// 	std.insert(std_ValueType(77, "88"));
+// 	std.insert(std_ValueType(12, "77"));
+// 	std.insert(std_ValueType(7, "77"));
+// 	std.insert(std_ValueType(3, "77"));
+// 	std.insert(std_ValueType(15, "77"));
+// 	std.insert(std_ValueType(44, "77"));
+// 	std.insert(std_ValueType(99, "77"));
+// 	std.insert(std_ValueType(78, "77"));
+// 	std.insert(std_ValueType(55, "77"));
+// 	std.insert(std_ValueType(69, "77"));
+// 	std.insert(std_ValueType(45, "77"));
+// 	std.insert(std_ValueType(57, "77"));
+// 	std.insert(std_ValueType(10, "77"));
+// 	std.insert(std_ValueType(71, "77"));
+// 	std.insert(std_ValueType(96, "77"));
+// 	std.insert(std_ValueType(24, "77"));
+// 	std.insert(std_ValueType(11, "77"));
+// 	std.insert(std_ValueType(17, "77"));
+// 	std.insert(std_ValueType(19, "77"));
+// 	std.insert(std_ValueType(16, "77"));
+// 	std.insert(std_ValueType(35, "77"));
+// 	std.insert(std_ValueType(75, "77"));
+
+
+// 	std::cout << "\n\n\n\n\n┃━━━━━━━━━━━━━━━━━━━━━━━━━┃ Printing some values ┃━━━━━━━━━━━━━━━━━━━━━━━━┃\n\n\n\n\n" << std::endl;
+// 	ft::map<int, std::string> ft_map;
+// 	std::map<int, std::string> std_map;
+// 	ft_map.insert(ft.begin(), ft.end());
+// 	std_map.insert(std.begin(), std.end());
+// 	std::cout << "ft\tfirst element in list = " << ft_map.begin()->first << std::endl;
+// 	std::cout << "std\tfirst element in list = " << std_map.begin()->first << std::endl;
+// 	std::cout << "\n\n\n\n\n┃━━━━━━━━━━━━━━━━━━━━━━━━━┃ Printing The Tree ┃━━━━━━━━━━━━━━━━━━━━━━━━┃\n\n\n\n\n" << std::endl;
+// 	ft_map.print();
+// 	// ft::map<int, std::string>::iterator ft_it = ++ft.begin();
+// 	// std::map<int, std::string>::iterator std_it = ++std.begin();
+// 	// // ft_it--;
+// 	// // std_it--;
+// 	// std::cout << "ft\tprint the current node = " << ft_it->first << std::endl;
+// 	// std::cout << "std\tprint the current node = " << std_it->first << std::endl;
+// 	// ft_it = ft.insert(ft_it, ft_ValueType(9, "77"));
+// 	// std_it = std.insert(std_it, std_ValueType(9, "77"));
+// 	// std::cout << "ft\tsucc of the current node = " << (--ft_it)->first << std::endl;
+// 	// std::cout << "std\tsucc of the current node  = " << (--std_it)->first << std::endl;
+// 	std::cout << "\n\n\n\n\n┃━━━━━━━━━━━━━━━━━━━━━━━━━┃ Printing The Tree ┃━━━━━━━━━━━━━━━━━━━━━━━━┃\n\n\n\n\n" << std::endl;
+// 	ft.print();
+// 	std::cout << "\n\n\n\n\n┃━━━━━━━━━━━━━━━━━━━━━━━━━┃ Printing The Map Info ┃━━━━━━━━━━━━━━━━━━━━━━━━┃\n\n\n\n\n" << std::endl;
+// 	std::cout << "ft::\t" << ft.size() << std::endl;
+// 	std::cout << "std::\t" << std.size() << std::endl;
+// 	std::cout << "ft::\t" << ft.empty() << std::endl;
+// 	std::cout << "std::\t" << std.empty() << std::endl;
+// 	std::cout << "ft::\t" << ft.max_size() << std::endl;
+// 	std::cout << "std::\t" << std.max_size() << std::endl;
+// 	std::cout << "\n\n\n\n\n┃━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━┃" << std::endl;
+// }
+
+
 int main()
 {
 	typedef	ft::pair<int, std::string>	ft_ValueType;
@@ -910,26 +998,11 @@ int main()
 	std.insert(std_ValueType(75, "77"));
 
 
-	std::cout << "\n\n\n\n\n┃━━━━━━━━━━━━━━━━━━━━━━━━━┃ Printing some values ┃━━━━━━━━━━━━━━━━━━━━━━━━┃\n\n\n\n\n" << std::endl;
-	ft::map<int, std::string> ft_map;
-	std::map<int, std::string> std_map;
-	ft_map.insert(ft.begin(), ft.end());
-	std_map.insert(std.begin(), std.end());
-	std::cout << "ft\tfirst element in list = " << ft_map.begin()->first << std::endl;
-	std::cout << "std\tfirst element in list = " << std_map.begin()->first << std::endl;
 	std::cout << "\n\n\n\n\n┃━━━━━━━━━━━━━━━━━━━━━━━━━┃ Printing The Tree ┃━━━━━━━━━━━━━━━━━━━━━━━━┃\n\n\n\n\n" << std::endl;
-	ft_map.print();
-
-	// ft::map<int, std::string>::iterator ft_it = ++ft.begin();
-	// std::map<int, std::string>::iterator std_it = ++std.begin();
-	// // ft_it--;
-	// // std_it--;
-	// std::cout << "ft\tprint the current node = " << ft_it->first << std::endl;
-	// std::cout << "std\tprint the current node = " << std_it->first << std::endl;
-	// ft_it = ft.insert(ft_it, ft_ValueType(9, "77"));
-	// std_it = std.insert(std_it, std_ValueType(9, "77"));
-	// std::cout << "ft\tsucc of the current node = " << (--ft_it)->first << std::endl;
-	// std::cout << "std\tsucc of the current node  = " << (--std_it)->first << std::endl;
+	ft.print();
+	std::cout << "\n\n\n\n\n┃━━━━━━━━━━━━━━━━━━━━━━━━━┃ removing some values ┃━━━━━━━━━━━━━━━━━━━━━━━━┃\n\n\n\n\n" << std::endl;
+	ft.erase(ft.begin());
+	std.erase(std.begin());
 	std::cout << "\n\n\n\n\n┃━━━━━━━━━━━━━━━━━━━━━━━━━┃ Printing The Tree ┃━━━━━━━━━━━━━━━━━━━━━━━━┃\n\n\n\n\n" << std::endl;
 	ft.print();
 	std::cout << "\n\n\n\n\n┃━━━━━━━━━━━━━━━━━━━━━━━━━┃ Printing The Map Info ┃━━━━━━━━━━━━━━━━━━━━━━━━┃\n\n\n\n\n" << std::endl;

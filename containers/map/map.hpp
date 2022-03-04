@@ -6,7 +6,7 @@
 /*   By: mbari <mbari@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/24 03:01:34 by mbari             #+#    #+#             */
-/*   Updated: 2022/03/04 23:05:02 by mbari            ###   ########.fr       */
+/*   Updated: 2022/03/04 23:36:36 by mbari            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -64,8 +64,8 @@ namespace ft
 			const_iterator	end() const			{ return (this->_tree.end()); };
 
 		public: /*             Capacity                         */
-			bool empty() const { return (this->_tree.empty()); };
-			size_type size() const { return (this->_tree.size()); };
+			bool		empty() const { return (this->_tree.empty()); };
+			size_type	size() const { return (this->_tree.size()); };
 			size_type	max_size()	const	{ return (this->_tree.max_size()); };
 
 
@@ -93,6 +93,20 @@ namespace ft
 			{
 				for (const_iterator it = end(); first != last; first++)
 					insert(*first);
+			};
+
+			void erase (iterator position) { this->_tree.remove(*position); };
+			size_type erase (const key_type& k)
+			{
+				size_type size = size();
+				Node_ptr node = this->_tree.search(k);
+				this->_tree.remove(node);
+				return (size - size());
+			};
+			void erase (iterator first, iterator last)
+			{
+				for (first != last; first++);
+					erase(first);
 			};
 
 
