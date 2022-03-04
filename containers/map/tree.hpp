@@ -6,7 +6,7 @@
 /*   By: mbari <mbari@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/27 14:35:25 by mbari             #+#    #+#             */
-/*   Updated: 2022/03/02 15:42:06 by mbari            ###   ########.fr       */
+/*   Updated: 2022/03/04 22:32:35 by mbari            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -342,6 +342,26 @@ namespace ft
 				{
 					++this->_size;
 					this->_root = _insert(this->_root, newnode);
+				}
+				// Max()->right = this->_end;
+				return (newnode);
+			};
+
+			Node_ptr	insertInPossition(Node_ptr position, T key)
+			{
+				Node_type * newnode = this->_alloc.allocate(1);
+				this->_alloc.construct(newnode, key);
+				if (position == this->_end)
+				{
+					position = newnode;
+					position->parent = this->_end;
+					this->_end->left = position;
+					++this->_size;
+				}
+				else
+				{
+					++this->_size;
+					position = _insert(position, newnode);
 				}
 				// Max()->right = this->_end;
 				return (newnode);

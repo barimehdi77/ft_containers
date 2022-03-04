@@ -909,6 +909,18 @@ int main()
 	std.insert(std_ValueType(35, "77"));
 	std.insert(std_ValueType(75, "77"));
 
+
+	std::cout << "\n\n\n\n\n┃━━━━━━━━━━━━━━━━━━━━━━━━━┃ Printing some values ┃━━━━━━━━━━━━━━━━━━━━━━━━┃\n\n\n\n\n" << std::endl;
+	ft::map<int, std::string>::iterator ft_it = ++ft.begin();
+	std::map<int, std::string>::iterator std_it = ++std.begin();
+	// ft_it--;
+	// std_it--;
+	std::cout << "ft succ of = " << ft_it->first << std::endl;
+	std::cout << "std succ of = " << std_it->first << std::endl;
+	ft_it = ft.insert(ft_it, ft_ValueType(9, "77"));
+	std_it = std.insert(std_it, std_ValueType(9, "77"));
+	std::cout << "ft succ of = " << (--ft_it)->first << std::endl;
+	std::cout << "std succ of = " << (--std_it)->first << std::endl;
 	std::cout << "\n\n\n\n\n┃━━━━━━━━━━━━━━━━━━━━━━━━━┃ Printing The Tree ┃━━━━━━━━━━━━━━━━━━━━━━━━┃\n\n\n\n\n" << std::endl;
 	ft.print();
 	std::cout << "\n\n\n\n\n┃━━━━━━━━━━━━━━━━━━━━━━━━━┃ Printing The Map Info ┃━━━━━━━━━━━━━━━━━━━━━━━━┃\n\n\n\n\n" << std::endl;
@@ -918,12 +930,5 @@ int main()
 	std::cout << "std:: " << std.empty() << std::endl;
 	std::cout << "ft:: " << ft.max_size() << std::endl;
 	std::cout << "std:: " << std.max_size() << std::endl;
-	std::cout << "\n\n\n\n\n┃━━━━━━━━━━━━━━━━━━━━━━━━━┃ Printing some values ┃━━━━━━━━━━━━━━━━━━━━━━━━┃\n\n\n\n\n" << std::endl;
-	ft::map<int, std::string>::iterator ft_it = ++ft.begin();
-	std::map<int, std::string>::iterator std_it = ++std.begin();
-	ft_it--;
-	std_it--;
-	std::cout << "ft.begin() = " << (*ft_it).first << std::endl;
-	std::cout << "std.begin() = " << (*std_it).first << std::endl;
 	std::cout << "\n\n\n\n\n┃━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━┃" << std::endl;
 }

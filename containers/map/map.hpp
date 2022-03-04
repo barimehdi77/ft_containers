@@ -6,7 +6,7 @@
 /*   By: mbari <mbari@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/24 03:01:34 by mbari             #+#    #+#             */
-/*   Updated: 2022/03/02 15:46:40 by mbari            ###   ########.fr       */
+/*   Updated: 2022/03/04 22:34:30 by mbari            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -81,12 +81,20 @@ namespace ft
 			};
 			iterator insert (iterator position, const value_type& val)
 			{
-				difference_type diff = this->end() - position;
-				iterator		it = end();
-				while (diff != 0)
-				{
-					*(it)
-				}
+				// std::cout << "ssssss " << position->first << std::endl;
+				Node_ptr node = position.base();
+				iterator ret;
+
+				// std::cout << "ssssss " << node->key.first << std::endl;
+				// iterator pre = --tmp;
+				// ++tmp;
+				if (val.first > predecessor(node)->key.first && val.first < successor(node)->key.first)
+					ret = iterator(this->_tree.insertInPossition(node, val));
+				else
+					ret = insert(val).first;
+				std::cout << "res " << ret->first << std::endl;
+
+				return ret;
 			}
 
 
