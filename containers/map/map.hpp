@@ -6,7 +6,7 @@
 /*   By: mbari <mbari@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/24 03:01:34 by mbari             #+#    #+#             */
-/*   Updated: 2022/03/04 23:36:36 by mbari            ###   ########.fr       */
+/*   Updated: 2022/03/04 23:40:49 by mbari            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -108,6 +108,7 @@ namespace ft
 				for (first != last; first++);
 					erase(first);
 			};
+			void clear() { erase(begin(), end()); };
 
 
 		public:
