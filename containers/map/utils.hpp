@@ -6,7 +6,7 @@
 /*   By: mbari <mbari@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/11 19:46:30 by mbari             #+#    #+#             */
-/*   Updated: 2022/03/04 23:30:45 by mbari            ###   ########.fr       */
+/*   Updated: 2022/03/05 14:00:59 by mbari            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,13 +26,14 @@ namespace ft
 		first_type	first;
 		second_type	second;
 
-		pair(): first(), second() {};
+		explicit pair(): first(), second() {};
 		template<class U, class V>
-		pair (const pair<U,V>& pr): first(pr.first), second(pr.second) {};
+		pair (const pair<U,V>& pr): first(pr.first), second(pr.second){};
 		pair (const first_type& a, const second_type& b): first(a), second(b) {};
-		pair (const pair &pr) { *this = pr; };
+		// pair (const pair &pr) { *this = pr; };
 
-		pair& operator= (const pair& pr)
+		template<class U, class V>
+		pair<U,V>& operator= (const pair<U,V>& pr)
 		{
 			if (this != &pr)
 			{

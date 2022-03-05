@@ -6,7 +6,7 @@
 /*   By: mbari <mbari@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/24 03:01:34 by mbari             #+#    #+#             */
-/*   Updated: 2022/03/04 23:40:49 by mbari            ###   ########.fr       */
+/*   Updated: 2022/03/05 16:03:40 by mbari            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -98,14 +98,15 @@ namespace ft
 			void erase (iterator position) { this->_tree.remove(*position); };
 			size_type erase (const key_type& k)
 			{
-				size_type size = size();
+				size_type s = size();
+				std::cout << "k ===> " << k << std::endl;
 				Node_ptr node = this->_tree.search(k);
-				this->_tree.remove(node);
-				return (size - size());
+				// this->_tree.remove(node);
+				return (s - size());
 			};
 			void erase (iterator first, iterator last)
 			{
-				for (first != last; first++);
+				for (first != last; first++;)
 					erase(first);
 			};
 			void clear() { erase(begin(), end()); };

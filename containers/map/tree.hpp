@@ -6,7 +6,7 @@
 /*   By: mbari <mbari@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/27 14:35:25 by mbari             #+#    #+#             */
-/*   Updated: 2022/03/04 23:29:28 by mbari            ###   ########.fr       */
+/*   Updated: 2022/03/05 15:08:25 by mbari            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -154,7 +154,7 @@ namespace ft
 				Node_ptr p = x->parent;
 				y->left = x;
 				x->right = T2;
-				if (p)
+				if (p != this->_end)
 				{
 					if (p->left == x)
 						p->left = y;
@@ -170,27 +170,27 @@ namespace ft
 				return y;
 			};
 
-			Node_ptr _rightRotate(Node_ptr y)
+			Node_ptr _rightRotate(Node_ptr parent)
 			{
-				Node_ptr x = y->left;
-				Node_ptr T2 = x->right;
-				Node_ptr p = y->parent;
-				x->right = y;
-				y->left = T2;
-				if (p)
+				Node_ptr child = parent->left;
+				Node_ptr T2 = child->right;
+				Node_ptr p = parent->parent;
+				child->right = parent;
+				parent->left = T2;
+				if (p != this->_end)
 				{
-					if (p->right == y)
-						p->right = x;
+					if (p->right == parent)
+						p->right = child;
 					else
-						p->left = x;
+						p->left = child;
 				}
-				x->parent = y->parent;
-				y->parent = x;
+				child->parent = parent->parent;
+				parent->parent = child;
 				if (T2 != nullptr)
-					T2->parent = y;
-				y->height = std::max(_Height(y->left), _Height(y->right)) + 1;
-				x->height = std::max(_Height(x->left), _Height(x->right)) + 1;
-				return x;
+					T2->parent = parent;
+				parent->height = std::max(_Height(parent->left), _Height(parent->right)) + 1;
+				child->height = std::max(_Height(child->left), _Height(child->right)) + 1;
+				return child;
 			};
 
 			Node_ptr _RightLeftRotate(Node_ptr node)
@@ -251,7 +251,7 @@ namespace ft
 
 			Node_ptr	_remove(Node_ptr root, T key)
 			{
-				if (root == nullptr || root == this->_end) return (nullptr);
+				if (root == nullptr) return (nullptr);
 				else if (this->_comp(key.first, root->key.first))
 					root->left = _remove(root->left, key);
 				else if (this->_comp(key.first, root->key.first))
@@ -275,18 +275,19 @@ namespace ft
 					else
 					{
 						Node_ptr MaxValue = _TreeMax(root->left);
-						root->key = T(MaxValue->key);
+						// root->key = MaxValue->key;
+						this->_alloc.construct(root, MaxValue->key);
 						root->left = _remove(root->left, MaxValue->key);
 					}
 				}
 				_ReSetHeight(root);
-				_reBalance(root);
+				root = _reBalance(root);
 				return (root);
 			};
 
 			Node_ptr _search(Node_ptr temp, T key)
 			{
-				if (temp == nullptr || temp == this->_end)
+				if (temp == nullptr)
 					return (nullptr);
 
 				if (temp->key.first == key.first)
@@ -315,7 +316,7 @@ namespace ft
 
 			void		_ReSetHeight(Node_ptr temp)
 			{
-				if (!temp->left && !temp->right && temp->right == this->_end)
+				if (!temp->left && !temp->right)
 					temp->height = 1;
 				else if (temp->left == nullptr)
 					temp->height = 1 + temp->right->height;
@@ -329,7 +330,7 @@ namespace ft
 		public:
 			Node_ptr	insert(T key)
 			{
-				Node_type * newnode = this->_alloc.allocate(1);
+				Node_ptr newnode = this->_alloc.allocate(1);
 				this->_alloc.construct(newnode, key);
 				if (this->_root == this->_end)
 				{
@@ -369,7 +370,7 @@ namespace ft
 
 			void	remove(T key)
 			{
-				this->_root = _remove(this->_root, key);
+				this->_root =  _remove(this->_root, key);
 			};
 
 			Node_ptr	Min()
