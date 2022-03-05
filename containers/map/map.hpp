@@ -6,7 +6,7 @@
 /*   By: mbari <mbari@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/24 03:01:34 by mbari             #+#    #+#             */
-/*   Updated: 2022/03/05 20:03:47 by mbari            ###   ########.fr       */
+/*   Updated: 2022/03/05 20:25:21 by mbari            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -91,22 +91,36 @@ namespace ft
 			template <class InputIterator>
 			void insert (InputIterator first, InputIterator last)
 			{
-				for (const_iterator it = end(); first != last; first++)
-					insert(*first);
+				// for (const_iterator it = end(); first != last; first++)
+				// 	insert(it, *first);
+				while (first != last)
+				{
+					this->_tree.insert(*first);
+					first++;
+				};
 			};
 
 			void erase (iterator position) { this->_tree.remove(*position); };
 			size_type erase (const key_type& k)
 			{
 				size_type s = size();
-				// Node_ptr node = this->_tree.search(k);
 				this->_tree.remove(*find(k));
 				return (s - size());
 			};
 			void erase (iterator first, iterator last)
 			{
-				for (first != last; first++;)
-					erase(first);
+				iterator position;
+				while(first != last)
+				{
+					// std::c÷out << "\n\n\n\n\n┃━━━━━━━━━━━━━━━━━━━━━━━━━┃ Printing The aftr erase ┃━━━━━━━━━━━━━━━━━━━━━━━━┃\n\n\n\n\n" << std::endl;
+					position = first;
+					first++;
+					std::cout << "\n\n\n\n\n┃━━━━━━━━━━━━━━━━━━━━━━━━━┃ Printing The befor erase ┃━━━━━━━━━━━━━━━━━━━━━━━━┃\n\n\n\n\n" << std::endl;
+					print();
+					std::cout << "\n\n\n\n\n┃━━━━━━━━━━━━━━━━━━━━━━━━━┃ Printing The after erase ┃━━━━━━━━━━━━━━━━━━━━━━━━┃\n\n\n\n\n" << std::endl;
+					erase(position);
+					print();
+				}
 			};
 			void clear() { erase(begin(), end()); };
 
