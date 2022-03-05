@@ -1001,8 +1001,12 @@ int main()
 	std::cout << "\n\n\n\n\n┃━━━━━━━━━━━━━━━━━━━━━━━━━┃ Printing The Tree ┃━━━━━━━━━━━━━━━━━━━━━━━━┃\n\n\n\n\n" << std::endl;
 	ft.print();
 	std::cout << "\n\n\n\n\n┃━━━━━━━━━━━━━━━━━━━━━━━━━┃ removing some values ┃━━━━━━━━━━━━━━━━━━━━━━━━┃\n\n\n\n\n" << std::endl;
+	std::cout << "ft.begin() : " << ft.begin()->first << std::endl;
+	std::cout << "std.begin() : " << std.begin()->first << std::endl;
 	ft.erase(3);
 	std.erase(3);
+	std::cout << "ft.begin() : " << ft.begin()->first << std::endl;
+	std::cout << "std.begin() : " << std.begin()->first << std::endl;
 	std::cout << "\n\n\n\n\n┃━━━━━━━━━━━━━━━━━━━━━━━━━┃ Printing The Tree ┃━━━━━━━━━━━━━━━━━━━━━━━━┃\n\n\n\n\n" << std::endl;
 	ft.print();
 	std::cout << "\n\n\n\n\n┃━━━━━━━━━━━━━━━━━━━━━━━━━┃ Printing The Map Info ┃━━━━━━━━━━━━━━━━━━━━━━━━┃\n\n\n\n\n" << std::endl;

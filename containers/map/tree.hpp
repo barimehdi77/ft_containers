@@ -6,7 +6,7 @@
 /*   By: mbari <mbari@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/27 14:35:25 by mbari             #+#    #+#             */
-/*   Updated: 2022/03/05 15:08:25 by mbari            ###   ########.fr       */
+/*   Updated: 2022/03/05 19:41:21 by mbari            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -74,6 +74,8 @@ namespace ft
 			typedef typename allocator_type::pointer							pointer;
 			typedef typename allocator_type::const_pointer						const_pointer;
 			typedef typename allocator_type::size_type							size_type;
+			typedef typename value_type::first_type								key_type;
+			typedef typename value_type::second_type							mapped_type;
 			typedef ft::TreeIter<pointer, Node_ptr>								iterator;
 			typedef ft::TreeIter<const_pointer, Node_ptr>						const_iterator;
 			// typedef ft::reverse_iterator<pointer>								reverse_iterator;
@@ -285,16 +287,16 @@ namespace ft
 				return (root);
 			};
 
-			Node_ptr _search(Node_ptr temp, T key)
+			Node_ptr _search(Node_ptr temp, key_type key)
 			{
 				if (temp == nullptr)
 					return (nullptr);
 
-				if (temp->key.first == key.first)
+				if (temp->key.first == key)
 					return (temp);
-				else if (this->_comp(key.first, temp->key.first))
+				else if (this->_comp(key, temp->key.first))
 					return (_search(temp->left, key));
-				else if (!this->_comp(key.first, temp->key.first))
+				else if (!this->_comp(key, temp->key.first))
 					return (_search(temp->right, key));
 
 				return (nullptr);
@@ -391,7 +393,7 @@ namespace ft
 				return (tmp);
 			};
 
-			Node_ptr search(T key)
+			Node_ptr search(key_type key)
 			{
 				if (this->_root == this->_end)
 					return (nullptr);

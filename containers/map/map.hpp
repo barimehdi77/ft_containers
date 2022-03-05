@@ -6,7 +6,7 @@
 /*   By: mbari <mbari@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/24 03:01:34 by mbari             #+#    #+#             */
-/*   Updated: 2022/03/05 16:03:40 by mbari            ###   ########.fr       */
+/*   Updated: 2022/03/05 19:47:00 by mbari            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -72,7 +72,7 @@ namespace ft
 		public: /*             Modifiers                         */
 			ft::pair<iterator,bool> insert (const value_type& val)
 			{
-				Node_ptr node = this->_tree.search(val);
+				Node_ptr node = this->_tree.search(val.first);
 				if (node != nullptr)
 					return (ft::pair<iterator,bool>(iterator(node), false));
 
@@ -99,9 +99,8 @@ namespace ft
 			size_type erase (const key_type& k)
 			{
 				size_type s = size();
-				std::cout << "k ===> " << k << std::endl;
 				Node_ptr node = this->_tree.search(k);
-				// this->_tree.remove(node);
+				this->_tree.remove(node->key);
 				return (s - size());
 			};
 			void erase (iterator first, iterator last)
@@ -111,6 +110,8 @@ namespace ft
 			};
 			void clear() { erase(begin(), end()); };
 
+		public: /*             Operations                         */
+			iterator find (const key_type& k)
 
 		public:
 			void print() { this->_tree.print(); };
