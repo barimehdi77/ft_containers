@@ -6,7 +6,7 @@
 /*   By: mbari <mbari@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/27 14:35:25 by mbari             #+#    #+#             */
-/*   Updated: 2022/03/05 19:41:21 by mbari            ###   ########.fr       */
+/*   Updated: 2022/03/05 20:03:08 by mbari            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -290,7 +290,7 @@ namespace ft
 			Node_ptr _search(Node_ptr temp, key_type key)
 			{
 				if (temp == nullptr)
-					return (nullptr);
+					return (this->_end);
 
 				if (temp->key.first == key)
 					return (temp);
@@ -299,7 +299,7 @@ namespace ft
 				else if (!this->_comp(key, temp->key.first))
 					return (_search(temp->right, key));
 
-				return (nullptr);
+				return (this->_end);
 			};
 
 			// Node_ptr _Min(Node_ptr temp)
@@ -396,7 +396,7 @@ namespace ft
 			Node_ptr search(key_type key)
 			{
 				if (this->_root == this->_end)
-					return (nullptr);
+					return (this->_end);
 				else
 					return (_search(this->_root, key));
 			};
