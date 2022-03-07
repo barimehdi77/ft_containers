@@ -6,7 +6,7 @@
 /*   By: mbari <mbari@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/27 14:35:25 by mbari             #+#    #+#             */
-/*   Updated: 2022/03/05 20:03:08 by mbari            ###   ########.fr       */
+/*   Updated: 2022/03/07 19:26:29 by mbari            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -276,9 +276,15 @@ namespace ft
 					}
 					else
 					{
+						// Node_ptr parent = root->parent;
+						// Node_ptr right = root->right;
+						// Node_ptr left = root->left;
 						Node_ptr MaxValue = _TreeMax(root->left);
 						// root->key = MaxValue->key;
 						this->_alloc.construct(root, MaxValue->key);
+						// root->height = temp->height;
+						// root->right = right;
+						// root->parent = parent;
 						root->left = _remove(root->left, MaxValue->key);
 					}
 				}
