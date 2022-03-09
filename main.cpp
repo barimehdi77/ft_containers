@@ -976,8 +976,8 @@ int main()
 	std.insert(std_ValueType(51, "77"));
 	std.insert(std_ValueType(77, "88"));
 	std.insert(std_ValueType(12, "77"));
-	// std.insert(std_ValueType(7, "77"));
-	// std.insert(std_ValueType(3, "77"));
+	std.insert(std_ValueType(7, "77"));
+	std.insert(std_ValueType(3, "77"));
 	// std.insert(std_ValueType(15, "77"));
 	// std.insert(std_ValueType(44, "77"));
 	// std.insert(std_ValueType(99, "77"));
@@ -1003,8 +1003,8 @@ int main()
 	std::cout << "\n\n\n\n\n┃━━━━━━━━━━━━━━━━━━━━━━━━━┃ removing some values ┃━━━━━━━━━━━━━━━━━━━━━━━━┃\n\n\n\n\n" << std::endl;
 	std::cout << "ft.begin() : " << ft.begin()->first << std::endl;
 	std::cout << "std.begin() : " << std.begin()->first << std::endl;
-	ft.erase(ft.find(7));
-	std.erase(std.find(7));
+	ft.erase(ft.find(51));
+	std.erase(std.find(51));
 	std::cout << "ft.begin() : " << ft.begin()->first << std::endl;
 	std::cout << "std.begin() : " << std.begin()->first << std::endl;
 	std::cout << "\n\n\n\n\n┃━━━━━━━━━━━━━━━━━━━━━━━━━┃ Printing The Tree ┃━━━━━━━━━━━━━━━━━━━━━━━━┃\n\n\n\n\n" << std::endl;

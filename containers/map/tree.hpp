@@ -6,7 +6,7 @@
 /*   By: mbari <mbari@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/27 14:35:25 by mbari             #+#    #+#             */
-/*   Updated: 2022/03/07 19:26:29 by mbari            ###   ########.fr       */
+/*   Updated: 2022/03/09 13:33:13 by mbari            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,7 +30,7 @@ namespace ft
 			int		height;
 
 		public:
-			Node(T key): key(key), left(nullptr), right(nullptr), parent(nullptr) , height(1) {};
+			Node(T key): key(key)/*, left(nullptr), right(nullptr), parent(nullptr) , height(1)*/ {};
 	};
 
 	template <class T, class Compare, class Allocator>
@@ -126,6 +126,16 @@ namespace ft
 			size_type	max_size()	const	{ return (std::min<size_type>(std::numeric_limits<size_type>::max() / sizeof(Node_type), std::numeric_limits<difference_type>::max())); };
 
 		private:
+			Node_ptr _makeNode(value_type key)
+			{
+				Node_ptr newnode = this->_alloc.allocate(1);
+				this->_alloc.construct(newnode, key);
+				newnode->height = 1;
+				newnode->parent = nullptr;
+				newnode->left = nullptr;
+				newnode->right = nullptr;
+				return (newnode);
+			};
 			void	_inOrder(Node_ptr node)
 			{
 				if (node != nullptr && node != this->_end)
@@ -336,10 +346,11 @@ namespace ft
 
 
 		public:
-			Node_ptr	insert(T key)
+			Node_ptr	insert(value_type key)
 			{
-				Node_ptr newnode = this->_alloc.allocate(1);
-				this->_alloc.construct(newnode, key);
+				// Node_ptr newnode = this->_alloc.allocate(1);
+				// this->_alloc.construct(newnode, key);
+				Node_ptr newnode = _makeNode(key);
 				if (this->_root == this->_end)
 				{
 					this->_root = newnode;
@@ -434,9 +445,9 @@ namespace ft
 			// 	return (temp);
 			// };
 
-			T	get_Key() const { return (this->_root->key); };
+			value_type	get_Key() const { return (this->_root->key); };
 			int	getSize() const { return (this->_size); };
-			T	get_height() const { return (this->_root->height); };
+			value_type	get_height() const { return (this->_root->height); };
 
 			private: /*             Private Functions for printing The tree                         */
 
