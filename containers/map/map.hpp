@@ -6,7 +6,7 @@
 /*   By: mbari <mbari@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/24 03:01:34 by mbari             #+#    #+#             */
-/*   Updated: 2022/03/11 17:54:28 by mbari            ###   ########.fr       */
+/*   Updated: 2022/03/11 17:58:35 by mbari            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -68,6 +68,8 @@ namespace ft
 			size_type	size() const { return (this->_tree.size()); };
 			size_type	max_size()	const	{ return (this->_tree.max_size()); };
 
+		public: /*             Capacity                         */
+			mapped_type& operator[] (const key_type& k) { return (find(k)->second); };
 
 		public: /*             Modifiers                         */
 			ft::pair<iterator,bool> insert (const value_type& val)
@@ -121,9 +123,9 @@ namespace ft
 			void clear() { this->_tree.distroy(); };
 			void swap (map& x) { this->_tree.swap(x._tree); };
 
-		public: /*             Operations                         */
-			key_compare		key_comp() const	{ return (_comp); };
-			value_compare	value_comp() const	{ return (value_comp(_comp)); };
+		public: /*             Observers                         */
+			// key_comp	key_comp() const	{ return (_comp); };
+			// value_comp	value_comp() const	{ return (value_comp(_comp)); };
 
 		public: /*             Operations                         */
 			iterator		find (const key_type& k)		{ return (iterator(this->_tree.search(k))); };
@@ -134,7 +136,7 @@ namespace ft
 			// iterator		upper_bound (const key_type& k) { return (iterator(this->upper_bound(k))); };
 			// const_iterator	upper_bound (const key_type& k) const { return (const_iterator(this->upper_bound(k))); };
 
-		public: /*             Operations                         */
+		public: /*             Allocator                         */
 			allocator_type get_allocator() const { return (this->_tree._alloc()); };
 
 		public:
