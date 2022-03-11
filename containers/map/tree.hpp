@@ -6,7 +6,7 @@
 /*   By: mbari <mbari@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/27 14:35:25 by mbari             #+#    #+#             */
-/*   Updated: 2022/03/11 16:59:57 by mbari            ###   ########.fr       */
+/*   Updated: 2022/03/11 17:37:42 by mbari            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -407,7 +407,59 @@ namespace ft
 				this->_end->left = nullptr;
 			};
 
-			Node_ptr	Min()
+			void	swap(Tree &x)
+			{
+				size_type tmp_size = x._size;
+				allocator_type tmp_alloc = x._alloc;
+				Node_ptr tmp_root = x._root;
+				Node_ptr tmp_end = x._end;
+
+				x.size = this->_size;
+				_size = tmp_size;
+
+				x._alloc = this->_alloc;
+				this->_alloc = tmp_alloc;
+
+				x._end = this->_end;
+				this->_end = tmp_end;
+
+				x.root = this->_root;
+				this->_root = tmp_root;
+			};
+
+			// Node_ptr lower_bound(value_type val) const
+			// {
+			// 	Node_ptr node = this->Min();
+
+			// 	while (!this->_comp(val, node->key))
+			// 	{
+			// 		if (val.first == node->key.first)
+			// 			break;
+			// 		node = successor(node);
+			// 		if (node == NULL)
+			// 		{
+			// 			return (this->_end);
+			// 		}
+			// 	}
+			// 	return (node);
+			// };
+
+			// Node_ptr upper_bound(value_type val) const
+			// {
+			// 	Node_ptr node = this->Min();
+
+			// 	while (!this->_comp(val, node->data))
+			// 	{
+			// 		node = successor(node);
+			// 		if (node == NULL)
+			// 		{
+			// 			return (this->_end);
+			// 		}
+			// 	}
+			// 	return (node);
+			// };
+
+			Node_ptr	Min() const
 			{
 				Node_type * tmp = this->_root;
 
@@ -416,7 +468,7 @@ namespace ft
 				return (tmp);
 			};
 
-			Node_ptr Max()
+			Node_ptr Max() const
 			{
 				Node_ptr tmp = this->_root;
 
