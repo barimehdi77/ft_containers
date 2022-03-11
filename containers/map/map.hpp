@@ -6,7 +6,7 @@
 /*   By: mbari <mbari@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/24 03:01:34 by mbari             #+#    #+#             */
-/*   Updated: 2022/03/11 15:49:16 by mbari            ###   ########.fr       */
+/*   Updated: 2022/03/11 16:40:34 by mbari            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -106,6 +106,7 @@ namespace ft
 				size_type s = size();
 				this->_tree.remove(*find(k));
 				return (s - size());
+				// _tree.erase();
 			};
 			void erase (iterator first, iterator last)
 			{
@@ -117,7 +118,7 @@ namespace ft
 					erase(position);
 				}
 			};
-			void clear() { erase(begin(), end()); };
+			void clear() { this->_tree.distroy(); };
 
 		public: /*             Operations                         */
 			iterator		find (const key_type& k)		{ return (iterator(this->_tree.search(k))); }

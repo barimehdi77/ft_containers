@@ -6,7 +6,7 @@
 /*   By: mbari <mbari@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/27 14:35:25 by mbari             #+#    #+#             */
-/*   Updated: 2022/03/11 16:20:53 by mbari            ###   ########.fr       */
+/*   Updated: 2022/03/11 16:43:05 by mbari            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -390,15 +390,28 @@ namespace ft
 			void	remove(T key)
 			{
 				this->_root =  _remove(this->_root, key);
-				std::cout << "\n\n\n\n\n┃━━━━━━━━━━━━━━━━━━━━━━━━━┃ Printing The Tree ┃━━━━━━━━━━━━━━━━━━━━━━━━┃\n\n\n\n\n" << std::endl;
-				print();
+			};
+
+			void	distroy()
+			{
+				iterator first = begin();
+				iterator last = end();
+				iterator position;
+				while (first != last)
+				{
+					position = first;
+					first++;
+					remove(*position);
+				}
+				this->_root = this->_end;
+				this->_end->left = nullptr;
 			};
 
 			Node_ptr	Min()
 			{
 				Node_type * tmp = this->_root;
 
-				while (tmp->left)
+				while (tmp != this->_end && tmp->left)
 					tmp = tmp->left;
 				return (tmp);
 			};
