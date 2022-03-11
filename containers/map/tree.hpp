@@ -6,7 +6,7 @@
 /*   By: mbari <mbari@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/27 14:35:25 by mbari             #+#    #+#             */
-/*   Updated: 2022/03/09 13:33:13 by mbari            ###   ########.fr       */
+/*   Updated: 2022/03/11 16:20:53 by mbari            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -266,7 +266,7 @@ namespace ft
 				if (root == nullptr) return (nullptr);
 				else if (this->_comp(key.first, root->key.first))
 					root->left = _remove(root->left, key);
-				else if (this->_comp(key.first, root->key.first))
+				else if (this->_comp(root->key.first, key.first))
 					root->right = _remove(root->right, key);
 				else
 				{
@@ -312,7 +312,7 @@ namespace ft
 					return (temp);
 				else if (this->_comp(key, temp->key.first))
 					return (_search(temp->left, key));
-				else if (!this->_comp(key, temp->key.first))
+				else if (this->_comp(temp->key.first, key))
 					return (_search(temp->right, key));
 
 				return (this->_end);
@@ -390,6 +390,8 @@ namespace ft
 			void	remove(T key)
 			{
 				this->_root =  _remove(this->_root, key);
+				std::cout << "\n\n\n\n\n┃━━━━━━━━━━━━━━━━━━━━━━━━━┃ Printing The Tree ┃━━━━━━━━━━━━━━━━━━━━━━━━┃\n\n\n\n\n" << std::endl;
+				print();
 			};
 
 			Node_ptr	Min()
