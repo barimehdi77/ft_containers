@@ -6,7 +6,7 @@
 /*   By: mbari <mbari@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/27 14:35:25 by mbari             #+#    #+#             */
-/*   Updated: 2022/03/11 16:43:05 by mbari            ###   ########.fr       */
+/*   Updated: 2022/03/11 16:59:57 by mbari            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -303,7 +303,7 @@ namespace ft
 				return (root);
 			};
 
-			Node_ptr _search(Node_ptr temp, key_type key)
+			Node_ptr _search(Node_ptr temp, key_type key) const
 			{
 				if (temp == nullptr)
 					return (this->_end);
@@ -425,7 +425,7 @@ namespace ft
 				return (tmp);
 			};
 
-			Node_ptr search(key_type key)
+			Node_ptr search(key_type key) const
 			{
 				if (this->_root == this->_end)
 					return (this->_end);

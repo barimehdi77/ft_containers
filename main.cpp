@@ -942,6 +942,83 @@ int main()
 // }
 
 
+// int main()
+// {
+// 	typedef	ft::pair<int, std::string>	ft_ValueType;
+// 	typedef	std::pair<int, std::string>	std_ValueType;
+// 	ft::map<int, std::string> ft;
+// 	std::map<int, std::string> std;
+// 	/********inserting values to ft::map*******/
+// 	ft.insert(ft_ValueType(51, "77"));
+// 	ft.insert(ft_ValueType(77, "88"));
+// 	ft.insert(ft_ValueType(12, "77"));
+// 	ft.insert(ft_ValueType(7, "77"));
+// 	ft.insert(ft_ValueType(3, "77"));
+// 	ft.insert(ft_ValueType(15, "77"));
+// 	ft.insert(ft_ValueType(44, "77"));
+// 	ft.insert(ft_ValueType(99, "77"));
+// 	ft.insert(ft_ValueType(78, "77"));
+// 	ft.insert(ft_ValueType(55, "77"));
+// 	ft.insert(ft_ValueType(69, "77"));
+// 	ft.insert(ft_ValueType(45, "77"));
+// 	ft.insert(ft_ValueType(57, "77"));
+// 	ft.insert(ft_ValueType(10, "77"));
+// 	ft.insert(ft_ValueType(71, "77"));
+// 	ft.insert(ft_ValueType(96, "77"));
+// 	ft.insert(ft_ValueType(24, "77"));
+// 	ft.insert(ft_ValueType(11, "77"));
+// 	ft.insert(ft_ValueType(17, "77"));
+// 	ft.insert(ft_ValueType(19, "77"));
+// 	ft.insert(ft_ValueType(16, "77"));
+// 	ft.insert(ft_ValueType(35, "77"));
+// 	ft.insert(ft_ValueType(75, "77"));
+// 	/********inserting values to std::map*******/
+// 	std.insert(std_ValueType(51, "77"));
+// 	std.insert(std_ValueType(77, "88"));
+// 	std.insert(std_ValueType(12, "77"));
+// 	std.insert(std_ValueType(7, "77"));
+// 	std.insert(std_ValueType(3, "77"));
+// 	std.insert(std_ValueType(15, "77"));
+// 	std.insert(std_ValueType(44, "77"));
+// 	std.insert(std_ValueType(99, "77"));
+// 	std.insert(std_ValueType(78, "77"));
+// 	std.insert(std_ValueType(55, "77"));
+// 	std.insert(std_ValueType(69, "77"));
+// 	std.insert(std_ValueType(45, "77"));
+// 	std.insert(std_ValueType(57, "77"));
+// 	std.insert(std_ValueType(10, "77"));
+// 	std.insert(std_ValueType(71, "77"));
+// 	std.insert(std_ValueType(96, "77"));
+// 	std.insert(std_ValueType(24, "77"));
+// 	std.insert(std_ValueType(11, "77"));
+// 	std.insert(std_ValueType(17, "77"));
+// 	std.insert(std_ValueType(19, "77"));
+// 	std.insert(std_ValueType(16, "77"));
+// 	std.insert(std_ValueType(35, "77"));
+// 	std.insert(std_ValueType(75, "77"));
+
+
+// 	std::cout << "\n\n\n\n\n┃━━━━━━━━━━━━━━━━━━━━━━━━━┃ Printing The Tree ┃━━━━━━━━━━━━━━━━━━━━━━━━┃\n\n\n\n\n" << std::endl;
+// 	ft.print();
+// 	std::cout << "\n\n\n\n\n┃━━━━━━━━━━━━━━━━━━━━━━━━━┃ removing some values ┃━━━━━━━━━━━━━━━━━━━━━━━━┃\n\n\n\n\n" << std::endl;
+// 	std::cout << "ft.begin() : " << ft.begin()->first << std::endl;
+// 	std::cout << "std.begin() : " << std.begin()->first << std::endl;
+// 	ft.count(7);
+// 	std.count(7);
+// 	std::cout << "ft.begin() : " << ft.begin()->first << std::endl;
+// 	std::cout << "std.begin() : " << std.begin()->first << std::endl;
+// 	std::cout << "\n\n\n\n\n┃━━━━━━━━━━━━━━━━━━━━━━━━━┃ Printing The Tree ┃━━━━━━━━━━━━━━━━━━━━━━━━┃\n\n\n\n\n" << std::endl;
+// 	ft.print();
+// 	std::cout << "\n\n\n\n\n┃━━━━━━━━━━━━━━━━━━━━━━━━━┃ Printing The Map Info ┃━━━━━━━━━━━━━━━━━━━━━━━━┃\n\n\n\n\n" << std::endl;
+// 	std::cout << "ft::\t" << ft.size() << std::endl;
+// 	std::cout << "std::\t" << std.size() << std::endl;
+// 	std::cout << "ft::\t" << ft.empty() << std::endl;
+// 	std::cout << "std::\t" << std.empty() << std::endl;
+// 	std::cout << "ft::\t" << ft.max_size() << std::endl;
+// 	std::cout << "std::\t" << std.max_size() << std::endl;
+// 	std::cout << "\n\n\n\n\n┃━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━┃" << std::endl;
+// }
+
 int main()
 {
 	typedef	ft::pair<int, std::string>	ft_ValueType;
@@ -1000,13 +1077,9 @@ int main()
 
 	std::cout << "\n\n\n\n\n┃━━━━━━━━━━━━━━━━━━━━━━━━━┃ Printing The Tree ┃━━━━━━━━━━━━━━━━━━━━━━━━┃\n\n\n\n\n" << std::endl;
 	ft.print();
-	std::cout << "\n\n\n\n\n┃━━━━━━━━━━━━━━━━━━━━━━━━━┃ removing some values ┃━━━━━━━━━━━━━━━━━━━━━━━━┃\n\n\n\n\n" << std::endl;
-	std::cout << "ft.begin() : " << ft.begin()->first << std::endl;
-	std::cout << "std.begin() : " << std.begin()->first << std::endl;
-	ft.clear();
-	std.clear();
-	std::cout << "ft.begin() : " << ft.begin()->first << std::endl;
-	std::cout << "std.begin() : " << std.begin()->first << std::endl;
+	std::cout << "\n\n\n\n\n┃━━━━━━━━━━━━━━━━━━━━━━━━━┃ count some values ┃━━━━━━━━━━━━━━━━━━━━━━━━┃\n\n\n\n\n" << std::endl;
+	std::cout << "ft.begin() : " << ft.count(100) << std::endl;
+	std::cout << "std.begin() : " << std.count(100) << std::endl;
 	std::cout << "\n\n\n\n\n┃━━━━━━━━━━━━━━━━━━━━━━━━━┃ Printing The Tree ┃━━━━━━━━━━━━━━━━━━━━━━━━┃\n\n\n\n\n" << std::endl;
 	ft.print();
 	std::cout << "\n\n\n\n\n┃━━━━━━━━━━━━━━━━━━━━━━━━━┃ Printing The Map Info ┃━━━━━━━━━━━━━━━━━━━━━━━━┃\n\n\n\n\n" << std::endl;
