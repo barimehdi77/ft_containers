@@ -6,7 +6,7 @@
 /*   By: mbari <mbari@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/24 03:01:34 by mbari             #+#    #+#             */
-/*   Updated: 2022/03/13 11:44:58 by mbari            ###   ########.fr       */
+/*   Updated: 2022/03/13 11:48:55 by mbari            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -92,7 +92,7 @@ namespace ft
 			{
 				if (this != &x)
 					insert(x.begin(), x.end());
-				return (this);
+				return (*this);
 			};
 
 		public: /*             Iterators                         */
