@@ -6,7 +6,7 @@
 /*   By: mbari <mbari@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/24 03:01:34 by mbari             #+#    #+#             */
-/*   Updated: 2022/03/13 12:13:15 by mbari            ###   ########.fr       */
+/*   Updated: 2022/03/13 12:16:32 by mbari            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -87,7 +87,7 @@ namespace ft
 		public: /*             destructors                         */
 			~map() { clear(); };
 
-		public: /*             destructors                         */
+		public: /*             operator=                         */
 			map& operator= (const map& x)
 			{
 				if (this != &x)
@@ -110,7 +110,7 @@ namespace ft
 			size_type	size() const { return (this->_tree.size()); };
 			size_type	max_size()	const	{ return (this->_tree.max_size()); };
 
-		public: /*             Capacity                         */
+		public: /*             Element access                         */
 			mapped_type& operator[] (const key_type& k) { return (find(k)->second); };
 
 		public: /*             Modifiers                         */
@@ -161,8 +161,8 @@ namespace ft
 					erase(position);
 				}
 			};
-			void					clear() { this->_tree.distroy(); };
 			void					swap (map& x) { this->_tree.swap(x._tree); };
+			void					clear() { this->_tree.distroy(); };
 
 		public: /*             Observers                         */
 			key_compare		key_comp()	const	{ return (this->_comp); };
