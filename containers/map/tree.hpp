@@ -6,7 +6,7 @@
 /*   By: mbari <mbari@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/27 14:35:25 by mbari             #+#    #+#             */
-/*   Updated: 2022/03/13 10:23:07 by mbari            ###   ########.fr       */
+/*   Updated: 2022/03/13 10:40:51 by mbari            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,7 +43,7 @@ namespace ft
 			/*                                                         */
 			/***********************************************************/
 			typedef T															value_type;
-			typedef Compare														value_compare;
+			typedef Compare														key_compare;
 			typedef Allocator													allocator_type;
 
 		private:
@@ -89,7 +89,7 @@ namespace ft
 			/*                                                         */
 			/***********************************************************/
 			allocator_node								_alloc;
-			value_compare								_comp;
+			key_compare									_comp;
 			Node_ptr									_root;
 			Node_ptr									_end;
 			int											_size;
@@ -100,7 +100,7 @@ namespace ft
 			/*             Tree constructor and distructor             */
 			/*                                                         */
 			/***********************************************************/
-			Tree(const value_compare &compare = value_compare(), const allocator_type& alloc = allocator_type()): _size(0)
+			Tree(const key_compare &compare = key_compare(), const allocator_type& alloc = allocator_type()): _size(0)
 			{
 				this->_alloc = alloc;
 				this->_comp = compare;
