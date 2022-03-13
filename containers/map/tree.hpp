@@ -6,7 +6,7 @@
 /*   By: mbari <mbari@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/27 14:35:25 by mbari             #+#    #+#             */
-/*   Updated: 2022/03/13 08:57:25 by mbari            ###   ########.fr       */
+/*   Updated: 2022/03/13 10:23:07 by mbari            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -436,7 +436,7 @@ namespace ft
 					if (val == node->key.first)
 						break;
 					node = successor(node);
-					if (node == NULL)
+					if (node == nullptr || node == this->_end)
 					{
 						return (this->_end);
 					}
@@ -451,7 +451,7 @@ namespace ft
 				while (!this->_comp(val, node->key.first))
 				{
 					node = successor(node);
-					if (node == NULL)
+					if (node == nullptr || node == this->_end)
 					{
 						return (this->_end);
 					}
