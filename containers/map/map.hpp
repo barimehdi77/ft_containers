@@ -6,7 +6,7 @@
 /*   By: mbari <mbari@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/24 03:01:34 by mbari             #+#    #+#             */
-/*   Updated: 2022/03/13 12:06:22 by mbari            ###   ########.fr       */
+/*   Updated: 2022/03/13 12:13:15 by mbari            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -96,10 +96,14 @@ namespace ft
 			};
 
 		public: /*             Iterators                         */
-			iterator		begin()				{ return (this->_tree.begin()); };
-			const_iterator	begin()	const		{ return (this->_tree.begin()); };
-			iterator		end()				{ return (this->_tree.end()); };
-			const_iterator	end()	const		{ return (this->_tree.end()); };
+			iterator		begin()					{ return (this->_tree.begin()); };
+			const_iterator	begin()			const	{ return (this->_tree.begin()); };
+			iterator		end()					{ return (this->_tree.end()); };
+			const_iterator	end()			const	{ return (this->_tree.end()); };
+			reverse_iterator rbegin()				{ return (this->_tree.rbegin()); };
+			const_reverse_iterator rbegin()	const	{ return (this->_tree.rbegin()); };
+			reverse_iterator rend()					{ return (this->_tree.rend()); };
+			const_reverse_iterator rend()	const	{ return (this->_tree.rend()); };
 
 		public: /*             Capacity                         */
 			bool		empty() const { return (this->_tree.empty()); };

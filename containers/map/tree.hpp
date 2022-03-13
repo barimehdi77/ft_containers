@@ -6,7 +6,7 @@
 /*   By: mbari <mbari@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/27 14:35:25 by mbari             #+#    #+#             */
-/*   Updated: 2022/03/13 12:06:41 by mbari            ###   ########.fr       */
+/*   Updated: 2022/03/13 12:11:42 by mbari            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -110,10 +110,14 @@ namespace ft
 			~Tree() {};
 
 		public: /*             Iterators                         */
-			iterator		begin()				{ return (iterator(this->Min())); };
-			const_iterator	begin() const		{ return (const_iterator(this->Min())); };
-			iterator		end()				{ return (iterator(this->_end)); };
-			const_iterator	end() const			{ return (const_iterator(this->_end)); };
+			iterator		begin()					{ return (iterator(this->Min())); };
+			const_iterator	begin() const			{ return (const_iterator(this->Min())); };
+			iterator		end()					{ return (iterator(this->_end)); };
+			const_iterator	end() const				{ return (const_iterator(this->_end)); };
+			reverse_iterator rbegin()				{ return (reverse_iterator(this->end())); };
+			const_reverse_iterator rbegin() const	{ return (const_reverse_iterator(this->end())); };
+			reverse_iterator rend()					{ return (reverse_iterator(this->begin())); };
+			const_reverse_iterator rend() const		{ return (const_reverse_iterator(this->begin())); };
 
 		public: /*             Capacity                         */
 			bool empty() const { return (this->_size == 0); };

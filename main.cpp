@@ -1163,12 +1163,7 @@ int main()
 	std::cout << "std_copy::\t" << std_copy.empty() << std::endl;
 	std::cout << "ft_copy::\t" << ft_copy.max_size() << std::endl;
 	std::cout << "std_copy::\t" << std_copy.max_size() << std::endl;
-	// std::cout << "\n\n\n\n\n┃━━━━━━━━━━━━━━━━━━━━━━━━━┃ count some values ┃━━━━━━━━━━━━━━━━━━━━━━━━┃\n\n\n\n\n" << std::endl;
-	// std::cout << "ft.begin() : " << ft.count(100) << std::endl;
-	// std::cout << "std.begin() : " << std.count(100) << std::endl;
-	// std::cout << (ft.upper_bound(200))->first << std::endl;
-	// std::cout << (std.upper_bound(200))->first << std::endl;
-	// std::cout << "\n\n\n\n\n┃━━━━━━━━━━━━━━━━━━━━━━━━━┃ Printing The Tree ┃━━━━━━━━━━━━━━━━━━━━━━━━┃\n\n\n\n\n" << std::endl;
+	std::cout << "\n\n\n\n\n┃━━━━━━━━━━━━━━━━━━━━━━━━━┃ Printing The Tree ┃━━━━━━━━━━━━━━━━━━━━━━━━┃\n\n\n\n\n" << std::endl;
 	// ft.print();
 	// std::cout << "\n\n\n\n\n┃━━━━━━━━━━━━━━━━━━━━━━━━━┃ Printing The Map Info ┃━━━━━━━━━━━━━━━━━━━━━━━━┃\n\n\n\n\n" << std::endl;
 	// std::cout << "ft::\t" << ft.size() << std::endl;
