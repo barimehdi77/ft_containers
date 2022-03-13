@@ -6,7 +6,7 @@
 /*   By: mbari <mbari@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/27 14:35:25 by mbari             #+#    #+#             */
-/*   Updated: 2022/03/13 10:40:51 by mbari            ###   ########.fr       */
+/*   Updated: 2022/03/13 11:43:19 by mbari            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -100,19 +100,14 @@ namespace ft
 			/*             Tree constructor and distructor             */
 			/*                                                         */
 			/***********************************************************/
-			Tree(const key_compare &compare = key_compare(), const allocator_type& alloc = allocator_type()): _size(0)
+			Tree(const key_compare &compare = key_compare(), const allocator_type& alloc = allocator_type()): _size(0), _comp(compare)
 			{
 				this->_alloc = alloc;
-				this->_comp = compare;
+				// this->_comp1 = compare;
 				this->_end = this->_alloc.allocate(1);
 				this->_root = this->_end;
 			};
-			~Tree()
-			{
-				if (this->_root != this->_end)
-					_inOrder(this->_root);
-				this->_alloc.deallocate(this->_end, 1);
-			};
+			~Tree() {};
 
 		public: /*             Iterators                         */
 			iterator		begin()				{ return (iterator(this->Min())); };
@@ -135,15 +130,6 @@ namespace ft
 				newnode->left = nullptr;
 				newnode->right = nullptr;
 				return (newnode);
-			};
-			void	_inOrder(Node_ptr node)
-			{
-				if (node != nullptr && node != this->_end)
-				{
-					_inOrder(node->left);
-					this->_alloc.deallocate(node, 1);
-					_inOrder(node->right);
-				}
 			};
 			int		_Height(Node_ptr temp)
 			{

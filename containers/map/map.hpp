@@ -6,7 +6,7 @@
 /*   By: mbari <mbari@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/24 03:01:34 by mbari             #+#    #+#             */
-/*   Updated: 2022/03/13 10:49:31 by mbari            ###   ########.fr       */
+/*   Updated: 2022/03/13 11:44:58 by mbari            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,7 +29,7 @@ namespace ft
 			typedef Key											key_type;
 			typedef T											mapped_type;
 			typedef ft::pair<const key_type, mapped_type>		value_type;
-			typedef	Compare										key_comp;
+			typedef	Compare										key_compare;
 			typedef Alloc										allocator_type;
 			typedef typename allocator_type::difference_type	difference_type;
 			typedef typename allocator_type::size_type			size_type;
@@ -60,7 +60,7 @@ namespace ft
 		private:
 			typedef Node<value_type>								Node_type;
 			typedef Node_type*										Node_ptr;
-			typedef Tree<value_type, key_comp, allocator_type>	Tree_type;
+			typedef Tree<value_type, key_compare, allocator_type>	Tree_type;
 			typedef Tree_type*										Tree_ptr;
 
 
@@ -73,8 +73,27 @@ namespace ft
 		private:
 			Tree_type		_tree;
 			allocator_type	_alloc;
-			key_comp		_comp;
+			key_compare		_comp;
 
+
+		public: /*             constructor                         */
+			explicit map (const key_compare& comp = key_compare(), const allocator_type& alloc = allocator_type()):
+				_tree(comp, alloc), _alloc(alloc), _comp(comp) {};
+			template <class InputIterator>
+			map (InputIterator first, InputIterator last, const key_compare& comp = key_compare(), const allocator_type& alloc = allocator_type()):
+				_tree(comp, alloc), _alloc(alloc), _comp(comp) { insert(first, last); };
+			map (const map& x) { *this = x; };
+
+		public: /*             destructors                         */
+			~map() { clear(); };
+
+		public: /*             destructors                         */
+			map& operator= (const map& x)
+			{
+				if (this != &x)
+					insert(x.begin(), x.end());
+				return (this);
+			};
 
 		public: /*             Iterators                         */
 			iterator		begin()				{ return (this->_tree.begin()); };
@@ -142,8 +161,8 @@ namespace ft
 			void					swap (map& x) { this->_tree.swap(x._tree); };
 
 		public: /*             Observers                         */
-			key_comp		key_compare()	const	{ return (this->_comp); };
-			value_compare	value_compare()	const	{ return (value_compare(_comp)); };
+			key_compare		key_comp()	const	{ return (this->_comp); };
+			value_compare	value_comp()	const	{ return (value_compare(_comp)); };
 
 		public: /*             Operations                         */
 			iterator								find (const key_type& k)				{ return (iterator(this->_tree.search(k))); };
