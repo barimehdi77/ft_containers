@@ -6,7 +6,7 @@
 /*   By: mbari <mbari@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/24 03:01:34 by mbari             #+#    #+#             */
-/*   Updated: 2022/03/12 20:18:00 by mbari            ###   ########.fr       */
+/*   Updated: 2022/03/13 09:14:23 by mbari            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -131,10 +131,10 @@ namespace ft
 			iterator		find (const key_type& k)		{ return (iterator(this->_tree.search(k))); };
 			const_iterator	find (const key_type& k) const	{ return (const_iterator(this->_tree.search(k))); };
 			size_type		count (const key_type& k) const { return (this->find(k) != this->end() ? 1 : 0); };
-			// iterator		lower_bound (const key_type& k) { return (iterator(this->_tree.lower_bound(k))); };
-			// const_iterator	lower_bound (const key_type& k) const { return (const_iterator(this->_tree.lower_bound(k))); };
-			// iterator		upper_bound (const key_type& k) { return (iterator(this->upper_bound(k))); };
-			// const_iterator	upper_bound (const key_type& k) const { return (const_iterator(this->upper_bound(k))); };
+			iterator		lower_bound (const key_type& k) { return (iterator(this->_tree.lower_bound(k))); };
+			const_iterator	lower_bound (const key_type& k) const { return (const_iterator(this->_tree.lower_bound(k))); };
+			iterator		upper_bound (const key_type& k) { return (iterator(this->_tree.upper_bound(k))); };
+			const_iterator	upper_bound (const key_type& k) const { return (const_iterator(this->_tree.upper_bound(k))); };
 
 		public: /*             Allocator                         */
 			allocator_type get_allocator() const { return (this->_tree._alloc()); };
