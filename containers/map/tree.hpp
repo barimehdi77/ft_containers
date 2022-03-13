@@ -6,7 +6,7 @@
 /*   By: mbari <mbari@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/27 14:35:25 by mbari             #+#    #+#             */
-/*   Updated: 2022/03/13 11:43:19 by mbari            ###   ########.fr       */
+/*   Updated: 2022/03/13 12:06:41 by mbari            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -78,8 +78,8 @@ namespace ft
 			typedef typename value_type::second_type							mapped_type;
 			typedef ft::TreeIter<pointer, Node_ptr>								iterator;
 			typedef ft::TreeIter<const_pointer, Node_ptr>						const_iterator;
-			// typedef ft::reverse_iterator<pointer>								reverse_iterator;
-			// typedef ft::reverse_iterator<const_pointer>							const_reverse_iterator;
+			typedef ft::reverse_iterator<iterator>								reverse_iterator;
+			typedef ft::reverse_iterator<const_iterator>						const_reverse_iterator;
 
 
 		private:

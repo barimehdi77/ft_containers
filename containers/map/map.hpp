@@ -6,7 +6,7 @@
 /*   By: mbari <mbari@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/24 03:01:34 by mbari             #+#    #+#             */
-/*   Updated: 2022/03/13 11:48:55 by mbari            ###   ########.fr       */
+/*   Updated: 2022/03/13 12:06:22 by mbari            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -67,8 +67,8 @@ namespace ft
 		public:
 			typedef typename Tree_type::iterator				iterator;
 			typedef typename Tree_type::const_iterator			const_iterator;
-			// typedef reverse_iterator<>							reverse_iterator;
-			// typedef reverse_iterator<>							const_reverse_iterator;
+			typedef ft::reverse_iterator<iterator>					reverse_iterator;
+			typedef ft::reverse_iterator<const_iterator>			const_reverse_iterator;
 
 		private:
 			Tree_type		_tree;
