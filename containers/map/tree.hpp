@@ -6,7 +6,7 @@
 /*   By: mbari <mbari@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/27 14:35:25 by mbari             #+#    #+#             */
-/*   Updated: 2022/03/17 16:51:03 by mbari            ###   ########.fr       */
+/*   Updated: 2022/03/17 17:11:27 by mbari            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -134,7 +134,7 @@ namespace ft
 					this->_alloc.deallocate(node, 1);
 				}
 			};
-			
+
 			Node_ptr _makeNode(value_type key)
 			{
 				Node_ptr newnode = this->_alloc.allocate(1);
