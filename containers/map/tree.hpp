@@ -6,7 +6,7 @@
 /*   By: mbari <mbari@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/27 14:35:25 by mbari             #+#    #+#             */
-/*   Updated: 2022/03/13 12:11:42 by mbari            ###   ########.fr       */
+/*   Updated: 2022/03/17 13:29:06 by mbari            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -404,7 +404,7 @@ namespace ft
 				Node_ptr tmp_root = x._root;
 				Node_ptr tmp_end = x._end;
 
-				x.size = this->_size;
+				x._size = this->_size;
 				_size = tmp_size;
 
 				x._alloc = this->_alloc;
@@ -413,7 +413,7 @@ namespace ft
 				x._end = this->_end;
 				this->_end = tmp_end;
 
-				x.root = this->_root;
+				x._root = this->_root;
 				this->_root = tmp_root;
 			};
 

@@ -1175,27 +1175,57 @@ int main()
 // 	// std::cout << "\n\n\n\n\n┃━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━┃" << std::endl;
 // }
 
+// int main()
+// {
+//     ft::map<int, int> map;
+//     map.insert(ft::make_pair(2, 789));
+//     map.insert(ft::make_pair(1, 456));
+//     map.insert(ft::pair<int, int>(0, 123));
+//     ft::map<int, int> map2;
+//     map2.insert(map.begin(), map.end());
+//     map2.insert(map.begin(), ft::make_pair(77, 77));
+//     map2.insert(ft::pair<int, int>(7, 123));
+
+// 	map.swap(map2);
+// 	// std::cout << (map > map2) << std::endl;
+
+// 	map.print();
+// 	std::cout << "---- map2 --------" << std::endl;
+// 	map2.print();
+// }
+
+#include <stack>
+#include "containers/stack/stack.hpp"
+
 int main()
 {
-    ft::map<int, int> map;
-    map.insert(ft::make_pair(2, 789));
-    map.insert(ft::make_pair(1, 456));
-    map.insert(ft::pair<int, int>(0, 123));
-    ft::map<int, int>::iterator it(map.begin());
-    std::cout << it->first << "  " << it->second << std::endl;
-    ++it;
-    std::cout << it->first << "  " << it->second << std::endl;
-    ++it;
-    std::cout << it->first << "  " << it->second << std::endl;
-    ++it;
-	std::cout << "this is done\n";
-    std::cout << it->first << "  " << it->second << std::endl;
-    --it;
-    std::cout << it->first << "  " << it->second << std::endl;
-    --it;
-    std::cout << it->first << "  " << it->second << std::endl;
-    --it;
-    std::cout << it->first << "  " << it->second << std::endl;
+	{
+		std::stack<int> mystack;
 
-	map.print();
+		for (int i=0; i<5; ++i) mystack.push(i);
+
+		std::cout << "Popping out elements...";
+		while (!mystack.empty())
+		{
+			std::cout << ' ' << mystack.top();
+			mystack.pop();
+		}
+		std::cout << '\n';
+	}
+	{
+		ft::stack<int> mystack;
+
+		for (int i=0; i<5; ++i) mystack.push(i);
+
+		std::cout << "Popping out elements...";
+		while (!mystack.empty())
+		{
+			std::cout << ' ' << mystack.top();
+			mystack.pop();
+		}
+		std::cout << '\n';
+	}
+
+	return 0;
 }
+
