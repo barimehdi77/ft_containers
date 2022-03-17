@@ -6,7 +6,7 @@
 /*   By: mbari <mbari@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/17 13:33:57 by mbari             #+#    #+#             */
-/*   Updated: 2022/03/17 15:39:06 by mbari            ###   ########.fr       */
+/*   Updated: 2022/03/17 16:09:08 by mbari            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,18 +28,18 @@ namespace ft
 			typedef typename container_type::const_reference	const_reference;
 
 		protected:
-			container_type _c;
+			container_type c;
 
 		public:
-			explicit stack (const container_type& ctnr = container_type()): _c(ctnr) {};
+			explicit stack (const container_type& ctnr = container_type()): c(ctnr) {};
 
 		public:
-			bool empty()			const		{ return (!this->_c.size()); };
-			size_type size()		const		{ return (this->_c.size()); };
-			value_type& top()					{ return (this->_c.back()); };
-			const value_type& top() const		{ return (this->_c.back()); };
-			void push (const value_type& val)	{ this->_c.push_back(val); };
-			void pop()							{ this->_c.pop_back(); };
+			bool empty()			const		{ return (!this->c.size()); };
+			size_type size()		const		{ return (this->c.size()); };
+			value_type& top()					{ return (this->c.back()); };
+			const value_type& top() const		{ return (this->c.back()); };
+			void push (const value_type& val)	{ this->c.push_back(val); };
+			void pop()							{ this->c.pop_back(); };
 
 		protected:
 			template <class _T, class _C>

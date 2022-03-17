@@ -6,7 +6,7 @@
 /*   By: mbari <mbari@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/24 03:01:34 by mbari             #+#    #+#             */
-/*   Updated: 2022/03/17 13:24:13 by mbari            ###   ########.fr       */
+/*   Updated: 2022/03/17 16:52:36 by mbari            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -162,7 +162,7 @@ namespace ft
 				}
 			};
 			void					swap (map& x) { this->_tree.swap(x._tree); };
-			void					clear() { this->_tree.distroy(); };
+			void					clear() { this->_tree.destroy(); };
 
 		public: /*             Observers                         */
 			key_compare		key_comp()	const	{ return (this->_comp); };

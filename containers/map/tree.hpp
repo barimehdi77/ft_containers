@@ -6,7 +6,7 @@
 /*   By: mbari <mbari@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/27 14:35:25 by mbari             #+#    #+#             */
-/*   Updated: 2022/03/17 13:29:06 by mbari            ###   ########.fr       */
+/*   Updated: 2022/03/17 16:51:03 by mbari            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -125,6 +125,16 @@ namespace ft
 			size_type	max_size()	const	{ return (std::min<size_type>(std::numeric_limits<size_type>::max() / sizeof(Node_type), std::numeric_limits<difference_type>::max())); };
 
 		private:
+			void	_destroy(Node_ptr node)
+			{
+				if (node != nullptr && node != this->_end)
+				{
+					_destroy(node->left);
+					_destroy(node->right);
+					this->_alloc.deallocate(node, 1);
+				}
+			};
+			
 			Node_ptr _makeNode(value_type key)
 			{
 				Node_ptr newnode = this->_alloc.allocate(1);
@@ -382,20 +392,26 @@ namespace ft
 				this->_root =  _remove(this->_root, key);
 			};
 
-			void	distroy()
+			// void	destroy()
+			// {
+			// 	iterator first = begin();
+			// 	iterator last = end();
+			// 	iterator position;
+			// 	while (first != last)
+			// 	{
+			// 		position = first;
+			// 		first++;
+			// 		remove(*position);
+			// 	}
+			// 	this->_root = this->_end;
+			// 	this->_end->left = nullptr;
+			// };
+
+			void	destroy()
 			{
-				iterator first = begin();
-				iterator last = end();
-				iterator position;
-				while (first != last)
-				{
-					position = first;
-					first++;
-					remove(*position);
-				}
-				this->_root = this->_end;
-				this->_end->left = nullptr;
+				_destroy(this->_root);
 			};
+
 
 			void	swap(Tree &x)
 			{
