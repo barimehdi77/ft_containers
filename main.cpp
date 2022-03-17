@@ -13,9 +13,11 @@
 
 #include <iostream>
 #include <iterator>
+#include "containers/stack/stack.hpp"
 #include "containers/vector/vector.hpp"
 #include "containers/map/map.hpp"
 #include "colors.hpp"
+#include <stack>
 #include <vector>
 #include <map>
 
@@ -1194,38 +1196,61 @@ int main()
 // 	map2.print();
 // }
 
-#include <stack>
-#include "containers/stack/stack.hpp"
+        /****************************************/
+        /*                                      */
+        /*             STACK TESTS              */
+        /*                                      */
+        /****************************************/
 
 int main()
 {
-	{
-		std::stack<int> mystack;
+    {
+        try
+        {
+            std::cout << "========== OG ==========" << std::endl;
+            std::stack<int> st;
+            std::stack<int> st2;
 
-		for (int i=0; i<5; ++i) mystack.push(i);
+            std::cout << st.empty() << std::endl;
+            std::cout << st.size() << std::endl;
+            st.push(10);
+            std::cout << st.top() << std::endl;
+            st.push(20);
+            std::cout << st.top() << std::endl;
+            st.pop();
+            std::cout << st.top() << std::endl;
+            std::cout << st.empty() << std::endl;
+            std::cout << st.size() << std::endl;
+            std::cout << "comp : " << (st == st2) << std::endl;
+        }
+        catch (const std::exception &e)
+        {
+            std::cerr << e.what() << '\n';
+        }
+    }
+    {
+        try
+        {
+            std::cout << "========== MINE ==========" << std::endl;
+            ft::stack<int>    st;
+            ft::stack<int>    st2;
 
-		std::cout << "Popping out elements...";
-		while (!mystack.empty())
-		{
-			std::cout << ' ' << mystack.top();
-			mystack.pop();
-		}
-		std::cout << '\n';
-	}
-	{
-		ft::stack<int> mystack;
-
-		for (int i=0; i<5; ++i) mystack.push(i);
-
-		std::cout << "Popping out elements...";
-		while (!mystack.empty())
-		{
-			std::cout << ' ' << mystack.top();
-			mystack.pop();
-		}
-		std::cout << '\n';
-	}
-
-	return 0;
+            std::cout << st.empty() << std::endl;
+            std::cout << st.size() << std::endl;
+            st.push(10);
+            std::cout << st.top() << std::endl;
+            st.push(20);
+            std::cout << st.top() << std::endl;
+            st.pop();
+            std::cout << st.top() << std::endl;
+            std::cout << st.empty() << std::endl;
+            std::cout << st.size() << std::endl;
+            std::cout << "comp : " << (st == st2) << std::endl;
+        }
+        catch (const std::exception &e)
+        {
+            std::cerr << e.what() << '\n';
+        }
+    }
 }
 
