@@ -6,7 +6,7 @@
 /*   By: mbari <mbari@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/27 14:35:25 by mbari             #+#    #+#             */
-/*   Updated: 2022/03/19 03:55:25 by mbari            ###   ########.fr       */
+/*   Updated: 2022/03/19 22:31:45 by mbari            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,6 +23,8 @@ namespace ft
 	struct Node
 	{
 		public:
+			typedef T				value_type;
+		public:
 			T		key;
 			Node*	parent;
 			Node*	left;
@@ -30,6 +32,7 @@ namespace ft
 			int		height;
 
 		public:
+			Node(): key() {};
 			Node(T key): key(key)/*, left(nullptr), right(nullptr), parent(nullptr) , height(1)*/ {};
 	};
 
@@ -498,32 +501,32 @@ namespace ft
 					return (_search(this->_root, key));
 			};
 
-			// Node_ptr successor(Node_ptr node)
-			// {
-			// 	if (node->right != nullptr)
-			// 		return (_Min(node->right));
+			Node_ptr successor(Node_ptr node)
+			{
+				if (node->right)
+					return (_Min(node->right));
 
-			// 	Node_ptr temp = node->parent;
-			// 	while (temp != nullptr && node == temp->right)
-			// 	{
-			// 		node = temp;
-			// 		temp = temp->parent;
-			// 	}
-			// 	return (temp);
-			// };
-			// Node_ptr predecessor(Node_ptr node)
-			// {
-			// 	if (node->left != nullptr)
-			// 		return (_Max(node->left));
+				Node_ptr temp = node->parent;
+				while (temp && temp->right == node)
+				{
+					node = temp;
+					temp = temp->parent;
+				}
+				return (temp);
+			};
+			Node_ptr predecessor(Node_ptr node)
+			{
+				if (node->right)
+					return (_Max(node->left));
 
-			// 	Node_ptr temp = node->parent;
-			// 	while (temp != this->_end && node == temp->left)
-			// 	{
-			// 		node = temp;
-			// 		temp = temp->parent;
-			// 	}
-			// 	return (temp);
-			// };
+				Node_ptr temp = node->parent;
+				while (temp != this->_end && temp->right == node)
+				{
+					node = temp;
+					temp = temp->parent;
+				}
+				return (temp);
+			};
 
 			value_type	get_Key() const { return (this->_root->key); };
 			int	getSize() const { return (this->_size); };
@@ -618,11 +621,11 @@ namespace ft
 	template<class Node_ptr>
 	Node_ptr successor(Node_ptr node)
 	{
-		if (node->right != nullptr)
+		if (node->right)
 			return (_TreeMin(node->right));
 
 		Node_ptr temp = node->parent;
-		while (temp != nullptr && node == temp->right)
+		while (temp && temp->right == node)
 		{
 			node = temp;
 			temp = temp->parent;
@@ -633,15 +636,17 @@ namespace ft
 	template<class Node_ptr>
 	Node_ptr predecessor(Node_ptr node)
 	{
-		if (node->left != nullptr)
+		if (node->left)
 			return (_TreeMax(node->left));
 
 		Node_ptr temp = node->parent;
-		while (temp != nullptr && node == temp->left)
+		while (temp && temp->left == node)
 		{
 			node = temp;
 			temp = temp->parent;
 		}
+		if (temp == nullptr)
+			return (node);
 		return (temp);
 	};
 

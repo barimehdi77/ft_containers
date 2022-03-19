@@ -6,7 +6,7 @@
 /*   By: mbari <mbari@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/06 12:09:44 by mbari             #+#    #+#             */
-/*   Updated: 2022/03/19 03:09:10 by mbari            ###   ########.fr       */
+/*   Updated: 2022/03/19 22:22:49 by mbari            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,33 +43,47 @@ namespace ft
 
 			Node_ptr		base() const							{ return (this->_it); };
 			reference		operator*() const						{ return (this->_it->key); };
-			TreeIter&		operator++()							{this->_it = successor(this->_it); return (*this); };				// pre-increment
-			TreeIter		operator++(int)							{ TreeIter temp(*this); ++(*this); return (temp); };	// post-increment
-			TreeIter&		operator--()							{this->_it = predecessor(this->_it); return (*this); };				// pre-decrement
-			TreeIter		operator--(int)							{ TreeIter temp(*this); --(*this); return (temp); };	// post-decrement
+			TreeIter&		operator++()							{this->_it = successor(this->_it); return (*this); };		// pre-increment
+			TreeIter		operator++(int)							{ TreeIter temp(*this); ++(*this); return (temp); };		// post-increment
+			TreeIter&		operator--()							{this->_it = predecessor(this->_it); return (*this); };		// pre-decrement
+			TreeIter		operator--(int)							{ TreeIter temp(*this); --(*this); return (temp); };		// post-decrement
 			pointer			operator->()							{ return (&(operator*())); };
 			reference		operator[]( difference_type n ) const	{ return (*(this->_it + n)); };
+
+		// public:
+		// 	template <class I, class NP>
+		// 	friend bool operator== (const TreeIter<I, NP>& lhs, const TreeIter<I, NP>& rhs);
+		// 	template <class I, class NP>
+		// 	friend bool operator!= (const TreeIter<I, NP>& lhs, const TreeIter<I, NP>& rhs);
+		// 	template <class I, class NP>
+		// 	friend bool operator<  (const TreeIter<I, NP>& lhs, const TreeIter<I, NP>& rhs);
+		// 	template <class I, class NP>
+		// 	friend bool operator<= (const TreeIter<I, NP>& lhs, const TreeIter<I, NP>& rhs);
+		// 	template <class I, class NP>
+		// 	friend bool operator>  (const TreeIter<I, NP>& lhs, const TreeIter<I, NP>& rhs);
+		// 	template <class I, class NP>
+		// 	friend bool operator>=  (const TreeIter<I, NP>& lhs, const TreeIter<I, NP>& rhs);
 	};
 
 	template <class Iterator, class Node_ptr>
-	bool operator== (const TreeIter<Iterator, Node_ptr>& lhs, const TreeIter<Iterator, Node_ptr>& rhs) { return (*lhs == *rhs); };
+	bool operator== (const TreeIter<Iterator, Node_ptr>& lhs, const TreeIter<Iterator, Node_ptr>& rhs) { return (lhs.base() == rhs.base()); };
 	template <class Iterator, class Node_ptr>
-	bool operator!= (const TreeIter<Iterator, Node_ptr>& lhs, const TreeIter<Iterator, Node_ptr>& rhs) { return (*lhs != *rhs); };
+	bool operator!= (const TreeIter<Iterator, Node_ptr>& lhs, const TreeIter<Iterator, Node_ptr>& rhs) { return (lhs.base() != rhs.base()); };
 	template <class Iterator, class Node_ptr>
-	bool operator<  (const TreeIter<Iterator, Node_ptr>& lhs, const TreeIter<Iterator, Node_ptr>& rhs) { return (*lhs < *rhs); };
+	bool operator<  (const TreeIter<Iterator, Node_ptr>& lhs, const TreeIter<Iterator, Node_ptr>& rhs) { return (lhs.base() < rhs.base()); };
 	template <class Iterator, class Node_ptr>
-	bool operator<= (const TreeIter<Iterator, Node_ptr>& lhs, const TreeIter<Iterator, Node_ptr>& rhs) { return (*lhs <= *rhs); };
+	bool operator<= (const TreeIter<Iterator, Node_ptr>& lhs, const TreeIter<Iterator, Node_ptr>& rhs) { return (lhs.base() <= rhs.base()); };
 	template <class Iterator, class Node_ptr>
-	bool operator>  (const TreeIter<Iterator, Node_ptr>& lhs, const TreeIter<Iterator, Node_ptr>& rhs) { return (*lhs > *rhs); };
+	bool operator>  (const TreeIter<Iterator, Node_ptr>& lhs, const TreeIter<Iterator, Node_ptr>& rhs) { return (lhs.base() > rhs.base()); };
 	template <class Iterator, class Node_ptr>
-	bool operator>=  (const TreeIter<Iterator, Node_ptr>& lhs, const TreeIter<Iterator, Node_ptr>& rhs) { return (*lhs >= *rhs); };
+	bool operator>=  (const TreeIter<Iterator, Node_ptr>& lhs, const TreeIter<Iterator, Node_ptr>& rhs) { return (lhs.base() >= rhs.base()); };
 
-	template <class Iterator, class Node_ptr>
-	TreeIter<Iterator, Node_ptr> operator+ (typename TreeIter<Iterator, Node_ptr>::difference_type n, const TreeIter<Iterator, Node_ptr>& node_it)
-	{ return (TreeIter<Iterator, Node_ptr>( node_it + n)); };
-	template <class Iterator, class Node_ptr>
-	typename TreeIter<Iterator, Node_ptr>::difference_type operator- (const TreeIter<Iterator, Node_ptr>& lhs, const TreeIter<Iterator, Node_ptr>& rhs)
-	{ return (lhs.base() - rhs.base()); };
+	// template <class Iterator, class Node_ptr>
+	// TreeIter<Iterator, Node_ptr> operator+ (typename TreeIter<Iterator, Node_ptr>::difference_type n, const TreeIter<Iterator, Node_ptr>& node_it)
+	// { return (TreeIter<Iterator, Node_ptr>( node_it + n)); };
+	// template <class Iterator, class Node_ptr>
+	// typename TreeIter<Iterator, Node_ptr>::difference_type operator- (const TreeIter<Iterator, Node_ptr>& lhs, const TreeIter<Iterator, Node_ptr>& rhs)
+	// { return (lhs.base() - rhs.base()); };
 
 };
 

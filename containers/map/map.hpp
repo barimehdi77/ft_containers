@@ -6,7 +6,7 @@
 /*   By: mbari <mbari@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/24 03:01:34 by mbari             #+#    #+#             */
-/*   Updated: 2022/03/19 03:54:47 by mbari            ###   ########.fr       */
+/*   Updated: 2022/03/19 22:22:26 by mbari            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -138,7 +138,7 @@ namespace ft
 					position = iterator(this->_tree.insertInPossition(node, val));
 				else
 					position = insert(val).first;
-				return position;
+				return (position);
 			};
 			template <class InputIterator>
 			void 					insert (InputIterator first, InputIterator last)
