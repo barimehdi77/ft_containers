@@ -6,7 +6,7 @@
 /*   By: mbari <mbari@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/24 03:01:34 by mbari             #+#    #+#             */
-/*   Updated: 2022/03/17 17:06:33 by mbari            ###   ########.fr       */
+/*   Updated: 2022/03/19 03:54:47 by mbari            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -85,13 +85,21 @@ namespace ft
 			map (const map& x) { *this = x; };
 
 		public: /*             destructors                         */
-			~map() { clear(); };
+			~map()
+			{
+				this->_tree.clear();
+			};
 
 		public: /*             operator=                         */
 			map& operator= (const map& x)
 			{
 				if (this != &x)
+				{
+					this->_tree.clear();
+					this->_comp = x._comp;
+					this->_alloc = x._alloc;
 					insert(x.begin(), x.end());
+				}
 				return (*this);
 			};
 
@@ -111,7 +119,7 @@ namespace ft
 			size_type	max_size()	const	{ return (this->_tree.max_size()); };
 
 		public: /*             Element access                         */
-			mapped_type& operator[] (const key_type& k) { return (find(k)->second); };
+			mapped_type& operator[] (const key_type& k) { return ((*(insert(ft::make_pair(k, mapped_type())).first)).second); };
 
 		public: /*             Modifiers                         */
 			ft::pair<iterator,bool>	insert (const value_type& val)
@@ -162,7 +170,7 @@ namespace ft
 				}
 			};
 			void					swap (map& x) { this->_tree.swap(x._tree); };
-			void					clear() { this->_tree.destroy(); };
+			void					clear() { this->_tree.clear(); };
 
 		public: /*             Observers                         */
 			key_compare		key_comp()	const	{ return (this->_comp); };
@@ -180,7 +188,7 @@ namespace ft
 			pair<iterator, iterator>				equal_range (const key_type &k)			{ return (ft::make_pair(this->lower_bound(k), this->upper_bound(k))); };
 
 		public: /*             Allocator                         */
-			allocator_type	get_allocator() const { return (this->_tree._alloc()); };
+			allocator_type	get_allocator() const { return (allocator_type()); };
 
 		public:
 			void print() { this->_tree.print(); };

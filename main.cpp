@@ -6,7 +6,7 @@
 /*   By: mbari <mbari@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/17 15:58:35 by mbari             #+#    #+#             */
-/*   Updated: 2022/03/17 16:56:58 by mbari            ###   ########.fr       */
+/*   Updated: 2022/03/19 01:50:46 by mbari            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -107,7 +107,7 @@ int main(int argc, char** argv)
 	}
 
 	int sum = 0;
-	for (int i = 0; i < 10000; i++)
+	for (int i = 0; i < 100; i++)
 	{
 		int access = rand();
 		// std::cout << i << " -> " << access << std::endl;
@@ -126,6 +126,5 @@ int main(int argc, char** argv)
 		std::cout << *it;
 	}
 	std::cout << std::endl;
-	std::cout << "done\n";
 	return (0);
 }

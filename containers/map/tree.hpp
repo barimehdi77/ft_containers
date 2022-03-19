@@ -6,7 +6,7 @@
 /*   By: mbari <mbari@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/27 14:35:25 by mbari             #+#    #+#             */
-/*   Updated: 2022/03/17 17:11:27 by mbari            ###   ########.fr       */
+/*   Updated: 2022/03/19 03:55:25 by mbari            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -127,10 +127,11 @@ namespace ft
 		private:
 			void	_destroy(Node_ptr node)
 			{
-				if (node != nullptr && node != this->_end)
+				Node_ptr tmp = node;
+				if (tmp != nullptr)
 				{
-					_destroy(node->left);
-					_destroy(node->right);
+					_destroy(tmp->left);
+					_destroy(tmp->right);
 					this->_alloc.deallocate(node, 1);
 				}
 			};
@@ -407,9 +408,15 @@ namespace ft
 			// 	this->_end->left = nullptr;
 			// };
 
-			void	destroy()
+			void	clear()
 			{
-				_destroy(this->_root);
+				if (this->_root != this->_end)
+				{
+					_destroy(this->_root);
+					this->_size = 0;
+					this->_root = this->_end;
+					this->_end->left = this->_root;
+				}
 			};
 
 

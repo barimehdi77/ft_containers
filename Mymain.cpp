@@ -1256,29 +1256,47 @@ int main()
 // }
 
 
-#include<cstdlib>
+// #include<cstdlib>
 
-int main(int ac, char **av)
+// int main(int ac, char **av)
+// {
+// 	typedef	ft::pair<int, std::string>	ft_ValueType;
+// 	typedef	std::pair<int, std::string>	std_ValueType;
+// 	ft::map<int, std::string> ft;
+// 	/********inserting values to ft::map*******/
+// 	if (ac != 3)
+// 	{
+// 		std::cout << "|there's NO SEED OR inset number|" << std::endl;
+// 		return (-1);
+// 	}
+// 	srand(atoi(av[1]));
+// 	int max = atoi(av[2]);
+// 	for (size_t i = 0; i < max; i++)
+// 		ft.insert(ft_ValueType(rand(), "77"));
+
+// 	// ft::map<int, std::string> copy(ft.begin(), ft.end());
+// 	// ft.~map();
+// 	std::cout << "\n\n\n\n\n┃━━━━━━━━━━━━━━━━━━━━━━━━━┃ Printing The main Tree ┃━━━━━━━━━━━━━━━━━━━━━━━━┃\n\n\n\n\n" << std::endl;
+// 	std::cout << "size of map is : " << ft.size() << std::endl;
+// 	// ft.print();
+// 	std::cout << "\n\n\n\n\n┃━━━━━━━━━━━━━━━━━━━━━━━━━┃ Printing copy Tree ┃━━━━━━━━━━━━━━━━━━━━━━━━┃\n\n\n\n\n" << std::endl;
+// 	return (0);
+// }
+
+
+int main()
 {
-	typedef	ft::pair<int, std::string>	ft_ValueType;
-	typedef	std::pair<int, std::string>	std_ValueType;
-	ft::map<int, std::string> ft;
-	std::map<int, std::string> std;
-	/********inserting values to ft::map*******/
-	if (ac != 3)
-	{
-		std::cout << "|there's NO SEED OR inset number|" << std::endl;
-		return (-1);
-	}
-	srand(atoi(av[1]));
-	int max = atoi(av[2]);
-	for (size_t i = 0; i < max; i++)
-		ft.insert(ft_ValueType(rand(), "77"));
+	std::map<char, int> mymap;
+	mymap['b'] = 100;
+	mymap['a'] = 200;
+	mymap['c'] = 300;
+	// show content:
+	// for (ft::map<char, int>::iterator it = mymap.begin(); it != mymap.end(); ++it)
+	// 	std::cout << it->first << " => " << it->second << '\n';
+	std::map<char, int>::iterator it = mymap.find('d');
+	it--;
+		std::cout << it->first << " => " << it->second << '\n';
 
-
-	std::cout << "\n\n\n\n\n┃━━━━━━━━━━━━━━━━━━━━━━━━━┃ Printing The main Tree ┃━━━━━━━━━━━━━━━━━━━━━━━━┃\n\n\n\n\n" << std::endl;
-	std::cout << "map size if : " << ft.size() << std::endl;
-	// ft.print();
-	std::cout << "\n\n\n\n\n┃━━━━━━━━━━━━━━━━━━━━━━━━━┃ Printing copy Tree ┃━━━━━━━━━━━━━━━━━━━━━━━━┃\n\n\n\n\n" << std::endl;
-	return (0);
+	std::cout << "mymap.size() is " << mymap.size() << '\n';
 }
+
