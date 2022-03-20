@@ -6,7 +6,7 @@
 /*   By: mbari <mbari@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/24 03:01:34 by mbari             #+#    #+#             */
-/*   Updated: 2022/03/19 22:22:26 by mbari            ###   ########.fr       */
+/*   Updated: 2022/03/20 01:58:57 by mbari            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -164,6 +164,8 @@ namespace ft
 				iterator position;
 				while(first != last)
 				{
+					// std::cout << "this is -------------------" << std::endl;
+					// print();
 					position = first;
 					first++;
 					erase(position);

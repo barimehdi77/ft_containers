@@ -130,20 +130,22 @@ int main()
 	}
 	NEXTD;
 	{
-		PH::map<char, int> mymap;
-		PH::map<char, int>::iterator it;
+		PH::map<int, int> mymap;
+		PH::map<int, int>::iterator it;
 		// insert some values:
-		mymap['a'] = 10;
-		mymap['b'] = 20;
-		mymap['c'] = 30;
-		mymap['d'] = 40;
-		mymap['e'] = 50;
-		mymap['f'] = 60;
-		it = mymap.find('b');
+		mymap[1] = 10;
+		mymap[7] = 20;
+		mymap[8] = 30;
+		mymap[10] = 40;
+		mymap[77] = 50;
+		mymap[6] = 60;
+		mymap.print();
+		NEXTD;
+		it = mymap.find(6);
 		mymap.erase(it);  // erasing by iterator
-		mymap.erase('c'); // erasing by key
-		// mymap.prettyPrint();
-		it = mymap.find('e');
+		mymap.erase(10); // erasing by key
+		mymap.print();
+		it = mymap.find(8);
 		mymap.erase(it, mymap.end()); // erasing by range
 		// show content:
 		for (it = mymap.begin(); it != mymap.end(); ++it)
