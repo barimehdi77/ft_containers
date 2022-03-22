@@ -6,7 +6,7 @@
 /*   By: mbari <mbari@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/22 22:53:57 by mbari             #+#    #+#             */
-/*   Updated: 2022/02/22 23:33:44 by mbari            ###   ########.fr       */
+/*   Updated: 2022/03/23 00:03:09 by mbari            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,7 +37,6 @@ namespace ft
 		typedef T								value_type;
 		typedef T*								pointer;
 		typedef T&								reference;
-		// typedef typename T::iterator_category	iterator_category;
 	};
 
 	template <class T>
@@ -47,7 +46,6 @@ namespace ft
 		typedef T								value_type;
 		typedef const T*						pointer;
 		typedef const T&						reference;
-		// typedef typename iterator::iterator_category	iterator_category;
 	};
 };
 

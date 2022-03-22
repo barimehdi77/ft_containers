@@ -6,7 +6,7 @@
 /*   By: mbari <mbari@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/27 14:35:25 by mbari             #+#    #+#             */
-/*   Updated: 2022/03/22 23:48:25 by mbari            ###   ########.fr       */
+/*   Updated: 2022/03/23 00:01:47 by mbari            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,7 +33,7 @@ namespace ft
 
 		public:
 			Node(): key() {};
-			Node(T key): key(key)/*, left(nullptr), right(nullptr), parent(nullptr) , height(1)*/ {};
+			Node(T key): key(key){};
 	};
 
 	template <class T, class Compare, class Allocator>
@@ -96,7 +96,6 @@ namespace ft
 			Node_ptr									_root;
 			Node_ptr									_end;
 			int											_size;
-
 		public:
 			/***********************************************************/
 			/*                                                         */
@@ -106,9 +105,7 @@ namespace ft
 			Tree(const key_compare &compare = key_compare(), const allocator_type& alloc = allocator_type()): _size(0), _comp(compare)
 			{
 				this->_alloc = alloc;
-				// this->_comp1 = compare;
 				this->_end = this->_makeNode(value_type());
-				// this->_end->right = nullptr;
 				this->_root = this->_end;
 			};
 			~Tree() {};
@@ -131,11 +128,6 @@ namespace ft
 		private:
 			void	_destroy(Node_ptr node)
 			{
-				// while (this->_root != nullptr)
-				// 	remove(this->_root->key);
-				// for (iterator it = begin(); it != end(); it++)
-
-				// Node_ptr tmp = node;
 				if (node != nullptr)
 				{
 					_destroy(node->left);
@@ -315,40 +307,9 @@ namespace ft
 					else{
 						Node_ptr	temp = _TreeMin(root->right);
 						value_type p = temp->key;
-						Node_ptr X = temp->parent;
 						root->right = _remove(root->right , temp->key);
-						// temp = deletBalence(X, p.first);
 						this->_alloc.construct(root, p);
-						// if (temp != nullptr)
-						// 	root = temp;
 					}
-					// if (root->left == nullptr)
-					// {
-					// 	Node_ptr temp = root->right;
-					// 	this->_alloc.deallocate(root, 1);
-					// 	--this->_size;
-					// 	return (temp);
-					// }
-					// else if (root->right == nullptr)
-					// {
-					// 	Node_ptr temp = root->left;
-					// 	this->_alloc.deallocate(root, 1);
-					// 	--this->_size;
-					// 	return (temp);
-					// }
-					// else
-					// {
-					// 	// Node_ptr parent = root->parent;
-					// 	// Node_ptr right = root->right;
-					// 	// Node_ptr left = root->left;
-					// 	Node_ptr MaxValue = _TreeMax(root->left);
-					// 	// root->key = MaxValue->key;
-					// 	this->_alloc.construct(root, MaxValue->key);
-					// 	// root->height = temp->height;
-					// 	// root->right = right;
-					// 	// root->parent = parent;
-					// 	root->left = _remove(root->left, MaxValue->key);
-					// }
 				}
 				_ReSetHeight(root);
 				root = _reBalance(root);
@@ -369,21 +330,6 @@ namespace ft
 
 				return (this->_end);
 			};
-
-			// Node_ptr _Min(Node_ptr temp)
-			// {
-			// 	while (temp->left != nullptr)
-			// 		temp = temp->left;
-			// 	return (temp);
-			// };
-
-			// Node_ptr _Max(Node_ptr temp)
-			// {
-			// 	while (temp->right != nullptr)
-			// 		temp = temp->right;
-			// 	return (temp);
-			// };
-
 			void		_ReSetHeight(Node_ptr temp)
 			{
 				if (!temp->left && !temp->right)
@@ -400,8 +346,6 @@ namespace ft
 		public:
 			Node_ptr	insert(value_type key)
 			{
-				// Node_ptr newnode = this->_alloc.allocate(1);
-				// this->_alloc.construct(newnode, key);
 				Node_ptr newnode = _makeNode(key);
 				if (this->_root == this->_end)
 				{
@@ -415,14 +359,11 @@ namespace ft
 					++this->_size;
 					this->_root = _insert(this->_root, newnode);
 				}
-				// Max()->right = this->_end;
 				return (newnode);
 			};
 
 			Node_ptr	insertInPossition(Node_ptr position, T key)
 			{
-				// Node_type * newnode = this->_alloc.allocate(1);
-				// this->_alloc.construct(newnode, key);
 				Node_ptr newnode = _makeNode(key);
 				if (position == this->_end)
 				{
@@ -436,7 +377,6 @@ namespace ft
 					++this->_size;
 					position = _insert(position, newnode);
 				}
-				// Max()->right = this->_end;
 				return (newnode);
 			};
 
@@ -444,22 +384,6 @@ namespace ft
 			{
 				this->_root =  _remove(this->_root, key);
 			};
-
-			// void	destroy()
-			// {
-			// 	iterator first = begin();
-			// 	iterator last = end();
-			// 	iterator position;
-			// 	while (first != last)
-			// 	{
-			// 		position = first;
-			// 		first++;
-			// 		remove(*position);
-			// 	}
-			// 	this->_root = this->_end;
-			// 	this->_end->left = nullptr;
-			// };
-
 			void	clear()
 			{
 				if (this->_root != this->_end)
@@ -470,8 +394,6 @@ namespace ft
 					this->_end->left = this->_root;
 				}
 			};
-
-
 			void	swap(Tree &x)
 			{
 				size_type tmp_size = x._size;
@@ -491,7 +413,6 @@ namespace ft
 				x._root = this->_root;
 				this->_root = tmp_root;
 			};
-
 			Node_ptr lower_bound(key_type val) const
 			{
 				Node_ptr node = Min();
@@ -508,7 +429,6 @@ namespace ft
 				}
 				return (node);
 			};
-
 			Node_ptr upper_bound(key_type val) const
 			{
 				Node_ptr node = Min();
@@ -523,7 +443,6 @@ namespace ft
 				}
 				return (node);
 			};
-
 			Node_ptr	Min() const
 			{
 				Node_type * tmp = this->_root;
@@ -532,7 +451,6 @@ namespace ft
 					tmp = tmp->left;
 				return (tmp);
 			};
-
 			Node_ptr Max() const
 			{
 				Node_ptr tmp = this->_root;
@@ -541,7 +459,6 @@ namespace ft
 					tmp = tmp->right;
 				return (tmp);
 			};
-
 			Node_ptr search(key_type key) const
 			{
 				if (this->_root == this->_end)
@@ -549,34 +466,6 @@ namespace ft
 				else
 					return (_search(this->_root, key));
 			};
-
-			// Node_ptr successor(Node_ptr node)
-			// {
-			// 	if (node->right)
-			// 		return (_Min(node->right));
-
-			// 	Node_ptr temp = node->parent;
-			// 	while (temp && temp->right == node)
-			// 	{
-			// 		node = temp;
-			// 		temp = temp->parent;
-			// 	}
-			// 	return (temp);
-			// };
-			// Node_ptr predecessor(Node_ptr node)
-			// {
-			// 	if (node->right)
-			// 		return (_Max(node->left));
-
-			// 	Node_ptr temp = node->parent;
-			// 	while (temp != this->_end && temp->right == node)
-			// 	{
-			// 		node = temp;
-			// 		temp = temp->parent;
-			// 	}
-			// 	return (temp);
-			// };
-
 			value_type	get_Key() const { return (this->_root->key); };
 			int	getSize() const { return (this->_size); };
 			value_type	get_height() const { return (this->_root->height); };

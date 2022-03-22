@@ -6,7 +6,7 @@
 /*   By: mbari <mbari@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/24 03:01:34 by mbari             #+#    #+#             */
-/*   Updated: 2022/03/22 23:41:31 by mbari            ###   ########.fr       */
+/*   Updated: 2022/03/22 23:52:59 by mbari            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -85,12 +85,7 @@ namespace ft
 			map (const map& x) { *this = x; };
 
 		public: /*             destructors                         */
-			~map()
-			{
-				std::cout << "dis called" << std::endl;
-				this->_tree.clear();
-				std::cout << "after dis called" << std::endl;
-			};
+			~map() { this->_tree.clear(); };
 
 		public: /*             operator=                         */
 			map& operator= (const map& x)
@@ -145,8 +140,6 @@ namespace ft
 			template <class InputIterator>
 			void 					insert (InputIterator first, InputIterator last)
 			{
-				// for (const_iterator it = end(); first != last; first++)
-				// 	insert(it, *first);
 				while (first != last)
 				{
 					this->_tree.insert(*first);
@@ -159,15 +152,12 @@ namespace ft
 				size_type s = size();
 				this->_tree.remove(*find(k));
 				return (s - size());
-				// _tree.erase();
 			};
 			void					erase (iterator first, iterator last)
 			{
 				iterator position;
 				while(first != last)
 				{
-					// std::cout << "this is -------------------" << std::endl;
-					// print();
 					position = first;
 					first++;
 					erase(position);
