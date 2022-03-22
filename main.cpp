@@ -6,7 +6,7 @@
 /*   By: mbari <mbari@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/17 15:58:35 by mbari             #+#    #+#             */
-/*   Updated: 2022/03/19 01:50:46 by mbari            ###   ########.fr       */
+/*   Updated: 2022/03/22 02:10:56 by mbari            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -125,6 +125,6 @@ int main(int argc, char** argv)
 	{
 		std::cout << *it;
 	}
-	std::cout << std::endl;
+	std::cout << "done" << std::endl;
 	return (0);
 }

@@ -6,7 +6,7 @@
 /*   By: mbari <mbari@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/27 14:35:25 by mbari             #+#    #+#             */
-/*   Updated: 2022/03/22 01:32:49 by mbari            ###   ########.fr       */
+/*   Updated: 2022/03/22 02:44:11 by mbari            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -131,11 +131,16 @@ namespace ft
 		private:
 			void	_destroy(Node_ptr node)
 			{
-				Node_ptr tmp = node;
-				if (tmp != nullptr)
+				// while (this->_root != nullptr)
+				// 	remove(this->_root->key);
+				// for (iterator it = begin(); it != end(); it++)
+
+				// Node_ptr tmp = node;
+				if (node != nullptr)
 				{
-					_destroy(tmp->left);
-					_destroy(tmp->right);
+					_destroy(node->left);
+					_destroy(node->right);
+					this->_alloc.destroy(node);
 					this->_alloc.deallocate(node, 1);
 				}
 			};
@@ -149,6 +154,12 @@ namespace ft
 				newnode->left = nullptr;
 				newnode->right = nullptr;
 				return (newnode);
+			};
+			void _deletNode(Node_ptr* node)
+			{
+				this->_alloc.destroy(*node);
+				this->_alloc.deallocate(*node, 1);
+				*node = nullptr;
 			};
 			int		_Height(Node_ptr temp)
 			{
@@ -281,25 +292,29 @@ namespace ft
 						root = nullptr;
 						return (root);
 					}
-					else if (root->left == nullptr){
+					else if (root->left == nullptr)
+					{
 						Node_ptr	temp = root;
 						root = root->right;
 						root->parent = temp->parent;
 						this->_alloc.destroy(temp);
 						this->_alloc.deallocate(temp, 1);
+						temp = nullptr;
 						return (root);
 					}
-					else if (root->right == nullptr){
+					else if (root->right == nullptr)
+					{
 						Node_ptr	temp = root;
 						root = root->left;
 						root->parent = temp->parent;
 						this->_alloc.destroy(temp);
 						this->_alloc.deallocate(temp, 1);
+						temp = nullptr;
 						return (root);
 					}
 					else{
 						Node_ptr	temp = _TreeMin(root->right);
-						value_type p = temp->key;
+						// value_type p = temp->key;
 						Node_ptr X = temp->parent;
 						root->right = _remove(root->right , temp->key);
 						// temp = deletBalence(X, p.first);

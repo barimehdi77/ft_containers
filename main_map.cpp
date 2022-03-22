@@ -118,11 +118,11 @@ int main()
 		mymap['b'] = 100;
 		mymap['c'] = 150;
 		mymap['d'] = 200;
-		mymap.print();
+		// mymap.print();
 		it = mymap.find('b');
 		if (it != mymap.end())
 			mymap.erase(it);
-		mymap.print();
+		// mymap.print();
 		// print content:
 		std::cout << "elements in mymap:" << '\n';
 		std::cout << "a => " << mymap.find('a')->second << '\n';
@@ -141,12 +141,12 @@ int main()
 		mymap[10] = 40;
 		mymap[77] = 50;
 		mymap[6] = 60;
-		mymap.print();
+		// mymap.print();
 		NEXTD;
 		it = mymap.find(6);
 		mymap.erase(it);	// erasing by iterator
 		mymap.erase(10);	// erasing by key
-		mymap.print();
+		// mymap.print();
 		it = mymap.find(8);
 		mymap.erase(it, mymap.end()); // erasing by range
 		// show content:
@@ -260,11 +260,14 @@ int main()
 		{
 			mp.insert(PH::make_pair(i, i * 2));
 		}
+		mp.print();
 		PH::map<int, int>::iterator it = mp.begin();
 		mp.insert(PH::make_pair(-1, 2));
+		std::cout << it->first << " " << it->second <<  std::endl;
+		mp.print();
 		for (; it != mp.end(); it++)
 		{
-			std::cout << it->first << std::endl;
+			std::cout << it->first << " " << it->second << std::endl;
 		}
 	}
 }
