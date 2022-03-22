@@ -6,7 +6,7 @@
 /*   By: mbari <mbari@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/27 14:35:25 by mbari             #+#    #+#             */
-/*   Updated: 2022/03/22 02:50:50 by mbari            ###   ########.fr       */
+/*   Updated: 2022/03/22 23:48:25 by mbari            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -114,14 +114,14 @@ namespace ft
 			~Tree() {};
 
 		public: /*             Iterators                         */
-			iterator		begin()					{ return (iterator(this->Min())); };
-			const_iterator	begin() const			{ return (const_iterator(this->Min())); };
+			iterator		begin()					{ return (iterator(Min())); };
+			const_iterator	begin() const			{ return (const_iterator(Min())); };
 			iterator		end()					{ return (iterator(this->_end)); };
 			const_iterator	end() const				{ return (const_iterator(this->_end)); };
-			reverse_iterator rbegin()				{ return (reverse_iterator(this->end())); };
-			const_reverse_iterator rbegin() const	{ return (const_reverse_iterator(this->end())); };
-			reverse_iterator rend()					{ return (reverse_iterator(this->begin())); };
-			const_reverse_iterator rend() const		{ return (const_reverse_iterator(this->begin())); };
+			reverse_iterator rbegin()				{ return (reverse_iterator(end())); };
+			const_reverse_iterator rbegin() const	{ return (const_reverse_iterator(end())); };
+			reverse_iterator rend()					{ return (reverse_iterator(begin())); };
+			const_reverse_iterator rend() const		{ return (const_reverse_iterator(begin())); };
 
 		public: /*             Capacity                         */
 			bool empty() const { return (this->_size == 0); };
@@ -494,7 +494,7 @@ namespace ft
 
 			Node_ptr lower_bound(key_type val) const
 			{
-				Node_ptr node = this->Min();
+				Node_ptr node = Min();
 
 				while (!this->_comp(val, node->key.first))
 				{
@@ -511,7 +511,7 @@ namespace ft
 
 			Node_ptr upper_bound(key_type val) const
 			{
-				Node_ptr node = this->Min();
+				Node_ptr node = Min();
 
 				while (!this->_comp(val, node->key.first))
 				{
