@@ -6,7 +6,7 @@
 /*   By: mbari <mbari@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/27 14:35:25 by mbari             #+#    #+#             */
-/*   Updated: 2022/03/22 02:44:11 by mbari            ###   ########.fr       */
+/*   Updated: 2022/03/22 02:50:50 by mbari            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -314,7 +314,7 @@ namespace ft
 					}
 					else{
 						Node_ptr	temp = _TreeMin(root->right);
-						// value_type p = temp->key;
+						value_type p = temp->key;
 						Node_ptr X = temp->parent;
 						root->right = _remove(root->right , temp->key);
 						// temp = deletBalence(X, p.first);

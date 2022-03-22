@@ -6,7 +6,7 @@
 /*   By: mbari <mbari@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/17 15:58:35 by mbari             #+#    #+#             */
-/*   Updated: 2022/03/22 02:10:56 by mbari            ###   ########.fr       */
+/*   Updated: 2022/03/22 23:21:45 by mbari            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -100,7 +100,6 @@ int main(int argc, char** argv)
 	{
 		//NORMAL ! :P
 	}
-
 	for (int i = 0; i < COUNT; ++i)
 	{
 		map_int.insert(ft::make_pair(rand(), rand()));
@@ -116,15 +115,16 @@ int main(int argc, char** argv)
 	std::cout << "should be constant with the same seed: " << sum << std::endl;
 
 	{
-		ft::map<int, int> copy = map_int;
+		// ft::map<int, int> copy = map_int;
 	}
 	MutantStack<char> iterable_stack;
+	// std::cout << "done";
 	for (char letter = 'a'; letter <= 'z'; letter++)
 		iterable_stack.push(letter);
 	for (MutantStack<char>::iterator it = iterable_stack.begin(); it != iterable_stack.end(); it++)
 	{
+		// std::cout << "done";
 		std::cout << *it;
 	}
-	std::cout << "done" << std::endl;
 	return (0);
 }

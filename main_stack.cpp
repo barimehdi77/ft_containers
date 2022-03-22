@@ -6,7 +6,7 @@
 /*   By: mbari <mbari@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/22 22:51:30 by mbari             #+#    #+#             */
-/*   Updated: 2022/03/22 22:56:08 by mbari            ###   ########.fr       */
+/*   Updated: 2022/03/22 23:46:51 by mbari            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -55,14 +55,5 @@ int main()
 		std::cout << *it;
 	}
 	std::cout << std::endl;
-	PH::stack<int> t1;
-	PH::stack<int> t2;
-
-	for (int letter = 0; letter <= 5; letter++){
-		t1.push(letter);
-		t2.push(letter);
-	}
-	if (t1 == t2)
-		std::cout << "OK" << std::endl;
 	return (0);
 }
