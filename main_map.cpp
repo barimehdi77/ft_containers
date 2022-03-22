@@ -118,9 +118,11 @@ int main()
 		mymap['b'] = 100;
 		mymap['c'] = 150;
 		mymap['d'] = 200;
+		mymap.print();
 		it = mymap.find('b');
 		if (it != mymap.end())
 			mymap.erase(it);
+		mymap.print();
 		// print content:
 		std::cout << "elements in mymap:" << '\n';
 		std::cout << "a => " << mymap.find('a')->second << '\n';
@@ -142,8 +144,8 @@ int main()
 		mymap.print();
 		NEXTD;
 		it = mymap.find(6);
-		mymap.erase(it);  // erasing by iterator
-		mymap.erase(10); // erasing by key
+		mymap.erase(it);	// erasing by iterator
+		mymap.erase(10);	// erasing by key
 		mymap.print();
 		it = mymap.find(8);
 		mymap.erase(it, mymap.end()); // erasing by range

@@ -6,7 +6,7 @@
 /*   By: mbari <mbari@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/27 14:35:25 by mbari             #+#    #+#             */
-/*   Updated: 2022/03/20 02:22:24 by mbari            ###   ########.fr       */
+/*   Updated: 2022/03/22 01:32:49 by mbari            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -304,8 +304,8 @@ namespace ft
 						root->right = _remove(root->right , temp->key);
 						// temp = deletBalence(X, p.first);
 						this->_alloc.construct(root, p);
-						if (temp != nullptr)
-							root = temp;
+						// if (temp != nullptr)
+						// 	root = temp;
 					}
 					// if (root->left == nullptr)
 					// {
@@ -406,8 +406,9 @@ namespace ft
 
 			Node_ptr	insertInPossition(Node_ptr position, T key)
 			{
-				Node_type * newnode = this->_alloc.allocate(1);
-				this->_alloc.construct(newnode, key);
+				// Node_type * newnode = this->_alloc.allocate(1);
+				// this->_alloc.construct(newnode, key);
+				Node_ptr newnode = _makeNode(key);
 				if (position == this->_end)
 				{
 					position = newnode;
