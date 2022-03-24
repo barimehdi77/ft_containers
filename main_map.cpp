@@ -260,11 +260,11 @@ int main()
 		{
 			mp.insert(PH::make_pair(i, i * 2));
 		}
-		mp.print();
+		// mp.print();
 		PH::map<int, int>::iterator it = mp.begin();
 		mp.insert(PH::make_pair(-1, 2));
 		std::cout << it->first << " " << it->second <<  std::endl;
-		mp.print();
+		// mp.print();
 		for (; it != mp.end(); it++)
 		{
 			std::cout << it->first << " " << it->second << std::endl;

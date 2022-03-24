@@ -6,7 +6,7 @@
 /*   By: mbari <mbari@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/12/26 12:04:04 by mbari             #+#    #+#             */
-/*   Updated: 2022/03/23 00:00:24 by mbari            ###   ########.fr       */
+/*   Updated: 2022/03/23 16:23:17 by mbari            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -50,11 +50,11 @@ namespace ft
 			explicit vector (const allocator_type& alloc = allocator_type()): _alloc(alloc), _vec(nullptr), _size(0), _capacity(0) {};
 			explicit vector (	size_type n, const value_type& val = value_type(), const allocator_type& alloc = allocator_type()):
 					_alloc(alloc), _size(0), _capacity(0), _vec(nullptr)
-			{ this->assign(n, val); };
+			{ assign(n, val); };
 			template <class InputIterator>
 			vector (InputIterator first, InputIterator last,const allocator_type& alloc = allocator_type(), typename ft::enable_if<!is_integral<InputIterator>::value, bool>::type = true):
 				_alloc(alloc), _size(0), _capacity(0), _vec(nullptr)
-			{ this->assign(first, last); };
+			{ assign(first, last); };
 			vector (const vector& x): _vec(nullptr), _size(0), _capacity(0) { *this = x; };
 
 		public: /*             destructor                         */
@@ -69,14 +69,15 @@ namespace ft
 			{
 				if (this != &x)
 				{
-					if (this->_capacity != 0)
-						this->_alloc.deallocate(this->_vec, this->_capacity);
+					// if (this->_capacity != 0)
+					// 	this->_alloc.deallocate(this->_vec, this->_capacity);
 					this->_alloc = x._alloc;
 					this->_size = x._size;
 					this->_capacity = x._size;
-					this->_vec = this->_alloc.allocate(this->_capacity);
-					for (size_t i = 0; i < this->_size; i++)
-						this->_alloc.construct(this->_vec + i, x._vec[i]);
+					assign(x.begin(), x.end());
+					// this->_vec = this->_alloc.allocate(this->_capacity);
+					// for (size_t i = 0; i < this->_size; i++)
+					// 	this->_alloc.construct(this->_vec + i, x._vec[i]);
 				}
 				return (*this);
 			};
