@@ -6,7 +6,7 @@
 /*   By: mbari <mbari@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/12/26 12:04:04 by mbari             #+#    #+#             */
-/*   Updated: 2022/03/23 16:23:17 by mbari            ###   ########.fr       */
+/*   Updated: 2022/03/25 00:45:46 by mbari            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -72,9 +72,9 @@ namespace ft
 					// if (this->_capacity != 0)
 					// 	this->_alloc.deallocate(this->_vec, this->_capacity);
 					this->_alloc = x._alloc;
-					this->_size = x._size;
-					this->_capacity = x._size;
 					assign(x.begin(), x.end());
+					this->_size = x._size;
+					this->_capacity = x._capacity;
 					// this->_vec = this->_alloc.allocate(this->_capacity);
 					// for (size_t i = 0; i < this->_size; i++)
 					// 	this->_alloc.construct(this->_vec + i, x._vec[i]);

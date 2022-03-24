@@ -1283,63 +1283,30 @@ int main()
 // 	return (0);
 // }
 
-#define LIB ft
-
-bool fncomp (char lhs, char rhs) {return lhs<rhs;}
-
-struct classcomp {
-	bool operator() (const char& lhs, const char& rhs) const
-	{return lhs<rhs;}
-};
+#define PH ft
 
 int main()
 {
-	// {
-		std::cout << "first test" << std::endl;
-		LIB::map<char,int> map;
+	{
 
-		map['a']=10;
-		map['b']=30;
-		map['c']=50;
-		map['d']=70;
+		std::cout << "------------- Library  -------------" << std::endl;
+		PH::vector<int> second (4,100);
+		PH::vector<int> fourth (second);
+		std::cout << "The contents of fifth are:";
+		for (PH::vector<int>::iterator it = fourth.begin(); it != fourth.end(); ++it)
+			std::cout << ' ' << *it;
+		std::cout << '\n';
+		std::cout << "The contents of second are:";
+		for (PH::vector<int>::iterator it = second.begin(); it != second.end(); ++it)
+			std::cout << ' ' << *it;
+		std::cout << '\n';
 
-		LIB::map<char,int> smap (map.begin(),map.end());
+		std::cout << "the second size is : " << second.size() << std::endl;
+		std::cout << "the second capacity is : " << second.capacity() << std::endl;
+		std::cout << "the fourth size is : " << fourth.size() << std::endl;
+		std::cout << "the fourth capacity is : " << fourth.capacity() << std::endl;
 
-		LIB::map<char,int> third (smap);
-
-		LIB::map<char,int,classcomp> fourth;                 // class as Compare
-
-		bool(*fn_pt)(char,char) = fncomp;
-		LIB::map<char,int,bool(*)(char,char)> fifth (fn_pt); // function pointer as Compare
-
-	// }
-	// {
-		std::cout << "second test" << std::endl;
-		LIB::map<char, int> first;
-		LIB::map<char, int> second;
-		first['b'] = 100;
-		first['a'] = 200;
-		first['c'] = 300;
-		second = first;				  // second now contains 3 ints
-		first = LIB::map<char, int>(); // and first is now empty
-		for (LIB::map<char, int>::iterator it = second.begin(); it != second.end(); ++it)
-			std::cout << it->first << " => " << it->second << '\n';
-		std::cout << "Size of first: " << first.size() << '\n';
-		std::cout << "Size of second: " << second.size() << '\n';
-	// }
-	// {
-		std::cout << "third test" << std::endl;
-		LIB::map<char, int> mymap;
-		mymap['b'] = 100;
-		mymap['a'] = 200;
-		mymap['c'] = 300;
-		// // show content:
-		for (LIB::map<char, int>::iterator it = mymap.begin(); it != mymap.end(); ++it)
-			std::cout << it->first << " => " << it->second << '\n';
-		std::cout << "mymap.size() is " << mymap.size() << '\n';
-	// }
-
-
+	}
 
 }
 
