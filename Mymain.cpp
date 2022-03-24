@@ -1283,7 +1283,7 @@ int main()
 // 	return (0);
 // }
 
-#define PH ft
+#define PH std
 
 int main()
 {
@@ -1291,7 +1291,8 @@ int main()
 
 		std::cout << "------------- Library  -------------" << std::endl;
 		PH::vector<int> second (4,100);
-		PH::vector<int> fourth (second);
+		PH::vector<int> fourth (5,200);
+		fourth.swap(second);
 		std::cout << "The contents of fifth are:";
 		for (PH::vector<int>::iterator it = fourth.begin(); it != fourth.end(); ++it)
 			std::cout << ' ' << *it;
