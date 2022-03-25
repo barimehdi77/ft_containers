@@ -124,4 +124,11 @@ I re-implement the following member functions in map class:
  - [std::map cplusplus](http://www.cplusplus.com/reference/map/map/).
  - [Binary Search Trees (BST) with code in C++, Python, and Java](https://algorithmtutor.com/Data-Structures/Tree/Binary-Search-Trees/).
  - [Data Structure and Algorithms - AVL Trees](https://www.tutorialspoint.com/data_structures_algorithms/avl_tree_algorithm.htm).
- - 
+ - [std::map cppreference](https://en.cppreference.com/w/cpp/container/map).
+ - [boost's map source file](https://www.boost.org/doc/libs/1_53_0/boost/container/map.hpp).
+ - [boost's Tree source file](https://www.boost.org/doc/libs/1_53_0/boost/container/detail/tree.hpp).
+ - [how exactly insert of map exactly work in c++?](https://stackoverflow.com/questions/71336702/how-exactly-insert-of-map-exactly-work-in-c).
+ - [std::stack cplusplus](http://www.cplusplus.com/reference/stack/stack/?kw=stack).
+ - [C++ enable-if](https://www.youtube.com/watch?v=H-m23Vvzcug) {video}.
+ - [Containers in C++ STL (Standard Template Library)](https://www.geeksforgeeks.org/containers-cpp-stl/).
+ - [Vector in C++ STL](https://www.geeksforgeeks.org/vector-in-cpp-stl/).
