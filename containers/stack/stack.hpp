@@ -6,7 +6,7 @@
 /*   By: mbari <mbari@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/17 13:33:57 by mbari             #+#    #+#             */
-/*   Updated: 2022/03/22 23:14:02 by mbari            ###   ########.fr       */
+/*   Updated: 2022/03/25 01:06:01 by mbari            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,7 +32,6 @@ namespace ft
 
 		public:
 			explicit stack (const container_type& ctnr = container_type()): c(ctnr) {};
-			~stack(){};
 
 		public:
 			bool empty()			const		{ return (!this->c.size()); };
